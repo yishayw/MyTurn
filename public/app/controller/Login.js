@@ -2,11 +2,12 @@
 Ext.define('testing.controller.Login', {
     extend: 'Ext.app.Controller',
     config: {
-         refs: {
+        refs: {
             loginForm: "loginView",
             mainView: "mainView",
             loginButton: "button[action=loginEvent]",
             logoutButton: "button[action=logoutEvent]",
+            loginTextField: "textfield[id=loginTextField]",
             discussionView: "discussionView"
         }
     },
@@ -18,6 +19,7 @@ Ext.define('testing.controller.Login', {
         this.getDiscussionView().setDisabled(true);
         this.getLogoutButton().hide();
         this.getLoginButton().show();
+        this.getLoginTextField().setDisabled(false);
     },
 
     doLogin: function() {
@@ -27,7 +29,8 @@ Ext.define('testing.controller.Login', {
         mainView.setActiveItem(this.getDiscussionView());
         this.getLogoutButton().show();
         this.getLoginButton().hide();
-    },
+        this.getLoginTextField().setDisabled(true);
+   },
 
     init: function() {
         this.getApplication().on({

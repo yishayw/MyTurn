@@ -11,11 +11,13 @@ Ext.define("testing.view.Main", {
         items: [
             {
                 xtype: 'loginView',
-                title: 'Login'
+                title: 'Home',
+                iconCls: 'home'
             },
             {
                 xtype: 'discussionView',
-                title: 'Discussion'
+                title: 'Discussion',
+                iconCls: 'user'
             }
         ]
     }

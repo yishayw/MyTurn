@@ -4,12 +4,12 @@ var messageDispatcher = require('./messageDispatcher')
 
 function rulesEngine(room, messageDispatcher) {
     this.room = room;
-    this.nextTimedActionId = null;
     this.discussionOverActionId = null;
+    this.nextTimedActionId = null;
     this.nextTimedActionTime = null;
     this.speakerQueue = [];
     this.activeSpeaker = null;
-    this.discussionLength = 3 * 1000;
+    this.discussionLength = 3 * 60 * 1000;
     this.turnLimit = 5 * 1000;
     this.messageDispatcher = messageDispatcher;
 }
@@ -33,8 +33,14 @@ rulesEngine.prototype.receiveClientMessage = function(user, data) {
     this.reprocess();
 }
 
+rulesEngine.prototype.log = function(msg) {
+    var now = new Date().toLocaleString();
+    console.log(now + ": " + msg);
+}
+
 rulesEngine.prototype.doRequestToSpeak = function(user, data) {
     // add user to queue if he's not there already,
+    this.log('doRequestToSpeak');
     var length = this.speakerQueue.length;
     for(var i = 0; i < length; i++) {
         var currentUser = this.speakerQueue[i];
@@ -46,6 +52,7 @@ rulesEngine.prototype.doRequestToSpeak = function(user, data) {
 }
 
 rulesEngine.prototype.reprocess = function() {
+    this.log('first reprocess');
     var now = new Date().getTime();
     // get possible message events and set the closest as a timeout
     var nextSpeakerAction = this.getNextSpeaker();
@@ -62,8 +69,10 @@ rulesEngine.prototype.reprocess = function() {
     if(!nextAction || (this.nextTimedActionTime != null && (now + nextAction.time > this.nextTimedActionTime))) {
         return;
     }
+    this.log('reprocess ' + nextAction.time);
     this.nextTimedActionTime = now + nextAction.time;
     this.nextTimedActionId = setTimeout(nextAction.action, nextAction.time);
+
 }
 
 rulesEngine.prototype.getNextSpeaker = function() {
@@ -130,6 +139,8 @@ rulesEngine.prototype.doNextSpeaker = function(speaker) {
         messageType: 'newSpeaker',
         name: speaker.name
     });
+    this.nextTimedActionId = null;
+    this.nextTimedActionTime = null;
     this.reprocess();
 }
 

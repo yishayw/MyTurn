@@ -7,7 +7,8 @@ Ext.define('testing.controller.Discussion', {
             /*removeFromQueueButton: { tap: 'doRemoveFromQueue' }*/
         },
         refs: {
-            addToQueueButton: "button[action=addToQueueEvent]"
+            addToQueueButton: "button[action=addToQueueEvent]",
+            messageLabel: "label[id=messageLabel]"
         }
     },
 
@@ -17,11 +18,11 @@ Ext.define('testing.controller.Discussion', {
     },
 
     doDiscussionOver: function(data) {
-        alert('The discussion is over.');
+        this.getMessageLabel().setHtml('The discussion is over.');
     },
 
     doNewSpeaker: function(data) {
-        alert('New speaker is ' + data.name);
+        this.getMessageLabel().setHtml('Current speaker is ' + data.name);
     },
 
     init: function() {

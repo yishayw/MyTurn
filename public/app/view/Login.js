@@ -7,7 +7,9 @@ Ext.define("testing.view.Login", {
         {
             xtype: 'textfield',
             name: 'name',
-            label: 'Name'
+            label: 'Name',
+            id: 'loginTextField',
+            centered: true
         },
         {
             xtype: 'button',
