@@ -13,12 +13,12 @@ Ext.define("testing.view.CreateGroup", {
         {
             xtype: 'textfield',
             name: 'discussionLength',
-            label: 'Discussion length'
+            label: 'Discussion length (minutes)'
         },
         {
             xtype: 'textfield',
             name: 'turnLength',
-            label: 'Turn length'
+            label: 'Turn length (seconds)'
         },
         {
             xtype: 'button',

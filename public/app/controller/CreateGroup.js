@@ -24,6 +24,11 @@ Ext.define('testing.controller.CreateGroup', {
         }
         // store
         var group = Ext.create('testing.model.Group', values);
+        var data = group.data;
+        // convert minutes
+        data.discussionLength = data.discussionLength * 60 * 1000;
+        // convert seconds
+        data.turnLength = data.turnLength * 1000;
         groups.add(group);
         groups.sync();
         this.getCreateGroupForm().hide();
