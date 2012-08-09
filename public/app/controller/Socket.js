@@ -20,12 +20,15 @@ Ext.define('testing.controller.Socket', {
     },
 
     doLogin: function() {
-        var loginName = this.getLoginForm().getValues().name;
+        var values = this.getLoginForm().getValues();
+        var loginName = values.userName;
+        var roomName = values.groupName;
         this.socket = io.connect(null, { resource: 'api/socket.io', 'force new connection': true });
-        this.socket.emit('login', { name: loginName, 'room': 'Room' });
+        this.socket.emit('login', { name: loginName, 'room': roomName });
         var application = this.getApplication();
-        this.socket.on('userRejected', function() {
-            Ext.Msg.alert('User ' + loginName + ' already exists', 'Try a different name');
+        this.socket.on('userRejected', function(data) {
+            var msg = data.reason == 'alreadyExists' ? 'Try a different name' : data.reason == 'groupNotDefined' ? 'Group was not defined' : '';
+            Ext.Msg.alert('User rejected', msg);
             application.fireEvent('userLoggedOut');
         });
         this.socket.on('disconnect', function() {

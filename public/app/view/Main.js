@@ -2,6 +2,7 @@ Ext.define("testing.view.Main", {
     extend: 'Ext.tab.Panel',
     xtype: 'mainView',
     requires: [
+        'Ext.field.Select',
         'testing.view.Login',
         'testing.view.Discussion'
     ],

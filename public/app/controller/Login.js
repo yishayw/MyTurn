@@ -2,13 +2,18 @@
 Ext.define('testing.controller.Login', {
     extend: 'Ext.app.Controller',
     config: {
+        control: {
+            createGroupButton: { tap: "doCreateGroup" }
+        },
         refs: {
             loginForm: "loginView",
             mainView: "mainView",
+            createGroupButton: "button[action=createGroupEvent]",
             loginButton: "button[action=loginEvent]",
             logoutButton: "button[action=logoutEvent]",
             loginTextField: "textfield[id=loginTextField]",
-            discussionView: "discussionView"
+            discussionView: "discussionView",
+            createGroupView: "createGroupView"
         }
     },
 
@@ -30,7 +35,11 @@ Ext.define('testing.controller.Login', {
         this.getLogoutButton().show();
         this.getLoginButton().hide();
         this.getLoginTextField().setDisabled(true);
-   },
+    },
+
+    doCreateGroup: function() {
+        this.getCreateGroupView().show();
+    },
 
     init: function() {
         this.getApplication().on({
@@ -44,6 +53,7 @@ Ext.define('testing.controller.Login', {
     },
 
     launch: function() {
+        this.getCreateGroupView().hide();
         this.getLogoutButton().hide();
         this.getLoginButton().show();
         this.getMainView().setActiveItem(this.getLoginForm());

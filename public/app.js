@@ -7,7 +7,11 @@ Ext.application({
 
     views: ['Main'],
 
-    controllers: ['Socket', 'Login', 'Discussion'],
+    controllers: ['Socket', 'Login', 'Discussion', 'CreateGroup'],
+
+    stores: ['Groups'],
+
+    models: ['Group'],
 
     icon: {
         '57': 'resources/icons/Icon.png',

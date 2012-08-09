@@ -5,11 +5,11 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , db = require('./api/db')
   , user = require('./api/models/user')
   , rulesEngine = require('./api/rulesEngine')
+  , db = require('./api/db.js')
   , messageDispatcher = require('./api/messageDispatcher')
-  , apiServer = require('./api/server.js');
+  , apiServer = require('./api/nodejs_server.js');
 var app = module.exports = express.createServer();
 
 var messageDispatcherInstance;
@@ -74,17 +74,30 @@ function login(socket, data) {
     {
         var client = clientsInRoom[i];
         var userObject = db.load(client.id);
-        if (userObject && userObject.name == name)
+        if (userObject && userObject.name == name && userObject.room == room)
         {
-            socket.emit('userRejected');
+            socket.emit('userRejected', {reason: 'alreadyExists'});
             return;
         }
+    }
+    var roomList = db.load('groups').data;
+    var numberOfRooms = roomList.length;
+    var roomObject = null;
+    for (var i=0; i < numberOfRooms; i++) {
+        if (roomList[i].name == room) {
+            roomObject = roomList[i];
+            break;
+        }
+    }
+    if (!roomObject) {
+        socket.emit('userRejected', {reason: 'groupNotDefined'});
+        return;
     }
     // save new client data
     db.save(new user(data, socket.id, room));
     // create a rules engine if it doesn't already exist
     if (!rulesEngineMap[room]) {
-        var newRulesEngine = new rulesEngine(room, messageDispatcherInstance);
+        var newRulesEngine = new rulesEngine(roomObject, messageDispatcherInstance);
         newRulesEngine.listen();
         rulesEngineMap[room] = newRulesEngine;
     }

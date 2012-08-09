@@ -3,14 +3,14 @@ var messageDispatcher = require('./messageDispatcher')
     , db = require('./db');
 
 function rulesEngine(room, messageDispatcher) {
-    this.room = room;
+    this.room = room.name;
+    this.discussionLength = room.discussionLength;
+    this.turnLimit = room.turnLength;
     this.discussionOverActionId = null;
     this.nextTimedActionId = null;
     this.nextTimedActionTime = null;
     this.speakerQueue = [];
     this.activeSpeaker = null;
-    this.discussionLength = 3 * 60 * 1000;
-    this.turnLimit = 5 * 1000;
     this.messageDispatcher = messageDispatcher;
 }
 
