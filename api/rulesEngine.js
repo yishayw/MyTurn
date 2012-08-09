@@ -105,14 +105,15 @@ rulesEngine.prototype.getNextSpeaker = function() {
 }
 
 rulesEngine.prototype.doDiscussionOver = function() {
-    this.messageDispatcher.sendMessageToRoom(this.room, {
-        messageType: 'discussionOver'
-    });
     // discussion is over, make sure no further actions are performed
     clearTimeout(this.nextTimedActionId);
     clearTimeout(this.discussionOverActionId);
-    // ask to be destroyed
+    // clean up server
     this.messageDispatcher.emit('discussionOverInServer', this.room);
+    // let client know
+    this.messageDispatcher.sendMessageToRoom(this.room, {
+        messageType: 'discussionOver'
+    });
 }
 
 rulesEngine.prototype.doNextSpeaker = function(speaker) {

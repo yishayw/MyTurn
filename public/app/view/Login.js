@@ -19,11 +19,12 @@ Ext.define("testing.view.Login", {
         },
         {
             xtype: 'selectfield',
-            label: 'Select group',
+            label: 'Group',
             store: 'groups',
             displayField: 'name',
             valueField: 'name',
-            name: 'groupName'
+            name: 'groupName',
+            id: 'groupSelect'
         },
         {
             xtype: 'textfield',

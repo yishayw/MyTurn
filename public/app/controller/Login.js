@@ -11,7 +11,8 @@ Ext.define('testing.controller.Login', {
             createGroupButton: "button[action=createGroupEvent]",
             loginButton: "button[action=loginEvent]",
             logoutButton: "button[action=logoutEvent]",
-            loginTextField: "textfield[id=loginTextField]",
+            loginTextField: "#loginTextField",
+            groupSelect: "#groupSelect",
             discussionView: "discussionView",
             createGroupView: "createGroupView"
         }
@@ -25,6 +26,8 @@ Ext.define('testing.controller.Login', {
         this.getLogoutButton().hide();
         this.getLoginButton().show();
         this.getLoginTextField().setDisabled(false);
+        this.getCreateGroupButton().setDisabled(false);
+        this.getGroupSelect().setDisabled(false);
     },
 
     doLogin: function() {
@@ -35,6 +38,8 @@ Ext.define('testing.controller.Login', {
         this.getLogoutButton().show();
         this.getLoginButton().hide();
         this.getLoginTextField().setDisabled(true);
+        this.getCreateGroupButton().setDisabled(true);
+        this.getGroupSelect().setDisabled(true);
     },
 
     doCreateGroup: function() {
@@ -53,10 +58,7 @@ Ext.define('testing.controller.Login', {
     },
 
     launch: function() {
+        this.doLogout();
         this.getCreateGroupView().hide();
-        this.getLogoutButton().hide();
-        this.getLoginButton().show();
-        this.getMainView().setActiveItem(this.getLoginForm());
-        this.getDiscussionView().setDisabled(true);
     }
 });

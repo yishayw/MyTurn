@@ -15,7 +15,7 @@ Ext.define('testing.controller.Socket', {
     },
 
     doLogout: function() {
-        // in doLogin() we listen to this and bubble on
+        // in doLogin() we listen to resulting disconnect event
         this.socket.disconnect();
     },
 
@@ -28,7 +28,7 @@ Ext.define('testing.controller.Socket', {
         var application = this.getApplication();
         this.socket.on('userRejected', function(data) {
             var msg = data.reason == 'alreadyExists' ? 'Try a different name' : data.reason == 'groupNotDefined' ? 'Group was not defined' : '';
-            Ext.Msg.alert('User rejected', msg);
+            Ext.Msg.alert('', msg);
             application.fireEvent('userLoggedOut');
         });
         this.socket.on('disconnect', function() {
@@ -50,6 +50,10 @@ Ext.define('testing.controller.Socket', {
                     this.socket.emit('clientMessage', data);
                 }
             },
+            scope: this
+        });
+        this.getApplication().on({
+            discussionOver: this.doLogout,
             scope: this
         });
     }

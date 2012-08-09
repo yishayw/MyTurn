@@ -13,12 +13,15 @@ Ext.define('testing.controller.Discussion', {
     },
 
     doAddToQueue: function() {
- //       this.getAddToQueueButton().setDisabled(true);
-        this.getApplication().fireEvent('clientMessage', {type : 'requestToSpeak'});
+        //       this.getAddToQueueButton().setDisabled(true);
+        this.getApplication().fireEvent('clientMessage', { type: 'requestToSpeak' });
     },
 
     doDiscussionOver: function(data) {
-        this.getMessageLabel().setHtml('The discussion is over.');
+        this.getMessageLabel().setHtml('Messages go here.');
+        Ext.Msg.alert('', 'The discussion is over.');
+        // a group was deleted on server, time to reload
+        Ext.getStore('groups').load();
     },
 
     doNewSpeaker: function(data) {

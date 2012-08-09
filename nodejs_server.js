@@ -49,7 +49,10 @@ io.configure(function() {
     io.set('polling duration', 10);
     messageDispatcherInstance = new messageDispatcher(io);
     messageDispatcherInstance.on('discussionOverInServer', function(room) {
+        // destroy rule engine
         delete rulesEngineMap[room];
+        // clean up db
+        removeRoomObject(room);
     });
     io.sockets.on('connection', function(socket) {
         socket.on('login', function(data) {
@@ -80,15 +83,7 @@ function login(socket, data) {
             return;
         }
     }
-    var roomList = db.load('groups').data;
-    var numberOfRooms = roomList.length;
-    var roomObject = null;
-    for (var i=0; i < numberOfRooms; i++) {
-        if (roomList[i].name == room) {
-            roomObject = roomList[i];
-            break;
-        }
-    }
+    var roomObject = getRoomObject(room);
     if (!roomObject) {
         socket.emit('userRejected', {reason: 'groupNotDefined'});
         return;
@@ -103,4 +98,31 @@ function login(socket, data) {
     }
     socket.join(room);
     socket.emit('userAccepted');
+}
+
+function getRoomObject(room) {
+    var roomList = db.load('groups').data;
+    var numberOfRooms = roomList.length;
+    for (var i=0; i < numberOfRooms; i++) {
+        if (roomList[i].name == room) {
+            return roomList[i];
+        }
+    }
+    return null;
+}
+
+function removeRoomObject(room) {
+    var groups = db.load('groups');
+    var roomList = groups.data;
+    var numberOfRooms = roomList.length;
+    for (var i=0; i < numberOfRooms; i++) {
+        if (roomList[i].name == room) {
+            var removedObject = roomList[i].name;
+            roomList.splice(i, 1);
+            groups.data = roomList;
+            db.save(groups);
+            return removedObject;
+        }
+    }
+    return null;
 }

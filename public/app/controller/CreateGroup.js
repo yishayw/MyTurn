@@ -18,7 +18,7 @@ Ext.define('testing.controller.CreateGroup', {
         var groups = Ext.getStore('groups');
         // validate
         if(groups.findExact('name', name) != -1) {
-            Ext.Msg.alert('Try a different name', 'Group ' + name + ' already exists');
+            Ext.Msg.alert('', 'Group ' + name + ' already exists');
             this.getGroupNameTextField().value = "";
             return;
         }
