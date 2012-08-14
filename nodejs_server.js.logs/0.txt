@@ -1,72 +1,26 @@
 Express server listening on port NaN in development mode
 info: socket.io started
-debug: client authorized
-info: handshake authorized m0zt45CZgxj0wDjLfKba
-debug: setting request GET /api/socket.io/1/xhr-polling/m0zt45CZgxj0wDjLfKba?t=1344551074436
-debug: setting poll timeout
-debug: client authorized for 
-debug: clearing poll timeout
-debug: xhr-polling writing 1::
-debug: set close timeout for client m0zt45CZgxj0wDjLfKba
-debug: setting request GET /api/socket.io/1/xhr-polling/m0zt45CZgxj0wDjLfKba?t=1344551074458
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client m0zt45CZgxj0wDjLfKba
-debug: xhr-polling received data packet 5:::{"name":"login","args":[{"name":"pop","room":"12"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"userAccepted"}
-debug: set close timeout for client m0zt45CZgxj0wDjLfKba
-debug: setting request GET /api/socket.io/1/xhr-polling/m0zt45CZgxj0wDjLfKba?t=1344551074510
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client m0zt45CZgxj0wDjLfKba
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
-Fri Aug 10 2012 01:24:36 GMT+0300 (Jerusalem Daylight Time): doRequestToSpeak
-Fri Aug 10 2012 01:24:36 GMT+0300 (Jerusalem Daylight Time): first reprocess
-Fri Aug 10 2012 01:24:36 GMT+0300 (Jerusalem Daylight Time): reprocess 0
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"pop"}]}
-debug: set close timeout for client m0zt45CZgxj0wDjLfKba
-Fri Aug 10 2012 01:24:36 GMT+0300 (Jerusalem Daylight Time): first reprocess
-debug: setting request GET /api/socket.io/1/xhr-polling/m0zt45CZgxj0wDjLfKba?t=1344551076584
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client m0zt45CZgxj0wDjLfKba
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"discussionOver"}]}
-debug: set close timeout for client m0zt45CZgxj0wDjLfKba
-debug: xhr-polling received data packet 0::
-debug: got disconnection packet
-info: transport end by forced client disconnection
-info: transport end (booted)
-debug: cleared close timeout for client m0zt45CZgxj0wDjLfKba
-debug: discarding transport
-debug: client authorized
-info: handshake authorized edk7Un1VbTXbDMxpfKbb
-debug: setting request GET /api/socket.io/1/xhr-polling/edk7Un1VbTXbDMxpfKbb?t=1344551102148
-debug: setting poll timeout
-debug: client authorized for 
-debug: clearing poll timeout
-debug: xhr-polling writing 1::
-debug: set close timeout for client edk7Un1VbTXbDMxpfKbb
-debug: setting request GET /api/socket.io/1/xhr-polling/edk7Un1VbTXbDMxpfKbb?t=1344551102162
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client edk7Un1VbTXbDMxpfKbb
-debug: xhr-polling received data packet 5:::{"name":"login","args":[{"name":"pop","room":"12"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"userAccepted"}
-debug: set close timeout for client edk7Un1VbTXbDMxpfKbb
-debug: setting request GET /api/socket.io/1/xhr-polling/edk7Un1VbTXbDMxpfKbb?t=1344551102195
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client edk7Un1VbTXbDMxpfKbb
-debug: xhr-polling received data packet 0::
-debug: got disconnection packet
-info: transport end by forced client disconnection
-debug: clearing poll timeout
-debug: xhr-polling writing 0::
-debug: set close timeout for client edk7Un1VbTXbDMxpfKbb
-info: transport end (booted)
-debug: cleared close timeout for client edk7Un1VbTXbDMxpfKbb
-debug: discarding transport
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
+debug: served static content /socket.io.js
