@@ -27,7 +27,7 @@ Ext.define('testing.controller.Socket', {
         this.socket.emit('login', { name: loginName, 'room': roomName });
         var application = this.getApplication();
         this.socket.on('userRejected', function(data) {
-            var msg = data.reason == 'alreadyExists' ? 'Try a different name' : data.reason == 'groupNotDefined' ? 'Group was not defined' : '';
+            var msg = data.reason == 'alreadyExists' ? 'Try a different name' : data.reason == 'groupNotDefined' ? 'Group is not defined' : '';
             Ext.Msg.alert('', msg);
             application.fireEvent('userLoggedOut');
         });

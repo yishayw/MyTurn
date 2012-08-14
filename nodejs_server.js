@@ -101,7 +101,17 @@ function login(socket, data) {
 }
 
 function getRoomObject(room) {
-    var roomList = db.load('groups').data;
+    if (!room) {
+        return null;
+    }
+    var groups = db.load('groups');
+    if (!groups) {
+        return null;
+    }
+    var roomList = groups.data;
+    if (!roomList) {
+        return null;
+    }
     var numberOfRooms = roomList.length;
     for (var i=0; i < numberOfRooms; i++) {
         if (roomList[i].name == room) {
