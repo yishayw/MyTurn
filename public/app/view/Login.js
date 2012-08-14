@@ -61,7 +61,8 @@ Ext.define("testing.view.Login", {
             hideOnMaskTap: true,
             centered: true,
             height: '70%',
-            width: '70%'
+            width: '70%',
+            minHeight: 180
         }
        ]
     }

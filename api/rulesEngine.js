@@ -140,6 +140,9 @@ rulesEngine.prototype.doNextSpeaker = function(speaker) {
         messageType: 'newSpeaker',
         name: speaker.name
     });
+    this.messageDispatcher.sendMessageToClient(speaker.id, {
+       messageType: 'yourTurn' 
+    });
     this.nextTimedActionId = null;
     this.nextTimedActionTime = null;
     this.reprocess();

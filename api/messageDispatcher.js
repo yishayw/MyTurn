@@ -16,7 +16,7 @@ messageDispatcher.prototype.sendMessageFromClient = function(id, data) {
 }
 
 messageDispatcher.prototype.sendMessageToClient = function(id, data) {
-    this.io.sockets.sockets[id].send(data);
+    this.io.sockets.sockets[id].emit('message', data);
 }
 
 messageDispatcher.prototype.sendMessageToRoom = function(room, message) {

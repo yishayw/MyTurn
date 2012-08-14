@@ -8,7 +8,8 @@ Ext.define('testing.controller.Discussion', {
         },
         refs: {
             addToQueueButton: "button[action=addToQueueEvent]",
-            messageLabel: "label[id=messageLabel]"
+            messageLabel: "label[id=messageLabel]",
+            beepSound: "#beeper"
         }
     },
 
@@ -26,6 +27,11 @@ Ext.define('testing.controller.Discussion', {
 
     doNewSpeaker: function(data) {
         this.getMessageLabel().setHtml('Current speaker is ' + data.name);
+
+    },
+
+    doMyTurn: function(data) {
+        this.getBeepSound().play();
     },
 
     init: function() {
@@ -35,6 +41,10 @@ Ext.define('testing.controller.Discussion', {
         });
         this.getApplication().on({
             newSpeaker: this.doNewSpeaker,
+            scope: this
+        });
+        this.getApplication().on({
+            yourTurn: this.doMyTurn,
             scope: this
         });
     },

@@ -1,13 +1,20 @@
 Ext.define("testing.view.Discussion", {
     extend: 'Ext.Container',
     xtype: 'discussionView',
-    requires: ['Ext.Button', 'Ext.Label'],
+    requires: ['Ext.Button', 'Ext.Label', 'Ext.Audio'],
     layout: {
         type: 'vbox'
     },
     config: {
         padding: '10px',
         items: [
+        {
+            xtype: 'audio',
+            hidden: true,
+            id: 'beeper',
+            url: 'resources/sounds/beep.mp3'
+
+        },
         {
             xtype: 'label',
             id: 'messageLabel',
