@@ -1,7 +1,7 @@
 Ext.define("testing.view.CreateGroup", {
     extend: 'Ext.form.Panel',
     xtype: 'createGroupView',
-    requires: ['Ext.Button', 'Ext.field.Text'],
+    requires: ['Ext.Button', 'Ext.field.Text', 'Ext.field.Number'],
     config: {
         items: [
         {
@@ -11,14 +11,18 @@ Ext.define("testing.view.CreateGroup", {
             id: 'createGroupTextfield'
         },
         {
-            xtype: 'textfield',
+            xtype: 'numberfield',
+            minValue: 1,
+            maxValue: 720,
             name: 'discussionLength',
-            label: 'Discussion length (minutes)'
+            labelWrap: true,
+            label: 'Discussion (minutes)'
         },
         {
-            xtype: 'textfield',
+            xtype: 'numberfield',
             name: 'turnLength',
-            label: 'Turn length (seconds)'
+            label: 'Turn (seconds)',
+            labelWrap: true
         },
         {
             xtype: 'button',

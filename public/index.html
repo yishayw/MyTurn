@@ -14,6 +14,15 @@
             background-color: #1985D0
         }
 
+        #appLoadingTitle {
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            text-align: center;
+            width: 100%;
+            height: 30px;
+        }
+        
         #appLoadingIndicator {
             position: absolute;
             top: 50%;
@@ -54,6 +63,7 @@
     <script id="microloader" type="text/javascript" src="sdk/microloader/development.js"></script>
 </head>
 <body>
+    <div id="appLoadingTitle">Application is loading, this can take up to a minute...</div>
     <div id="appLoadingIndicator">
         <div></div>
         <div></div>

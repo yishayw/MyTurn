@@ -4,34 +4,45 @@ Ext.define("testing.view.Login", {
     requires: ['Ext.Button', 'Ext.field.Text', 'Ext.field.Select', 'testing.view.CreateGroup'],
     config: {
         items: [
-        {
-            xtype: 'createGroupView',
-            modal: true,
-            hideOnMaskTap: true,
+         {
+            xtype: 'container',
+            layout: 'vbox',
             centered: true,
-            height: '70%',
-            width: '70%'
-        },
-        {
-            xtype: 'button',
-            text: 'Create group',
-            action: 'createGroupEvent'  
-        },
-        {
-            xtype: 'selectfield',
-            label: 'Group',
-            store: 'groups',
-            displayField: 'name',
-            valueField: 'name',
-            name: 'groupName',
-            id: 'groupSelect'
-        },
-        {
-            xtype: 'textfield',
-            name: 'userName',
-            label: 'Name',
-            id: 'loginTextField'
-        },
+            items: 
+                [
+                    {
+                        xtype: 'container',
+                        layout: 'hbox',
+                        items: [
+                                     {
+                                            xtype: 'selectfield',
+                                            label: 'Group',
+                                            store: 'groups',
+                                            displayField: 'name',
+                                            valueField: 'name',
+                                            labelWidth: 98,
+                                            name: 'groupName',
+                                            id: 'groupSelect',
+                                            flex: 1
+                                        },
+                                       {
+                                            xtype: 'button',
+                     /*                       iconCls: 'add',
+                                            iconMask: true,*/
+                                            text: 'add',
+                                            ui: 'small',
+                                            action: 'createGroupEvent'
+                                        }
+                                 ]  
+                       },
+                        {
+                            xtype: 'textfield',
+                            name: 'userName',
+                            label: 'Name',
+                            id: 'loginTextField'
+                        }
+               ]
+            },
         {
             xtype: 'button',
             docked: 'bottom',
@@ -43,6 +54,14 @@ Ext.define("testing.view.Login", {
             docked: 'bottom',
             action: 'logoutEvent',
             text: 'Logout'
+        },
+        {
+            xtype: 'createGroupView',
+            modal: true,
+            hideOnMaskTap: true,
+            centered: true,
+            height: '70%',
+            width: '70%'
         }
        ]
     }
