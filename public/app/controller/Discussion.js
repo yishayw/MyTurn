@@ -1,11 +1,8 @@
 
 Ext.define('testing.controller.Discussion', {
     extend: 'Ext.app.Controller',
+    requires: ['Ext.Logger'],
     config: {
-        control: {
-            addToQueueButton: { tap: 'doAddToQueue' }
-            /*removeFromQueueButton: { tap: 'doRemoveFromQueue' }*/
-        },
         refs: {
             addToQueueButton: "button[action=addToQueueEvent]",
             messageLabel: "label[id=messageLabel]",
@@ -14,12 +11,15 @@ Ext.define('testing.controller.Discussion', {
     },
 
     doAddToQueue: function() {
-        //       this.getAddToQueueButton().setDisabled(true);
         this.getApplication().fireEvent('clientMessage', { type: 'requestToSpeak' });
     },
 
+    doRemoveFromQueue: function() {
+        this.getApplication().fireEvent('clientMessage', { type: 'relinquishTurn' });
+    },
+
     doDiscussionOver: function(data) {
-        this.getMessageLabel().setHtml('Messages go here.');
+        this.getMessageLabel().setHtml('Waiting for New Speaker');
         Ext.Msg.alert('', 'The discussion is over.');
         // a group was deleted on server, time to reload
         Ext.getStore('groups').load();
@@ -27,7 +27,11 @@ Ext.define('testing.controller.Discussion', {
 
     doNewSpeaker: function(data) {
         this.getMessageLabel().setHtml('Current speaker is ' + data.name);
+    },
 
+    doWaitingForNewSpeaker: function(data) {
+        Ext.Logger.log('Waiting for new');
+        this.getMessageLabel().setHtml('Waiting for New Speaker');
     },
 
     doMyTurn: function(data) {
@@ -47,8 +51,17 @@ Ext.define('testing.controller.Discussion', {
             yourTurn: this.doMyTurn,
             scope: this
         });
+        this.getApplication().on({
+            waitingForNewSpeaker: this.doWaitingForNewSpeaker,
+            scope: this
+        });
     },
 
     launch: function() {
+        this.getAddToQueueButton().element.on({
+            touchstart: 'doAddToQueue',
+            touchend: 'doRemoveFromQueue',
+            scope: this
+        })
     }
 });

@@ -1,7 +1,9 @@
 Ext.define("testing.view.Login", {
     extend: 'Ext.form.Panel',
     xtype: 'loginView',
+    align: 'center',
     requires: ['Ext.Button', 'Ext.field.Text', 'Ext.field.Select', 'testing.view.CreateGroup'],
+
     config: {
         items: [
          {
@@ -14,56 +16,61 @@ Ext.define("testing.view.Login", {
                         xtype: 'container',
                         layout: 'hbox',
                         items: [
-                                     {
-                                            xtype: 'selectfield',
-                                            label: 'Group',
-                                            store: 'groups',
-                                            displayField: 'name',
-                                            valueField: 'name',
-                                            labelWidth: 98,
-                                            name: 'groupName',
-                                            id: 'groupSelect',
-                                            flex: 1
-                                        },
-                                       {
-                                            xtype: 'button',
-                     /*                       iconCls: 'add',
-                                            iconMask: true,*/
-                                            text: 'add',
-                                            ui: 'small',
-                                            action: 'createGroupEvent'
-                                        }
-                                 ]  
+                            {
+                                xtype: 'selectfield',
+                                label: 'Group',
+                                store: 'groups',
+                                displayField: 'name',
+                                valueField: 'name',
+                                labelWidth: 98,
+                                name: 'groupName',
+                                id: 'groupSelect',
+                                flex: 1
+                              },
+                            {
+                                xtype: 'button',
+            /*                       iconCls: 'add',
+                                iconMask: true,*/
+                                text: 'add',
+                                ui: 'small',
+                                action: 'createGroupEvent'
+                            }
+                         ]  
                        },
                         {
                             xtype: 'textfield',
                             name: 'userName',
                             label: 'Name',
                             id: 'loginTextField'
+                        },
+                        {
+                            xtype: 'container',
+                            padding: 10,
+                            items: [
+                                {
+                                    xtype: 'button',
+                                    action: 'loginEvent',
+                                    centered: true,
+                                    text: 'Login'
+                                 }, 
+                                {
+                                    xtype: 'button',
+                                    action: 'logoutEvent',
+                                    text: 'Logout'
+                                }
+                            ]
                         }
-               ]
-            },
-        {
-            xtype: 'button',
-            docked: 'bottom',
-            action: 'loginEvent',
-            text: 'Login'
-        },
-        {
-            xtype: 'button',
-            docked: 'bottom',
-            action: 'logoutEvent',
-            text: 'Logout'
-        },
-        {
-            xtype: 'createGroupView',
-            modal: true,
-            hideOnMaskTap: true,
-            centered: true,
-            height: '70%',
-            width: '70%',
-            minHeight: 180
-        }
-       ]
+                    ]
+                },
+                {
+                    xtype: 'createGroupView',
+                    modal: true,
+                    hideOnMaskTap: true,
+                    centered: true,
+                    height: '70%',
+                    width: '70%',
+                    minHeight: 180
+                }
+           ]
     }
 });

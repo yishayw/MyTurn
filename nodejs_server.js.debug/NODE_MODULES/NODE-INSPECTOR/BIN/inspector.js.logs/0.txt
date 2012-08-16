@@ -1,10 +1,2 @@
    [36minfo  -[39m socket.io started
-visit http://0.0.0.0:\\.\pipe\c15f036f-1102-42ff-b460-4e2fb5584246/debug?port=5059 to start debugging
-   [33mwarn  -[39m client not handshaken client should reconnect
-   [33mwarn  -[39m client not handshaken client should reconnect
-   [33mwarn  -[39m client not handshaken client should reconnect
-   [33mwarn  -[39m client not handshaken client should reconnect
-   [33mwarn  -[39m client not handshaken client should reconnect
-   [33mwarn  -[39m client not handshaken client should reconnect
-   [33mwarn  -[39m client not handshaken client should reconnect
-   [33mwarn  -[39m client not handshaken client should reconnect
+visit http://0.0.0.0:\\.\pipe\ab954a8e-3a8b-4871-b63d-7fdc9910504a/debug?port=5058 to start debugging

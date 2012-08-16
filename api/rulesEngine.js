@@ -29,6 +29,8 @@ rulesEngine.prototype.receiveClientMessage = function(user, data) {
     var type = data.type;
     if(type == 'requestToSpeak') {
         this.doRequestToSpeak(user, data);
+    } else if(type == 'relinquishTurn') {
+        this.doRelinquishTurn(user, data);
     }
     this.reprocess();
 }
@@ -51,8 +53,25 @@ rulesEngine.prototype.doRequestToSpeak = function(user, data) {
     this.speakerQueue.push(user);
 }
 
+rulesEngine.prototype.doRelinquishTurn = function(user, data) {
+    // interrupt user if speaking
+    this.log('doRelinquishTurn');
+    if(this.activeSpeaker && (user.id == this.activeSpeaker.id)) {
+        this.activeSpeaker = null;
+        return;
+    }
+    // remove use user from queue
+    var length = this.speakerQueue.length;
+    for(var i = 0; i < length; i++) {
+        var currentUser = this.speakerQueue[i];
+        if(currentUser.id == user.id) {
+            this.speakerQueue.splice(i, 1);
+            return;
+        }
+    }
+}
+
 rulesEngine.prototype.reprocess = function() {
-    this.log('first reprocess');
     var now = new Date().getTime();
     // get possible message events and set the closest as a timeout
     var nextSpeakerAction = this.getNextSpeaker();
@@ -64,8 +83,8 @@ rulesEngine.prototype.reprocess = function() {
         },
         this.discussionLength);
     }
-    var nextAction = nextSpeakerAction; // in the future there will be more than one possible next action
-    // make sure nextAction exists and that it isn't after an already existing timed event
+    var nextAction = nextSpeakerAction ? nextSpeakerAction : this.getWaitingForSpeaker();
+    //  make sure next action isn't after an already existing timed event
     if(!nextAction || (this.nextTimedActionTime != null && (now + nextAction.time > this.nextTimedActionTime))) {
         return;
     }
@@ -89,10 +108,7 @@ rulesEngine.prototype.getNextSpeaker = function() {
     if(!modestSpeaker) {
         return null;
     }
-    var context = this;
-    var nextAction = new timedAction(0, function() {
-        context.doNextSpeaker(modestSpeaker);
-    });
+    var nextAction = this.createTimedAction(this.doNextSpeaker, [modestSpeaker]);
     // let active speaker finish his turn
     var activeSpeaker = this.activeSpeaker;
     if(activeSpeaker) {
@@ -102,6 +118,19 @@ rulesEngine.prototype.getNextSpeaker = function() {
         }
     }
     return nextAction;
+}
+
+rulesEngine.prototype.getWaitingForSpeaker = function() {
+    // if next action doesn't exist, send such message to clients
+    if(!this.activeSpeaker) {
+        return this.createTimedAction(this.doWaitingForSpeaker, [], true);
+    }
+}
+
+rulesEngine.prototype.doWaitingForSpeaker = function() {
+    this.messageDispatcher.sendMessageToRoom(this.room, {
+        messageType: 'waitingForNewSpeaker'
+    });
 }
 
 rulesEngine.prototype.doDiscussionOver = function() {
@@ -143,9 +172,19 @@ rulesEngine.prototype.doNextSpeaker = function(speaker) {
     this.messageDispatcher.sendMessageToClient(speaker.id, {
        messageType: 'yourTurn' 
     });
-    this.nextTimedActionId = null;
-    this.nextTimedActionTime = null;
-    this.reprocess();
+}
+
+rulesEngine.prototype.createTimedAction = function(actionFunction, params, noReprocess) {
+    var context = this;
+    var nextAction = new timedAction(0, function() {
+        actionFunction.apply(context, params);
+        context.nextTimedActionId = null;
+        context.nextTimedActionTime = null;
+        if (!noReprocess) {
+            context.reprocess();         
+        }
+    });
+    return nextAction;
 }
 
 module.exports = rulesEngine;

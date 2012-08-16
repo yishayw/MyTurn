@@ -25,10 +25,16 @@ Ext.define("testing.view.CreateGroup", {
             labelWrap: true
         },
         {
-            xtype: 'button',
-            action: 'submitNewGroup',
-            text: 'Submit',
-            docked: 'bottom'
+            xtype: 'container',
+            padding: 10,
+            items: [
+                {
+                    xtype: 'button',
+                    action: 'submitNewGroup',
+                    text: 'Submit',
+                    centered: 'true'
+                }
+            ]
         }
        ]
     }
