@@ -5,7 +5,8 @@ Ext.define('testing.controller.Discussion', {
     config: {
         refs: {
             addToQueueButton: "button[action=addToQueueEvent]",
-            messageLabel: "label[id=messageLabel]",
+            messageLabel: "#messageLabel",
+            timeRemainingLabel: "#timeRemainingLabel",
             beepSound: "#beeper"
         }
     },
@@ -20,6 +21,7 @@ Ext.define('testing.controller.Discussion', {
 
     doDiscussionOver: function(data) {
         this.getMessageLabel().setHtml('Waiting for New Speaker');
+        this.getTimeRemainingLabel().setHtml('');
         Ext.Msg.alert('', 'The discussion is over.');
         // a group was deleted on server, time to reload
         Ext.getStore('groups').load();
@@ -27,31 +29,37 @@ Ext.define('testing.controller.Discussion', {
 
     doNewSpeaker: function(data) {
         this.getMessageLabel().setHtml('Current speaker is ' + data.name);
+        this.doUpdateTimeRemaining(data);
     },
 
     doWaitingForNewSpeaker: function(data) {
-        Ext.Logger.log('Waiting for new');
         this.getMessageLabel().setHtml('Waiting for New Speaker');
+        this.doUpdateTimeRemaining(data);
     },
 
     doMyTurn: function(data) {
         this.getBeepSound().play();
     },
 
+    doUpdateTimeRemaining: function(data) {
+        var formattedTime = this.getFormattedTime(data);
+        this.getTimeRemainingLabel().setHtml(formattedTime);
+    },
+
+    getFormattedTime: function(data) {
+        var timeRemaining = data.timeLeft;
+        var date = new Date(null);
+        var offsetInSeconds = (date.getTimezoneOffset()) * 60;
+        date.setSeconds(timeRemaining / 1000 + offsetInSeconds);
+        var formattedTime = date.toTimeString().substr(0, 8);
+        return formattedTime;
+    },
+
     init: function() {
         this.getApplication().on({
             discussionOver: this.doDiscussionOver,
-            scope: this
-        });
-        this.getApplication().on({
             newSpeaker: this.doNewSpeaker,
-            scope: this
-        });
-        this.getApplication().on({
             yourTurn: this.doMyTurn,
-            scope: this
-        });
-        this.getApplication().on({
             waitingForNewSpeaker: this.doWaitingForNewSpeaker,
             scope: this
         });

@@ -5,6 +5,7 @@ var messageDispatcher = require('./messageDispatcher')
 function rulesEngine(room, messageDispatcher) {
     this.room = room.name;
     this.discussionLength = room.discussionLength;
+    this.discussionBeginning = null;
     this.turnLimit = room.turnLength;
     this.discussionOverActionId = null;
     this.nextTimedActionId = null;
@@ -78,6 +79,7 @@ rulesEngine.prototype.reprocess = function() {
     // enforce discussion length if it hasn't been done already
     var context = this;
     if(nextSpeakerAction && !this.discussionOverActionId) {
+        this.discussionBeginning = now;
         this.discussionOverActionId = setTimeout(function() {
             context.doDiscussionOver.call(context);
         },
@@ -128,8 +130,10 @@ rulesEngine.prototype.getWaitingForSpeaker = function() {
 }
 
 rulesEngine.prototype.doWaitingForSpeaker = function() {
+    var now = new Date().getTime();
     this.messageDispatcher.sendMessageToRoom(this.room, {
-        messageType: 'waitingForNewSpeaker'
+        messageType: 'waitingForNewSpeaker',
+        timeLeft: this.getTimeLeft(now)
     });
 }
 
@@ -167,11 +171,17 @@ rulesEngine.prototype.doNextSpeaker = function(speaker) {
     // send message
     this.messageDispatcher.sendMessageToRoom(this.room, {
         messageType: 'newSpeaker',
-        name: speaker.name
+        name: speaker.name,
+        timeLeft: this.getTimeLeft(currentTime)
     });
     this.messageDispatcher.sendMessageToClient(speaker.id, {
        messageType: 'yourTurn' 
     });
+}
+
+rulesEngine.prototype.getTimeLeft = function(now) {
+    var result = this.discussionLength - (now - this.discussionBeginning);
+    return result;
 }
 
 rulesEngine.prototype.createTimedAction = function(actionFunction, params, noReprocess) {

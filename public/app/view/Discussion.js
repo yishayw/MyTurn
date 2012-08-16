@@ -15,13 +15,24 @@ Ext.define("testing.view.Discussion", {
                 url: 'resources/sounds/beep.mp3'
             },
             {
-                xtype: 'label',
-                id: 'messageLabel',
-                align: 'middle',
-                style: "text-align: center; background-color: #878787; font-size: larger",
-                html: 'Waiting for New Speaker'
+                type: 'container',
+                layout: 'hbox',
+                style: "background-color: #878787; font-size: larger",
+                items: [
+                   {
+                        xtype: 'label',
+                        id: 'messageLabel',
+                        centered: true,
+                        html: 'Waiting for New Speaker'
+                    },
+                    {
+                        xtype: 'label',
+                        id: 'timeRemainingLabel',
+                        docked: 'left'
+                    },
+                ]
             },
-            {
+             {
                 xtype: 'button',
                 centered: true,
                 action: 'addToQueueEvent',
