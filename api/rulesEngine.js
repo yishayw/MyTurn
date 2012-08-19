@@ -150,15 +150,6 @@ rulesEngine.prototype.doDiscussionOver = function() {
 }
 
 rulesEngine.prototype.doNextSpeaker = function(speaker) {
-    // remove speaker from wait queue
-    var length = this.speakerQueue.length;
-    for(var i = 0; i < length; i++) {
-        var currentSpeaker = this.speakerQueue[i];
-        if(currentSpeaker.id == speaker.id) {
-            this.speakerQueue.splice(i, 1);
-            break;
-        }
-    }
     var currentTime = new Date().getTime();
     // update active speaker
     if(this.activeSpeaker) {

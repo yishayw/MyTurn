@@ -38,7 +38,7 @@ Ext.define("testing.view.Discussion", {
                 action: 'addToQueueEvent',
                 height: '50%',
                 width: '50%',
-                text: 'Request to speak'
+                text: 'My turn'
             }
         ]
     }
