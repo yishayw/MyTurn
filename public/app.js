@@ -9,7 +9,7 @@ Ext.application({
 
     controllers: ['Socket', 'Login', 'Discussion', 'CreateGroup'],
 
-    stores: ['Groups'],
+    stores: ['Groups', 'DefaultUsers'],
 
     models: ['Group'],
 
