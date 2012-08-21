@@ -40,6 +40,6 @@ Ext.define("testing.view.Discussion", {
                 width: '50%',
                 text: 'My turn'
             }
-        ]
+         ]
     }
 });

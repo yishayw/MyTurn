@@ -28,12 +28,15 @@ rulesEngine.prototype.listen = function() {
 
 rulesEngine.prototype.receiveClientMessage = function(user, data) {
     var type = data.type;
+    var shouldReprocess = false;
     if(type == 'requestToSpeak') {
-        this.doRequestToSpeak(user, data);
+        shouldReprocess = this.doRequestToSpeak(user, data);
     } else if(type == 'relinquishTurn') {
-        this.doRelinquishTurn(user, data);
+        shouldReprocess = this.doRelinquishTurn(user, data);
     }
-    this.reprocess();
+    if (shouldReprocess) {
+        this.reprocess(); 
+    }
 }
 
 rulesEngine.prototype.log = function(msg) {
@@ -43,31 +46,29 @@ rulesEngine.prototype.log = function(msg) {
 
 rulesEngine.prototype.doRequestToSpeak = function(user, data) {
     // add user to queue if he's not there already,
-    this.log('doRequestToSpeak');
     var length = this.speakerQueue.length;
     for(var i = 0; i < length; i++) {
         var currentUser = this.speakerQueue[i];
-        if(currentUser.id == user.id) {
-            return;
+        if(currentUser.name == user.name) {
+            return false;
         }
     }
     this.speakerQueue.push(user);
+    return true;
 }
 
 rulesEngine.prototype.doRelinquishTurn = function(user, data) {
     // interrupt user if speaking
-    this.log('doRelinquishTurn');
-    if(this.activeSpeaker && (user.id == this.activeSpeaker.id)) {
+    if(this.activeSpeaker && (user.name == this.activeSpeaker.name)) {
         this.activeSpeaker = null;
-        return;
     }
     // remove use user from queue
     var length = this.speakerQueue.length;
     for(var i = 0; i < length; i++) {
         var currentUser = this.speakerQueue[i];
-        if(currentUser.id == user.id) {
+        if(currentUser.name == user.name) {
             this.speakerQueue.splice(i, 1);
-            return;
+            return true;
         }
     }
 }
@@ -90,8 +91,8 @@ rulesEngine.prototype.reprocess = function() {
     if(!nextAction || (this.nextTimedActionTime != null && (now + nextAction.time > this.nextTimedActionTime))) {
         return;
     }
-    this.log('reprocess ' + nextAction.time);
     this.nextTimedActionTime = now + nextAction.time;
+    clearTimeout(this.nextTimedActionId);
     this.nextTimedActionId = setTimeout(nextAction.action, nextAction.time);
 
 }
@@ -101,9 +102,22 @@ rulesEngine.prototype.getNextSpeaker = function() {
     var currentTime = new Date().getTime();
     var length = this.speakerQueue.length;
     var modestSpeaker = length > 0 ? this.speakerQueue[0] : null;
+    var activeSpeaker = this.activeSpeaker;
+    // active speakers are treated differently, better not use them
+    if(activeSpeaker && modestSpeaker == activeSpeaker && length > 1) {
+        modestSpeaker = this.speakerQueue[1];
+    }
+    var timeRemaining = activeSpeaker ? this.turnLimit - (currentTime - activeSpeaker.lastTurnBeginning) : 0;
     for(var i = 0; i < length; i++) {
         var currentUser = this.speakerQueue[i];
-        if(currentUser.elapsedTime < modestSpeaker.elapsedTime) {
+        var currentUserElapsedTime = currentUser.elapsedTime;
+        if(currentUser == activeSpeaker) {
+            // we add 500 to avoid turns not changing because of setTimeout() inaccuaracies
+            currentUserElapsedTime += timeRemaining + 500;
+        }
+        this.log('getNextSpeaker --- user: ' + currentUser.name + ' elapsedTime: ' + currentUserElapsedTime + ' modestSpeakerName: ' + modestSpeaker.name + ' modestSpeakerElapsedTime ' + modestSpeaker.elapsedTime);
+        if(currentUserElapsedTime < modestSpeaker.elapsedTime) {
+            this.log('getNextSpeaker OOOO - modestSpeaker from: ' + modestSpeaker.name + ' to: ' + currentUser.name);
             modestSpeaker = currentUser;
         }
     }
@@ -112,13 +126,12 @@ rulesEngine.prototype.getNextSpeaker = function() {
     }
     var nextAction = this.createTimedAction(this.doNextSpeaker, [modestSpeaker]);
     // let active speaker finish his turn
-    var activeSpeaker = this.activeSpeaker;
     if(activeSpeaker) {
-        var timeRemaining = this.turnLimit - (currentTime - activeSpeaker.lastTurnBeginning);
         if(timeRemaining > 0) {
             nextAction.time += timeRemaining;
         }
     }
+    this.log('XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: ' + modestSpeaker.name + ' elapsedTime ' + modestSpeaker.elapsedTime + ' nextAction.time ' + nextAction.time);
     return nextAction;
 }
 
@@ -153,20 +166,21 @@ rulesEngine.prototype.doNextSpeaker = function(speaker) {
     var currentTime = new Date().getTime();
     // update active speaker
     if(this.activeSpeaker) {
-        this.activeSpeaker.elapsedTime += currentTime - this.activeSpeaker.lastTurnBeginning;
-    }
+       this.activeSpeaker.elapsedTime += currentTime - this.activeSpeaker.lastTurnBeginning;
+   }
     // update new speaker
     speaker.lastTurnBeginning = currentTime;
     // replace active speaker
     this.activeSpeaker = speaker;
     // send message
+    this.log('doNextSpeaker =========== user: ' + this.activeSpeaker.name + ' elapsedTime: ' + this.activeSpeaker.elapsedTime + ' lastTurnBeginning: ' + this.activeSpeaker.lastTurnBeginning);
     this.messageDispatcher.sendMessageToRoom(this.room, {
         messageType: 'newSpeaker',
         name: speaker.name,
         timeLeft: this.getTimeLeft(currentTime)
     });
     this.messageDispatcher.sendMessageToClient(speaker.id, {
-       messageType: 'yourTurn' 
+        messageType: 'yourTurn'
     });
 }
 
