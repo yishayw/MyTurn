@@ -1,560 +1,436 @@
 Express server listening on port NaN in development mode
 info: socket.io started
 debug: served static content /socket.io.js
-debug: client authorized
-info: handshake authorized gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563674877
-debug: setting poll timeout
-debug: client authorized for 
-debug: clearing poll timeout
-debug: xhr-polling writing 1::
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: xhr-polling received data packet 5:::{"name":"login","args":[{"name":"Stubborn","room":"1"}]}
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563674892
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"userAccepted"}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563674955
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
 debug: served static content /socket.io.js
-debug: clearing poll timeout
-debug: xhr-polling writing 8::
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: xhr-polling closed due to exceeded duration
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563685000
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 8::
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: xhr-polling closed due to exceeded duration
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563695016
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
+debug: served static content /socket.io.js
 debug: client authorized
-info: handshake authorized nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563697122
+info: handshake authorized qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566149622
 debug: setting poll timeout
 debug: client authorized for 
 debug: clearing poll timeout
 debug: xhr-polling writing 1::
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: xhr-polling received data packet 5:::{"name":"login","args":[{"name":"Jake","room":"1"}]}
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563697138
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: xhr-polling received data packet 5:::{"name":"login","args":[{"name":"Jake","room":"q"}]}
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566149638
 debug: setting poll timeout
 debug: clearing poll timeout
 debug: xhr-polling writing 5:::{"name":"userAccepted"}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
 debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563697201
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566149718
 debug: setting poll timeout
 debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
+Tue Aug 21 2012 19:22:30 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 0 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:22:30 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 0
+Tue Aug 21 2012 19:22:30 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 0 lastTurnBeginning: 1345566150631
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":59997}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+Tue Aug 21 2012 19:22:30 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 5496 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:22:30 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 4996
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566150645
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566150669
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":56492}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566154148
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
+Tue Aug 21 2012 19:22:35 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 0 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:22:35 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 0
+Tue Aug 21 2012 19:22:35 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 0 lastTurnBeginning: 1345566155925
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":54703}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+Tue Aug 21 2012 19:22:35 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 5495 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:22:35 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 4995
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566155939
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566156004
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+Tue Aug 21 2012 19:22:40 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 5014 lastTurnBeginning: 1345566160939
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":49689}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+Tue Aug 21 2012 19:22:40 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 10471 modestSpeakerName: Jake modestSpeakerElapsedTime 5014
+Tue Aug 21 2012 19:22:40 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 5014 nextAction.time 4957
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566160965
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566160989
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+Tue Aug 21 2012 19:22:45 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 10020 lastTurnBeginning: 1345566165945
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":44683}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+Tue Aug 21 2012 19:22:45 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 15516 modestSpeakerName: Jake modestSpeakerElapsedTime 10020
+Tue Aug 21 2012 19:22:45 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 10020 nextAction.time 4996
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566165949
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566165967
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+Tue Aug 21 2012 19:22:50 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 15042 lastTurnBeginning: 1345566170967
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":39661}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+Tue Aug 21 2012 19:22:50 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 20537 modestSpeakerName: Jake modestSpeakerElapsedTime 15042
+Tue Aug 21 2012 19:22:50 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 15042 nextAction.time 4995
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566170976
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566170999
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":37853}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566172783
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
+Tue Aug 21 2012 19:22:54 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 0 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:22:54 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 0
+Tue Aug 21 2012 19:22:54 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 0 lastTurnBeginning: 1345566174071
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":36557}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+Tue Aug 21 2012 19:22:54 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 5497 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:22:54 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 4997
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566174079
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566174097
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+Tue Aug 21 2012 19:22:59 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 5008 lastTurnBeginning: 1345566179079
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":31549}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+Tue Aug 21 2012 19:22:59 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 10497 modestSpeakerName: Jake modestSpeakerElapsedTime 5008
+Tue Aug 21 2012 19:22:59 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 5008 nextAction.time 4989
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566179085
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566179102
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":31019}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566179623
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
+Tue Aug 21 2012 19:23:00 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 0 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:23:00 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 0
+Tue Aug 21 2012 19:23:00 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 0 lastTurnBeginning: 1345566180352
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":30276}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+Tue Aug 21 2012 19:23:00 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 5496 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:23:00 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 4996
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566180362
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566180382
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":28113}]}
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566182526
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
 debug: clearing poll timeout
 debug: xhr-polling writing 8::
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
 debug: xhr-polling closed due to exceeded duration
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563705049
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566192601
 debug: setting poll timeout
 debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
 debug: clearing poll timeout
 debug: xhr-polling writing 8::
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
 debug: xhr-polling closed due to exceeded duration
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563707208
+debug: setting request GET /api/socket.io/1/xhr-polling/qRhUc_UvsVQzuygq5SJd?t=1345566202609
 debug: setting poll timeout
 debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
-Tue Aug 21 2012 18:41:49 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Stubborn elapsedTime: 0 modestSpeakerName: Stubborn modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:41:49 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Stubborn elapsedTime 0 nextAction.time 0
-Tue Aug 21 2012 18:41:49 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Stubborn elapsedTime: 0 lastTurnBeginning: 1345563709177
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":59998}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":59998}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-Tue Aug 21 2012 18:41:49 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Stubborn elapsedTime: 5492 modestSpeakerName: Stubborn modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:41:49 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Stubborn elapsedTime 0 nextAction.time 4992
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563709191
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563709222
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563709239
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":59318}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":59318}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563709870
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563709892
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
-Tue Aug 21 2012 18:41:51 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 0 modestSpeakerName: Jake modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:41:51 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 0
-Tue Aug 21 2012 18:41:51 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 0 lastTurnBeginning: 1345563711584
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":57591}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":57591}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-Tue Aug 21 2012 18:41:51 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 5492 modestSpeakerName: Jake modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:41:51 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 4992
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563711600
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563711641
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563711658
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":56738}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":56738}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563712453
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563712473
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
-Tue Aug 21 2012 18:41:53 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Stubborn elapsedTime: 0 modestSpeakerName: Stubborn modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:41:53 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Stubborn elapsedTime 0 nextAction.time 0
-Tue Aug 21 2012 18:41:53 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Stubborn elapsedTime: 0 lastTurnBeginning: 1345563713783
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":55392}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":55392}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-Tue Aug 21 2012 18:41:53 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Stubborn elapsedTime: 5493 modestSpeakerName: Stubborn modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:41:53 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Stubborn elapsedTime 0 nextAction.time 4993
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563713804
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563713824
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563713842
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":54071}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":54071}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563715118
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563715145
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
-Tue Aug 21 2012 18:41:56 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 0 modestSpeakerName: Jake modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:41:56 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 0
-Tue Aug 21 2012 18:41:56 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 0 lastTurnBeginning: 1345563716193
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":52982}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":52982}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-Tue Aug 21 2012 18:41:56 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 5487 modestSpeakerName: Jake modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:41:56 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 4987
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563716212
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563716209
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563716247
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":51711}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":51711}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563717479
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563717497
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
-Tue Aug 21 2012 18:41:58 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Stubborn elapsedTime: 0 modestSpeakerName: Stubborn modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:41:58 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Stubborn elapsedTime 0 nextAction.time 0
-Tue Aug 21 2012 18:41:58 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Stubborn elapsedTime: 0 lastTurnBeginning: 1345563718796
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":50379}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":50379}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-Tue Aug 21 2012 18:41:58 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Stubborn elapsedTime: 5493 modestSpeakerName: Stubborn modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:41:58 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Stubborn elapsedTime 0 nextAction.time 4993
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563718810
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563718842
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563718837
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":49401}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":49401}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563719788
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563719801
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
-Tue Aug 21 2012 18:42:01 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 0 modestSpeakerName: Jake modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:42:01 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 0
-Tue Aug 21 2012 18:42:01 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 0 lastTurnBeginning: 1345563721289
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":47886}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":47886}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-Tue Aug 21 2012 18:42:01 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 5493 modestSpeakerName: Jake modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:42:01 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 4993
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563721306
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563721318
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563721337
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":47202}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":47202}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563721986
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563722001
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
-Tue Aug 21 2012 18:42:03 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Stubborn elapsedTime: 0 modestSpeakerName: Stubborn modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:42:03 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Stubborn elapsedTime 0 nextAction.time 0
-Tue Aug 21 2012 18:42:03 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Stubborn elapsedTime: 0 lastTurnBeginning: 1345563723834
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":45341}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":45341}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-Tue Aug 21 2012 18:42:03 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Stubborn elapsedTime: 5493 modestSpeakerName: Stubborn modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:42:03 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Stubborn elapsedTime 0 nextAction.time 4993
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563723856
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563723872
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563723869
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-Tue Aug 21 2012 18:42:08 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Stubborn elapsedTime: 5017 lastTurnBeginning: 1345563728851
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":40324}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":40324}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-Tue Aug 21 2012 18:42:08 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Stubborn elapsedTime: 10461 modestSpeakerName: Stubborn modestSpeakerElapsedTime 5017
-Tue Aug 21 2012 18:42:08 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Stubborn elapsedTime 5017 nextAction.time 4944
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563728889
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563728914
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563728922
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-Tue Aug 21 2012 18:42:13 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Stubborn elapsedTime: 10020 lastTurnBeginning: 1345563733854
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":35321}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":35321}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-Tue Aug 21 2012 18:42:13 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Stubborn elapsedTime: 15485 modestSpeakerName: Stubborn modestSpeakerElapsedTime 10020
-Tue Aug 21 2012 18:42:13 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Stubborn elapsedTime 10020 nextAction.time 4965
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563733858
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563733894
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563733903
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-Tue Aug 21 2012 18:42:18 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Stubborn elapsedTime: 15037 lastTurnBeginning: 1345563738871
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":30304}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":30304}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-Tue Aug 21 2012 18:42:18 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Stubborn elapsedTime: 20521 modestSpeakerName: Stubborn modestSpeakerElapsedTime 15037
-Tue Aug 21 2012 18:42:18 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Stubborn elapsedTime 15037 nextAction.time 4984
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563738876
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563738889
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563738899
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":29321}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":29321}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563739869
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563739879
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
-Tue Aug 21 2012 18:42:29 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Stubborn elapsedTime: 0 modestSpeakerName: Stubborn modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:42:29 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Stubborn elapsedTime 0 nextAction.time 0
-Tue Aug 21 2012 18:42:29 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Stubborn elapsedTime: 0 lastTurnBeginning: 1345563749074
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":20101}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Stubborn","timeLeft":20101}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-Tue Aug 21 2012 18:42:29 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Stubborn elapsedTime: 5489 modestSpeakerName: Stubborn modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:42:29 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Stubborn elapsedTime 0 nextAction.time 4989
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563749088
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563749113
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563749124
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":15769}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":15769}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563753427
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563753432
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
-Tue Aug 21 2012 18:42:36 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 0 modestSpeakerName: Jake modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:42:36 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 0
-Tue Aug 21 2012 18:42:36 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 0 lastTurnBeginning: 1345563756960
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":12215}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":12215}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-Tue Aug 21 2012 18:42:36 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 5493 modestSpeakerName: Jake modestSpeakerElapsedTime 0
-Tue Aug 21 2012 18:42:36 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 4993
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563756976
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563756990
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563757004
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":10488}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":10488}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563758722
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563758728
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 8::
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
-debug: xhr-polling closed due to exceeded duration
-debug: setting request GET /api/socket.io/1/xhr-polling/nlnjnDNvpx22M4YG2By4?t=1345563768741
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
-debug: clearing poll timeout
-debug: xhr-polling writing 8::
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: xhr-polling closed due to exceeded duration
-debug: setting request GET /api/socket.io/1/xhr-polling/gNCE8-biMO4dOKve2By3?t=1345563768807
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
 debug: clearing poll timeout
 debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"discussionOver"}]}
-debug: set close timeout for client gNCE8-biMO4dOKve2By3
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"discussionOver"}]}
-debug: set close timeout for client nlnjnDNvpx22M4YG2By4
+debug: set close timeout for client qRhUc_UvsVQzuygq5SJd
 debug: xhr-polling received data packet 0::
 debug: got disconnection packet
 info: transport end by forced client disconnection
 info: transport end (booted)
-debug: cleared close timeout for client nlnjnDNvpx22M4YG2By4
+debug: cleared close timeout for client qRhUc_UvsVQzuygq5SJd
 debug: discarding transport
+debug: served static content /socket.io.js
+debug: client authorized
+info: handshake authorized v5x2MpZwLCZBBorm5SJe
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567262075
+debug: setting poll timeout
+debug: client authorized for 
+debug: clearing poll timeout
+debug: xhr-polling writing 1::
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567262089
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: xhr-polling received data packet 5:::{"name":"login","args":[{"name":"Jake","room":"1"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"userAccepted"}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567262160
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
+Tue Aug 21 2012 19:41:02 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 0 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:41:02 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 0
+Tue Aug 21 2012 19:41:02 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 0 lastTurnBeginning: 1345567262975
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":59999}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+Tue Aug 21 2012 19:41:02 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 5497 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:41:02 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 4997
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567262982
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567263008
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+Tue Aug 21 2012 19:41:07 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 5009 lastTurnBeginning: 1345567267984
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":54990}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+Tue Aug 21 2012 19:41:07 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 10498 modestSpeakerName: Jake modestSpeakerElapsedTime 5009
+Tue Aug 21 2012 19:41:08 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 5009 nextAction.time 4989
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567267989
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567268013
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+Tue Aug 21 2012 19:41:12 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 10020 lastTurnBeginning: 1345567272995
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":49979}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+Tue Aug 21 2012 19:41:12 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 15516 modestSpeakerName: Jake modestSpeakerElapsedTime 10020
+Tue Aug 21 2012 19:41:13 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 10020 nextAction.time 4996
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567273000
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567273016
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+Tue Aug 21 2012 19:41:18 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 15043 lastTurnBeginning: 1345567278018
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":44956}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+Tue Aug 21 2012 19:41:18 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 20528 modestSpeakerName: Jake modestSpeakerElapsedTime 15043
+Tue Aug 21 2012 19:41:18 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 15043 nextAction.time 4985
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567278021
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567278039
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+Tue Aug 21 2012 19:41:23 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 20053 lastTurnBeginning: 1345567283028
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":39946}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+Tue Aug 21 2012 19:41:23 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 25541 modestSpeakerName: Jake modestSpeakerElapsedTime 20053
+Tue Aug 21 2012 19:41:23 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 20053 nextAction.time 4988
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567283032
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567283051
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":36339}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567286648
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
+Tue Aug 21 2012 19:41:27 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 0 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:41:27 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 0
+Tue Aug 21 2012 19:41:27 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 0 lastTurnBeginning: 1345567287329
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":35645}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+Tue Aug 21 2012 19:41:27 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 5496 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:41:27 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 4996
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567287341
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567287358
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":33207}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567289777
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
+Tue Aug 21 2012 19:41:30 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 0 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:41:30 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 0
+Tue Aug 21 2012 19:41:30 GMT+0300 (Jerusalem Daylight Time): doNextSpeaker =========== user: Jake elapsedTime: 0 lastTurnBeginning: 1345567290786
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Jake","timeLeft":32188}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+Tue Aug 21 2012 19:41:30 GMT+0300 (Jerusalem Daylight Time): getNextSpeaker --- user: Jake elapsedTime: 5497 modestSpeakerName: Jake modestSpeakerElapsedTime 0
+Tue Aug 21 2012 19:41:30 GMT+0300 (Jerusalem Daylight Time): XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: Jake elapsedTime 0 nextAction.time 4997
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567290795
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567290816
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":30823}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567292161
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: clearing poll timeout
+debug: xhr-polling writing 8::
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: xhr-polling closed due to exceeded duration
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567302288
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: clearing poll timeout
+debug: xhr-polling writing 8::
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: xhr-polling closed due to exceeded duration
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567312338
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: clearing poll timeout
+debug: xhr-polling writing 8::
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: xhr-polling closed due to exceeded duration
+debug: setting request GET /api/socket.io/1/xhr-polling/v5x2MpZwLCZBBorm5SJe?t=1345567322422
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"discussionOver"}]}
+debug: set close timeout for client v5x2MpZwLCZBBorm5SJe
 debug: xhr-polling received data packet 0::
 debug: got disconnection packet
 info: transport end by forced client disconnection
 info: transport end (booted)
-debug: cleared close timeout for client gNCE8-biMO4dOKve2By3
+debug: cleared close timeout for client v5x2MpZwLCZBBorm5SJe
 debug: discarding transport

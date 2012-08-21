@@ -7,7 +7,8 @@ Ext.define('testing.controller.Discussion', {
             addToQueueButton: "button[action=addToQueueEvent]",
             messageLabel: "#messageLabel",
             timeRemainingLabel: "#timeRemainingLabel",
-            beepSound: "#beeper"
+            beepSound: "#beeper",
+            tickSound: "#ticker"
         }
     },
 
@@ -20,6 +21,7 @@ Ext.define('testing.controller.Discussion', {
     },
 
     doDiscussionOver: function(data) {
+        this.clearTick();
         this.getMessageLabel().setHtml('Waiting for New Speaker');
         this.getTimeRemainingLabel().setHtml('');
         Ext.Msg.alert('', 'The discussion is over.');
@@ -30,15 +32,33 @@ Ext.define('testing.controller.Discussion', {
     doNewSpeaker: function(data) {
         this.getMessageLabel().setHtml('Current speaker is ' + data.name);
         this.doUpdateTimeRemaining(data);
+        this.clearTick();
     },
 
     doWaitingForNewSpeaker: function(data) {
         this.getMessageLabel().setHtml('Waiting for New Speaker');
         this.doUpdateTimeRemaining(data);
+        this.clearTick();
+    },
+
+    clearTick: function() {
+        if(this.tickSoundInterval) {
+            clearInterval(this.tickSoundInterval);
+            this.tickSoundInterval = null;
+        }
     },
 
     doMyTurn: function(data) {
         this.getBeepSound().play();
+        var context = this;
+        this.clearTick();
+        this.tickSoundInterval = setInterval(function() {
+            context.doTick();
+        }, 1000);
+    },
+
+    doTick: function() {
+        this.getTickSound().play();
     },
 
     doUpdateTimeRemaining: function(data) {

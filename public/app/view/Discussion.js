@@ -15,6 +15,12 @@ Ext.define("testing.view.Discussion", {
                 url: 'resources/sounds/beep.mp3'
             },
             {
+                xtype: 'audio',
+                hidden: true,
+                id: 'ticker',
+                url: 'resources/sounds/tick.mp3'
+            },
+            {
                 type: 'container',
                 layout: 'hbox',
                 style: "background-color: #878787; font-size: larger",
