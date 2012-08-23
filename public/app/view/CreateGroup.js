@@ -16,12 +16,12 @@ Ext.define("testing.view.CreateGroup", {
             maxValue: 720,
             name: 'discussionLength',
             labelWrap: true,
-            label: 'Discussion (minutes)'
+            label: 'Total (min)'
         },
         {
             xtype: 'numberfield',
             name: 'turnLength',
-            label: 'Turn (seconds)',
+            label: 'Turn (sec)',
             labelWrap: true
         },
         {

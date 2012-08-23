@@ -21,24 +21,22 @@ Ext.define("testing.view.Discussion", {
                 url: 'resources/sounds/tick.mp3'
             },
             {
-                type: 'container',
-                layout: 'hbox',
+                xtype: 'container',
+                layout: 'vbox',
                 style: "background-color: #878787; font-size: larger",
                 items: [
+                    {
+                        xtype: 'label',
+                        id: 'timeRemainingLabel'
+                    },
                    {
                         xtype: 'label',
                         id: 'messageLabel',
-                        centered: true,
                         html: 'Waiting for New Speaker'
-                    },
-                    {
-                        xtype: 'label',
-                        id: 'timeRemainingLabel',
-                        docked: 'left'
-                    },
+                    }
                 ]
             },
-             {
+            {
                 xtype: 'button',
                 centered: true,
                 action: 'addToQueueEvent',

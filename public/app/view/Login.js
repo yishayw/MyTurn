@@ -9,6 +9,7 @@ Ext.define("testing.view.Login", {
          {
             xtype: 'container',
             layout: 'vbox',
+            padding: '0 40 0 0',
             centered: true,
             items: 
                 [
@@ -56,6 +57,7 @@ Ext.define("testing.view.Login", {
                                 {
                                     xtype: 'button',
                                     action: 'logoutEvent',
+                                    centered: true,
                                     text: 'Logout'
                                 }
                             ]
@@ -69,7 +71,9 @@ Ext.define("testing.view.Login", {
                     centered: true,
                     height: '70%',
                     width: '70%',
-                    minHeight: 180
+                    minHeight: 180,
+                    minWidth: 300,
+                    margin: '0 0 0 -40'
                 }
            ]
     }
