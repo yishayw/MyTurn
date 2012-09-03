@@ -1,7 +1,7 @@
 Ext.define("testing.view.Discussion", {
     extend: 'Ext.Container',
     xtype: 'discussionView',
-    requires: ['Ext.Button', 'Ext.Label', 'Ext.Audio'],
+    requires: ['Ext.Button', 'Ext.Label', 'Ext.Audio', 'testing.view.UserReport'],
     layout: {
         type: 'vbox'
     },
@@ -43,7 +43,18 @@ Ext.define("testing.view.Discussion", {
                 height: '50%',
                 width: '50%',
                 text: 'My turn'
-            }
+            }/*,
+            {
+                xtype: 'userReportView',
+                centered: true,
+                modal: false,
+                hideOnMaskTap: true,
+                height: 100,
+                width: 100,
+                config: {
+                    border: '5 5 5 5'
+                }
+           }*/
          ]
     }
 });

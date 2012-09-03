@@ -1,7 +1,7 @@
 
 Ext.define('testing.controller.Discussion', {
     extend: 'Ext.app.Controller',
-    requires: ['Ext.Logger'],
+    requires: ['Ext.Logger', 'testing.util.TimeUtils'],
     config: {
         refs: {
             addToQueueButton: "button[action=addToQueueEvent]",
@@ -11,6 +11,8 @@ Ext.define('testing.controller.Discussion', {
             tickSound: "#ticker"
         }
     },
+
+    timeUtils: Ext.create('testing.util.TimeUtils'),
 
     doAddToQueue: function() {
         this.getApplication().fireEvent('clientMessage', { type: 'requestToSpeak' });
@@ -62,17 +64,8 @@ Ext.define('testing.controller.Discussion', {
     },
 
     doUpdateTimeRemaining: function(data) {
-        var formattedTime = this.getFormattedTime(data);
+        var formattedTime = this.timeUtils.getFormattedTime(data.timeLeft);
         this.getTimeRemainingLabel().setHtml(formattedTime);
-    },
-
-    getFormattedTime: function(data) {
-        var timeRemaining = data.timeLeft;
-        var date = new Date(null);
-        var offsetInSeconds = (date.getTimezoneOffset()) * 60;
-        date.setSeconds(timeRemaining / 1000 + offsetInSeconds);
-        var formattedTime = date.toTimeString().substr(0, 8);
-        return formattedTime;
     },
 
     init: function() {

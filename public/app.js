@@ -2,16 +2,16 @@ Ext.application({
     name: 'testing',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox', 'testing.util.TimeUtils'
     ],
 
     views: ['Main'],
 
-    controllers: ['Socket', 'Login', 'Discussion', 'CreateGroup'],
+    controllers: ['Socket', 'Login', 'Discussion', 'CreateGroup', 'UserReport'],
 
     stores: ['Groups', 'DefaultUsers'],
 
-    models: ['Group'],
+    models: ['Group', 'User'],
 
     icon: {
         '57': 'resources/icons/Icon.png',

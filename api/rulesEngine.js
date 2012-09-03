@@ -60,6 +60,7 @@ rulesEngine.prototype.doRequestToSpeak = function(user, data) {
 rulesEngine.prototype.doRelinquishTurn = function(user, data) {
     // interrupt user if speaking
     if(this.activeSpeaker && (user.name == this.activeSpeaker.name)) {
+        this.updateActiveSpeaker(new Date().getTime());
         this.activeSpeaker = null;
     }
     // remove use user from queue
@@ -117,7 +118,6 @@ rulesEngine.prototype.getNextSpeaker = function() {
         }
         this.log('getNextSpeaker --- user: ' + currentUser.name + ' elapsedTime: ' + currentUserElapsedTime + ' modestSpeakerName: ' + modestSpeaker.name + ' modestSpeakerElapsedTime ' + modestSpeaker.elapsedTime);
         if(currentUserElapsedTime < modestSpeaker.elapsedTime) {
-            this.log('getNextSpeaker OOOO - modestSpeaker from: ' + modestSpeaker.name + ' to: ' + currentUser.name);
             modestSpeaker = currentUser;
         }
     }
@@ -131,7 +131,6 @@ rulesEngine.prototype.getNextSpeaker = function() {
             nextAction.time += timeRemaining;
         }
     }
-    this.log('XXXXXXXXXXXXX getNextSpeaker - modestSpeaker: ' + modestSpeaker.name + ' elapsedTime ' + modestSpeaker.elapsedTime + ' nextAction.time ' + nextAction.time);
     return nextAction;
 }
 
@@ -154,26 +153,33 @@ rulesEngine.prototype.doDiscussionOver = function() {
     // discussion is over, make sure no further actions are performed
     clearTimeout(this.nextTimedActionId);
     clearTimeout(this.discussionOverActionId);
+    this.updateActiveSpeaker(new Date().getTime());
     // clean up server
     this.messageDispatcher.emit('discussionOverInServer', this.room);
     // let client know
-    this.messageDispatcher.sendMessageToRoom(this.room, {
+    /*this.messageDispatcher.sendMessageToRoom(this.room, {
         messageType: 'discussionOver'
-    });
+    });*/
+}
+
+rulesEngine.prototype.updateActiveSpeaker = function(currentTime) {
+    this.log('----------- updateActiceSpeaker');
+    if(this.activeSpeaker) {
+        this.activeSpeaker.elapsedTime += currentTime - this.activeSpeaker.lastTurnBeginning;
+        this.log('new ET is ' + this.activeSpeaker.elapsedTime);
+        db.save(this.activeSpeaker);
+    }
 }
 
 rulesEngine.prototype.doNextSpeaker = function(speaker) {
     var currentTime = new Date().getTime();
     // update active speaker
-    if(this.activeSpeaker) {
-       this.activeSpeaker.elapsedTime += currentTime - this.activeSpeaker.lastTurnBeginning;
-   }
+    this.updateActiveSpeaker(currentTime);
     // update new speaker
     speaker.lastTurnBeginning = currentTime;
     // replace active speaker
     this.activeSpeaker = speaker;
     // send message
-    this.log('doNextSpeaker =========== user: ' + this.activeSpeaker.name + ' elapsedTime: ' + this.activeSpeaker.elapsedTime + ' lastTurnBeginning: ' + this.activeSpeaker.lastTurnBeginning);
     this.messageDispatcher.sendMessageToRoom(this.room, {
         messageType: 'newSpeaker',
         name: speaker.name,

@@ -49,10 +49,8 @@ io.configure(function() {
     io.set('polling duration', 10);
     messageDispatcherInstance = new messageDispatcher(io);
     messageDispatcherInstance.on('discussionOverInServer', function(room) {
-        // destroy rule engine
-        delete rulesEngineMap[room];
-        // clean up db
-        removeRoomObject(room);
+        // persistRoomData will take care of cleaning up when it's done
+        persistRoomData(room);
     });
     io.sockets.on('connection', function(socket) {
         socket.on('login', function(data) {
@@ -90,6 +88,8 @@ function login(socket, data) {
     }
     // save new client data
     db.save(new user(data, socket.id, room));
+    roomObject.userIds.push(socket.id);
+    saveRoomObject(roomObject);
     // create a rules engine if it doesn't already exist
     if (!rulesEngineMap[room]) {
         var newRulesEngine = new rulesEngine(roomObject, messageDispatcherInstance);
@@ -135,4 +135,48 @@ function removeRoomObject(room) {
         }
     }
     return null;
+}
+
+function saveRoomObject(roomObject) {
+    var room = roomObject.name;
+    var groups = db.load('groups');
+    var roomList = groups.data;
+    var numberOfRooms = roomList.length;
+     for (var i=0; i < numberOfRooms; i++) {
+        if (roomList[i].name == room) {
+            roomList[i] = roomObject;
+            shouldSave = true;
+            db.save({id: 'groups', data: roomList});
+            return;
+        }
+    }
+}
+
+function persistRoomData(room) {
+    var roomObj = getRoomObject(room);
+    var userIds = roomObj.userIds;
+    var length = userIds.length;
+    roomObj.users = [];
+    for(var i = 0; i < length; i++) {
+        var userObj = db.load(userIds[i]);
+        roomObj.users.push(userObj);
+    }
+    db.savePersistent('rooms', roomObj, function(err) {
+        var msg = err ? ('error persisting users: ' + err) : 'users persisted';
+        console.log();
+        if(!err) {
+            messageDispatcherInstance.sendMessageToRoom(room, {
+                messageType: 'usersSaved',
+                data: roomObj.users
+            });
+        }
+        cleanRoomData(room);
+    });
+}
+
+function cleanRoomData(room) {
+    // destroy rule engine
+    delete rulesEngineMap[room];
+    // clean up db
+    removeRoomObject(room);
 }
