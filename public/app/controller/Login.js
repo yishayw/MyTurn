@@ -15,7 +15,8 @@ Ext.define('testing.controller.Login', {
             loginTextField: "#loginTextField",
             groupSelect: "#groupSelect",
             discussionView: "discussionView",
-            createGroupView: "createGroupView"
+            createGroupView: "createGroupView",
+            userReportView: "userReportView"
         }
     },
 
@@ -73,5 +74,6 @@ Ext.define('testing.controller.Login', {
     launch: function() {
         this.doLogout();
         this.getCreateGroupView().hide();
+        this.getUserReportView().setDisabled(true);
     }
 });

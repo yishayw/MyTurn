@@ -6,7 +6,7 @@ Ext.define("testing.view.Main", {
         'testing.view.Login',
         'testing.view.Discussion',
         'Ext.DataView',
-        'testing.view.UserReport'
+        'testing.view.UserReport',
     ],
     config: {
         tabBarPosition: 'bottom',
@@ -23,21 +23,10 @@ Ext.define("testing.view.Main", {
                 iconCls: 'user'
             },
             {
-                xtype: 'dataview',
+                xtype: 'userReportView',
                 title: 'Report',
-                id: 'userReportData',
-                store: {
-                    fields: ['name', 'elapsedTime'],
-                    data: [
-                        {name: 'Jamie',  elapsedTime: 100},
-                        {name: 'Rob',   elapsedTime: 21},
-                        {name: 'Tommy', elapsedTime: 24},
-                        {name: 'Jacky', elapsedTime: 24},
-                        {name: 'Ed',   elapsedTime: 26}
-                    ]
-                },
-                itemTpl: '<div>{name}   {elapsedTime}</div>'
-            }
+                iconCls: 'bookmarks'
+            }       
         ]
     }
 });

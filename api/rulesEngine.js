@@ -5,14 +5,16 @@ var messageDispatcher = require('./messageDispatcher')
 function rulesEngine(room, messageDispatcher) {
     this.room = room.name;
     this.discussionLength = room.discussionLength;
-    this.discussionBeginning = null;
     this.turnLimit = room.turnLength;
+    this.speakerQueue = [];
+    this.messageDispatcher = messageDispatcher;
+    this.discussionBeginning = null;
     this.discussionOverActionId = null;
     this.nextTimedActionId = null;
     this.nextTimedActionTime = null;
-    this.speakerQueue = [];
     this.activeSpeaker = null;
-    this.messageDispatcher = messageDispatcher;
+    this.discussionRepeating = false;
+    this.discussionEnding = false;
 }
 
 rulesEngine.prototype.listen = function() {
@@ -33,9 +35,13 @@ rulesEngine.prototype.receiveClientMessage = function(user, data) {
         shouldReprocess = this.doRequestToSpeak(user, data);
     } else if(type == 'relinquishTurn') {
         shouldReprocess = this.doRelinquishTurn(user, data);
+    } else if(type == 'repeatDiscussion') {
+        shouldReprocess = this.doRepeatDiscussion(user, data);
+    } else if(type == 'discussionOver') {
+        shouldReprocess = this.doDiscussionOver(user, data);
     }
-    if (shouldReprocess) {
-        this.reprocess(); 
+    if(shouldReprocess) {
+        this.reprocess();
     }
 }
 
@@ -54,6 +60,21 @@ rulesEngine.prototype.doRequestToSpeak = function(user, data) {
         }
     }
     this.speakerQueue.push(user);
+    return true;
+}
+
+rulesEngine.prototype.doDiscussionOver = function(user, data) {
+    this.discussionEnding = true;
+    return true;
+}
+
+rulesEngine.prototype.doRepeatDiscussion = function(user, data) {
+    this.discussionBeginning = null;
+    this.discussionOverActionId = null;
+    this.nextTimedActionId = null;
+    this.nextTimedActionTime = null;
+    this.activeSpeaker = null;
+    this.discussionRepeating = true;
     return true;
 }
 
@@ -83,11 +104,13 @@ rulesEngine.prototype.reprocess = function() {
     if(nextSpeakerAction && !this.discussionOverActionId) {
         this.discussionBeginning = now;
         this.discussionOverActionId = setTimeout(function() {
-            context.doDiscussionOver.call(context);
+            context.doPersistUsers.call(context);
         },
         this.discussionLength);
     }
-    var nextAction = nextSpeakerAction ? nextSpeakerAction : this.getWaitingForSpeaker();
+    var nextAction = this.discussionEnding ? this.getEndingDiscussion() :
+        this.discussionRepeating ? this.getRepeatingDiscussion() : 
+            nextSpeakerAction ? nextSpeakerAction : this.getWaitingForSpeaker();
     //  make sure next action isn't after an already existing timed event
     if(!nextAction || (this.nextTimedActionTime != null && (now + nextAction.time > this.nextTimedActionTime))) {
         return;
@@ -116,7 +139,6 @@ rulesEngine.prototype.getNextSpeaker = function() {
             // we add 500 to avoid turns not changing because of setTimeout() inaccuaracies
             currentUserElapsedTime += timeRemaining + 500;
         }
-        this.log('getNextSpeaker --- user: ' + currentUser.name + ' elapsedTime: ' + currentUserElapsedTime + ' modestSpeakerName: ' + modestSpeaker.name + ' modestSpeakerElapsedTime ' + modestSpeaker.elapsedTime);
         if(currentUserElapsedTime < modestSpeaker.elapsedTime) {
             modestSpeaker = currentUser;
         }
@@ -141,6 +163,29 @@ rulesEngine.prototype.getWaitingForSpeaker = function() {
     }
 }
 
+rulesEngine.prototype.getRepeatingDiscussion = function() {
+    return this.createTimedAction(this.doRepeatingDiscussion, [], true);
+}
+
+rulesEngine.prototype.getEndingDiscussion = function() {
+    return this.createTimedAction(this.doEndingDiscussion, [], true);
+}
+
+rulesEngine.prototype.doRepeatingDiscussion = function() {
+    this.messageDispatcher.sendMessageToRoom(this.room, {
+        messageType: 'repeatingDiscussion'
+    });
+    this.discussionRepeating = false;
+}
+
+rulesEngine.prototype.doEndingDiscussion = function() {
+    this.messageDispatcher.emit('discussionOverInServer', this.room);
+    this.messageDispatcher.sendMessageToRoom(this.room, {
+        messageType: 'discussionOver'
+    });
+    this.doEndingDiscussion = false;
+}
+
 rulesEngine.prototype.doWaitingForSpeaker = function() {
     var now = new Date().getTime();
     this.messageDispatcher.sendMessageToRoom(this.room, {
@@ -149,13 +194,13 @@ rulesEngine.prototype.doWaitingForSpeaker = function() {
     });
 }
 
-rulesEngine.prototype.doDiscussionOver = function() {
+rulesEngine.prototype.doPersistUsers = function() {
     // discussion is over, make sure no further actions are performed
     clearTimeout(this.nextTimedActionId);
     clearTimeout(this.discussionOverActionId);
     this.updateActiveSpeaker(new Date().getTime());
     // clean up server
-    this.messageDispatcher.emit('discussionOverInServer', this.room);
+    this.messageDispatcher.emit('persistRoomData', this.room);
     // let client know
     /*this.messageDispatcher.sendMessageToRoom(this.room, {
         messageType: 'discussionOver'
@@ -163,10 +208,8 @@ rulesEngine.prototype.doDiscussionOver = function() {
 }
 
 rulesEngine.prototype.updateActiveSpeaker = function(currentTime) {
-    this.log('----------- updateActiceSpeaker');
     if(this.activeSpeaker) {
         this.activeSpeaker.elapsedTime += currentTime - this.activeSpeaker.lastTurnBeginning;
-        this.log('new ET is ' + this.activeSpeaker.elapsedTime);
         db.save(this.activeSpeaker);
     }
 }

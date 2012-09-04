@@ -48,10 +48,13 @@ io.configure(function() {
     io.set('transports', ['xhr-polling']);
     io.set('polling duration', 10);
     messageDispatcherInstance = new messageDispatcher(io);
-    messageDispatcherInstance.on('discussionOverInServer', function(room) {
-        // persistRoomData will take care of cleaning up when it's done
+    messageDispatcherInstance.on('persistRoomData', function(room) {
         persistRoomData(room);
     });
+    messageDispatcherInstance.on('discussionOverInServer', function(room) {
+        cleanRoomData(room);
+    });
+
     io.sockets.on('connection', function(socket) {
         socket.on('login', function(data) {
             login(socket, data);
@@ -163,14 +166,13 @@ function persistRoomData(room) {
     }
     db.savePersistent('rooms', roomObj, function(err) {
         var msg = err ? ('error persisting users: ' + err) : 'users persisted';
-        console.log();
+        console.log(msg);
         if(!err) {
             messageDispatcherInstance.sendMessageToRoom(room, {
                 messageType: 'usersSaved',
                 data: roomObj.users
             });
         }
-        cleanRoomData(room);
     });
 }
 

@@ -1,44 +1,18 @@
 Ext.define("testing.view.UserReport", {
     extend: 'Ext.Container',
     requires: ['Ext.Button', 'Ext.dataview.DataView'],
-    xtype: 'userReportView2',
-    layout: {type: 'vbox'},
+    xtype: 'userReportView',
     config: {
+     layout: 'fit',
      items: [
-     {
-         xtype: 'button',
-         text: 'Me'
-     },
-     {
-         xtype: 'button',
-         text: 'Me2'
-     },
       {
         xtype: 'dataview',
+        id: 'userReportData',
         store: {
-            fields: ['name', 'elapsedTime'],
-            data: [
-                {name: 'Jamie',  elapsedTime: 100},
-                {name: 'Rob',   elapsedTime: 21},
-                {name: 'Tommy', elapsedTime: 24},
-                {name: 'Jacky', elapsedTime: 24},
-                {name: 'Ed',   elapsedTime: 26}
-            ]
+            fields: ['name', 'elapsedTime']
         },
-        itemTpl: '<div>{name}   {elapsedTime}</div>'
+        itemTpl: '<p>Speaker: {name}</p><p>Time: {elapsedTime}</p><p/>'
       }
      ]
     }
-    /*,
-            store: {
-                fields: ['name', 'elapsedTime'],
-                data: [
-                    {name: 'Jamie',  elapsedTime: 100},
-                    {name: 'Rob',   elapsedTime: 21},
-                    {name: 'Tommy', elapsedTime: 24},
-                    {name: 'Jacky', elapsedTime: 24},
-                    {name: 'Ed',   elapsedTime: 26}
-                ]
-            },
-            itemTpl: '<div>{name}   {elapsedTime}</div>'*/
-     });
+});
