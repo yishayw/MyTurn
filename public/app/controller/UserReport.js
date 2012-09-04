@@ -11,6 +11,8 @@ Ext.define('testing.controller.UserReport', {
         }
     },
 
+    messageBox: null,
+
     timeUtils: Ext.create('testing.util.TimeUtils'),
 
     doUsersSaved: function(dataContainer) {
@@ -26,7 +28,7 @@ Ext.define('testing.controller.UserReport', {
         var userReportView = this.getUserReportView();
         userReportView.setDisabled(false);
         this.getMainView().setActiveItem(userReportView);
-        Ext.Msg.confirm('', "Discussion's over. Do you wish to repeat it?", function(answer) {
+        this.messageBox = Ext.Msg.confirm('', "Discussion's over. Do you wish to repeat it?", function(answer) {
             var application = this.getApplication();
             if(answer == 'yes') {
                 application.fireEvent('clientMessage', { type: 'repeatDiscussion' });
@@ -37,16 +39,26 @@ Ext.define('testing.controller.UserReport', {
 
     },
 
+    clearMessageBox: function() {
+        if(this.messageBox) {
+            this.messageBox.hide();
+            this.messageBox.setModal(false);
+            this.messageBox = null;
+        }
+    },
+
     doRepeatingDiscussion: function() {
         var mainView = this.getMainView();
         mainView.setActiveItem(this.getDiscussionView());
         this.getUserReportView().setDisabled(true);
+        this.clearMessageBox();
     },
 
     init: function() {
         this.getApplication().on({
             usersSaved: this.doUsersSaved,
             repeatingDiscussion: this.doRepeatingDiscussion,
+            discussionOver: this.clearMessageBox,
             scope: this
         });
     },
