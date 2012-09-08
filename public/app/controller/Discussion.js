@@ -14,15 +14,15 @@ Ext.define('testing.controller.Discussion', {
 
     timeUtils: Ext.create('testing.util.TimeUtils'),
 
-    doAddToQueue: function() {
+    doAddToQueue: function () {
         this.getApplication().fireEvent('clientMessage', { type: 'requestToSpeak' });
     },
 
-    doRemoveFromQueue: function() {
+    doRemoveFromQueue: function () {
         this.getApplication().fireEvent('clientMessage', { type: 'relinquishTurn' });
     },
 
-    doDiscussionOver: function(data) {
+    doDiscussionOver: function (data) {
         this.clearTick();
         this.getMessageLabel().setHtml('Waiting for New Speaker');
         this.getTimeRemainingLabel().setHtml('');
@@ -31,44 +31,57 @@ Ext.define('testing.controller.Discussion', {
         Ext.getStore('groups').load();
     },
 
-    doNewSpeaker: function(data) {
+    doNewSpeaker: function (data) {
         this.getMessageLabel().setHtml('Current speaker is ' + data.name);
         this.doUpdateTimeRemaining(data);
-        this.clearTick();
+        if (this.getUserName() != data.name) {
+            this.clearTick();   
+        }
     },
 
-    doWaitingForNewSpeaker: function(data) {
+    doWaitingForNewSpeaker: function (data) {
         this.getMessageLabel().setHtml('Waiting for New Speaker');
         this.doUpdateTimeRemaining(data);
         this.clearTick();
     },
 
-    clearTick: function() {
-        if(this.tickSoundInterval) {
+    getUserName: function () {
+        var users = Ext.getStore('defaultUsers');
+        if (users.getCount() == 1) {
+            return users.getAt(0).get('name');
+        }
+        return null;
+    },
+
+    clearTick: function () {
+        if (this.tickSoundInterval) {
             clearInterval(this.tickSoundInterval);
             this.tickSoundInterval = null;
         }
     },
 
-    doMyTurn: function(data) {
+    doMyTurn: function (data) {
+        if (this.tickSoundInterval) {
+            return;
+        }
         this.getBeepSound().play();
         var context = this;
         this.clearTick();
-        this.tickSoundInterval = setInterval(function() {
+        this.tickSoundInterval = setInterval(function () {
             context.doTick();
         }, 1000);
     },
 
-    doTick: function() {
+    doTick: function () {
         this.getTickSound().play();
     },
 
-    doUpdateTimeRemaining: function(data) {
+    doUpdateTimeRemaining: function (data) {
         var formattedTime = this.timeUtils.getFormattedTime(data.timeLeft);
         this.getTimeRemainingLabel().setHtml(formattedTime);
     },
 
-    init: function() {
+    init: function () {
         this.getApplication().on({
             discussionOver: this.doDiscussionOver,
             newSpeaker: this.doNewSpeaker,
@@ -78,7 +91,7 @@ Ext.define('testing.controller.Discussion', {
         });
     },
 
-    launch: function() {
+    launch: function () {
         this.getAddToQueueButton().element.on({
             touchstart: 'doAddToQueue',
             touchend: 'doRemoveFromQueue',
