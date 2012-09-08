@@ -30,8 +30,6 @@ Ext.define("testing.view.Login", {
                               },
                             {
                                 xtype: 'button',
-            /*                       iconCls: 'add',
-                                iconMask: true,*/
                                 text: 'add',
                                 ui: 'small',
                                 action: 'createGroupEvent'

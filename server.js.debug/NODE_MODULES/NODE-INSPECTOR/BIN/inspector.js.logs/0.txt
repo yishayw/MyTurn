@@ -1,2 +1,0 @@
-   [36minfo  -[39m socket.io started
-visit http://0.0.0.0:\\.\pipe\5676c18e-08d2-4fc7-966f-2ef5436e2c8e/debug?port=5058 to start debugging

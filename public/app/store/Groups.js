@@ -7,8 +7,12 @@ Ext.define('testing.store.Groups', {
             type: 'ajax',
             cacheString: 'dcdcdc',
             url : 'api/data/groups.json',
+            api: {
+                destroy: 'api/data/deleteGroup.json'
+            },
             reader: 'json'
         },
-        autoLoad: true
+        autoLoad: true,
+        autoSync: false
     }
 });

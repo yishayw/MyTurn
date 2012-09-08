@@ -15,17 +15,25 @@ function rulesEngine(room, messageDispatcher) {
     this.activeSpeaker = null;
     this.discussionRepeating = false;
     this.discussionEnding = false;
+    this.callback = null;
 }
 
 rulesEngine.prototype.listen = function() {
     var context = this;
-    this.messageDispatcher.on('message', function(data) {
+    this.callback = function(data) {
         var clientId = data.clientId;
         var user = db.load(clientId);
         if (user && (user.room == context.room)) {
              context.receiveClientMessage(user, data);
         }
-    });
+    };
+    this.messageDispatcher.on('message', this.callback);
+}
+
+rulesEngine.prototype.stopListening = function() {
+    if(this.callback && this.messageDispatcher) {
+        this.messageDispatcher.removeListener('message', this.callback);
+    }
 }
 
 rulesEngine.prototype.receiveClientMessage = function(user, data) {
@@ -183,7 +191,7 @@ rulesEngine.prototype.doEndingDiscussion = function() {
     this.messageDispatcher.sendMessageToRoom(this.room, {
         messageType: 'discussionOver'
     });
-    this.doEndingDiscussion = false;
+    this.discussionEnding = false;
 }
 
 rulesEngine.prototype.doWaitingForSpeaker = function() {

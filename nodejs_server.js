@@ -130,9 +130,8 @@ function removeRoomObject(room) {
     var numberOfRooms = roomList.length;
     for (var i=0; i < numberOfRooms; i++) {
         if (roomList[i].name == room) {
-            var removedObject = roomList[i].name;
+            var removedObject = roomList[i];
             roomList.splice(i, 1);
-            groups.data = roomList;
             db.save(groups);
             return removedObject;
         }
@@ -148,9 +147,8 @@ function saveRoomObject(roomObject) {
      for (var i=0; i < numberOfRooms; i++) {
         if (roomList[i].name == room) {
             roomList[i] = roomObject;
-            shouldSave = true;
-            db.save({id: 'groups', data: roomList});
-            return;
+            db.save(groups);
+            return roomObject;
         }
     }
 }
@@ -178,6 +176,12 @@ function persistRoomData(room) {
 
 function cleanRoomData(room) {
     // destroy rule engine
+    var ruleEngineToBeCleaned = rulesEngineMap[room];
+    if (ruleEngineToBeCleaned) {
+        // remove from event dispatcher
+        ruleEngineToBeCleaned.stopListening();
+    }
+    // remove from map
     delete rulesEngineMap[room];
     // clean up db
     removeRoomObject(room);

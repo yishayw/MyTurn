@@ -28,15 +28,15 @@ Ext.define('testing.controller.UserReport', {
         var userReportView = this.getUserReportView();
         userReportView.setDisabled(false);
         this.getMainView().setActiveItem(userReportView);
-        this.messageBox = Ext.Msg.confirm('', "Discussion's over. Do you wish to repeat it?", function(answer) {
+        this.messageBox = Ext.Msg.confirm('', "Discussion time is up. Do you wish to repeat it?", function(answer) {
             var application = this.getApplication();
             if(answer == 'yes') {
                 application.fireEvent('clientMessage', { type: 'repeatDiscussion' });
             } else {
                 application.fireEvent('clientMessage', { type: 'discussionOver' });
             }
+            this.messageBox = null;
         }, this);
-
     },
 
     clearMessageBox: function() {

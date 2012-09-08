@@ -11,7 +11,7 @@ Ext.define("testing.view.UserReport", {
         store: {
             fields: ['name', 'elapsedTime']
         },
-        itemTpl: '<p>Speaker: {name}</p><p>Time: {elapsedTime}</p><p/>'
+        itemTpl: '<p>Speaker: {name}    {elapsedTime}</p>'
       }
      ]
     }
