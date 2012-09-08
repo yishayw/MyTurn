@@ -15,7 +15,7 @@ app.get('/data/groups.json', function(req, res) {
     res.send(result.data);
 });
 
-app.post('/data/deleteGroup.json', function (req, res) {
+app.post('/data/doNothing.json', function (req, res) {
     res.send([], 200);
 });
 

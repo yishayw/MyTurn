@@ -1,389 +1,324 @@
 Express server listening on port NaN in development mode
 info: socket.io started
-debug: setting request GET /api/socket.io/1/xhr-polling/DXL_EuDS_QdYN9il2JoG?t=1347140849395
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 7:::1+0
-debug: set close timeout for client DXL_EuDS_QdYN9il2JoG
-warn: client not handshaken client should reconnect
-info: transport end (error)
-debug: cleared close timeout for client DXL_EuDS_QdYN9il2JoG
-debug: discarding transport
-debug: setting request GET /api/socket.io/1/xhr-polling/97QrjhWaXBwBZMSn2JoF?t=1347140854365
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 7:::1+0
-debug: set close timeout for client 97QrjhWaXBwBZMSn2JoF
-warn: client not handshaken client should reconnect
-info: transport end (error)
-debug: cleared close timeout for client 97QrjhWaXBwBZMSn2JoF
-debug: discarding transport
-debug: setting request GET /api/socket.io/1/xhr-polling/ORgM0QMJV1frtDrK2JoE?t=1347140850902
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 7:::1+0
-debug: set close timeout for client ORgM0QMJV1frtDrK2JoE
-warn: client not handshaken client should reconnect
-info: transport end (error)
-debug: cleared close timeout for client ORgM0QMJV1frtDrK2JoE
-debug: discarding transport
-debug: discarding transport
-debug: xhr-polling received data packet 0::
-debug: got disconnection packet
-debug: discarding transport
-debug: xhr-polling received data packet 0::
-debug: got disconnection packet
-debug: discarding transport
-debug: xhr-polling received data packet 0::
-debug: got disconnection packet
-debug: client authorized
-info: handshake authorized weuYolRRBTQby8VV2jeS
-debug: client authorized
-info: handshake authorized MnNjErKKj21jjUOt2jeT
-debug: client authorized
-info: handshake authorized WEXTlvthPB8s1swY2jeU
-debug: setting request GET /api/socket.io/1/xhr-polling/weuYolRRBTQby8VV2jeS?t=1347140860494
-debug: setting poll timeout
-debug: client authorized for 
-debug: clearing poll timeout
-debug: xhr-polling writing 1::
-debug: set close timeout for client weuYolRRBTQby8VV2jeS
-debug: setting request GET /api/socket.io/1/xhr-polling/weuYolRRBTQby8VV2jeS?t=1347140860504
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client weuYolRRBTQby8VV2jeS
-debug: setting request GET /api/socket.io/1/xhr-polling/MnNjErKKj21jjUOt2jeT?t=1347140860525
-debug: setting poll timeout
-debug: client authorized for 
-debug: clearing poll timeout
-debug: xhr-polling writing 1::
-debug: set close timeout for client MnNjErKKj21jjUOt2jeT
-debug: setting request GET /api/socket.io/1/xhr-polling/MnNjErKKj21jjUOt2jeT?t=1347140860532
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client MnNjErKKj21jjUOt2jeT
-debug: setting request GET /api/socket.io/1/xhr-polling/WEXTlvthPB8s1swY2jeU?t=1347140860573
-debug: setting poll timeout
-debug: client authorized for 
-debug: clearing poll timeout
-debug: xhr-polling writing 1::
-debug: set close timeout for client WEXTlvthPB8s1swY2jeU
-debug: setting request GET /api/socket.io/1/xhr-polling/WEXTlvthPB8s1swY2jeU?t=1347140860580
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client WEXTlvthPB8s1swY2jeU
 debug: served static content /socket.io.js
-debug: clearing poll timeout
-debug: xhr-polling writing 8::
-debug: set close timeout for client weuYolRRBTQby8VV2jeS
-debug: xhr-polling closed due to exceeded duration
-debug: clearing poll timeout
-debug: xhr-polling writing 8::
-debug: set close timeout for client MnNjErKKj21jjUOt2jeT
-debug: xhr-polling closed due to exceeded duration
-debug: clearing poll timeout
-debug: xhr-polling writing 8::
-debug: set close timeout for client WEXTlvthPB8s1swY2jeU
-debug: xhr-polling closed due to exceeded duration
 ====== New group: name: 1 discussion length: 6000
 debug: client authorized
-info: handshake authorized sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140877230
+info: handshake authorized GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141413741
 debug: setting poll timeout
 debug: client authorized for 
 debug: clearing poll timeout
 debug: xhr-polling writing 1::
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
 debug: xhr-polling received data packet 5:::{"name":"login","args":[{"name":"Us2","room":"1"}]}
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140877246
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141413752
 debug: setting poll timeout
 debug: clearing poll timeout
 debug: xhr-polling writing 5:::{"name":"userAccepted"}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
 debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140877358
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141413817
 debug: setting poll timeout
 debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
 debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
 debug: clearing poll timeout
 debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":5999}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140877988
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141414438
 debug: setting poll timeout
 debug: clearing poll timeout
 debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
 debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140878014
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141414491
 debug: setting poll timeout
 debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":4995}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141415427
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: discarding transport
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141415443
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":3992}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141416425
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: discarding transport
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141416438
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":2988}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141417431
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: discarding transport
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141417448
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":1978}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141418446
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: discarding transport
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141418463
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
 debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
 debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":5887}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140878103
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":1076}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141419343
 debug: setting poll timeout
 debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":4744}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140879243
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140879256
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":3732}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140880247
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140880263
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":3178}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140880806
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":2801}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140881188
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140881199
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":1802}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140882176
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140882221
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":1467}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140882524
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
 users persisted
 debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"usersSaved","data":[{"id":"sGoUOp_ReHnTCPP72jeV","room":"1","name":"Us2","elapsedTime":3011,"lastTurnBeginning":1347140882171}]}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: setting request GET /api/socket.io/1/xhr-polling/sGoUOp_ReHnTCPP72jeV?t=1347140884051
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"usersSaved","data":[{"id":"GhbqLPbQVbz8otc64nyT","room":"1","name":"Us2","elapsedTime":4922,"lastTurnBeginning":1347141418434}]}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141420491
 debug: setting poll timeout
 debug: discarding transport
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"discussionOver"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"discussionOver"}]}
-debug: set close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: xhr-polling received data packet 0::
-debug: got disconnection packet
-info: transport end by forced client disconnection
-info: transport end (booted)
-debug: cleared close timeout for client sGoUOp_ReHnTCPP72jeV
-debug: discarding transport
-====== New group: name: 1 discussion length: 6000
-debug: client authorized
-info: handshake authorized vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140889357
-debug: setting poll timeout
-debug: client authorized for 
-debug: clearing poll timeout
-debug: xhr-polling writing 1::
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: xhr-polling received data packet 5:::{"name":"login","args":[{"name":"Us2","room":"1"}]}
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140889369
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"userAccepted"}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140889401
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":5999}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140889974
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140889990
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":4999}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140890963
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140890975
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":4568}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140891402
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
-users persisted
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"usersSaved","data":[{"id":"vsOcIrD6A19aJIzh2jeW","room":"1","name":"Us2","elapsedTime":1430,"lastTurnBeginning":1347140890957}]}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140896006
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
 debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"repeatDiscussion"}]}
 debug: clearing poll timeout
 debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"repeatingDiscussion"}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140898517
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141422489
 debug: setting poll timeout
 debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
 debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
 debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":5999}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140899220
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":6000}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141423329
 debug: setting poll timeout
 debug: clearing poll timeout
 debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
 debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140899259
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141423342
 debug: setting poll timeout
 debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
 debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":4989}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140900230
-debug: setting poll timeout
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140900242
-debug: setting poll timeout
-debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":3978}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140901235
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":4996}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141424324
 debug: setting poll timeout
 debug: clearing poll timeout
 debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
 debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140901250
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141424341
 debug: setting poll timeout
 debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
 debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":2972}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140902241
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":3989}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141425372
 debug: setting poll timeout
 debug: clearing poll timeout
 debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
 debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140902253
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141425400
 debug: setting poll timeout
 debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
 debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
 debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":2874}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140902341
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":3751}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141425580
 debug: setting poll timeout
 debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
 users persisted
 debug: clearing poll timeout
-debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"usersSaved","data":[{"id":"vsOcIrD6A19aJIzh2jeW","room":"1","name":"Us2","elapsedTime":4555,"lastTurnBeginning":1347140902237}]}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
-debug: setting request GET /api/socket.io/1/xhr-polling/vsOcIrD6A19aJIzh2jeW?t=1347140905259
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"usersSaved","data":[{"id":"GhbqLPbQVbz8otc64nyT","room":"1","name":"Us2","elapsedTime":7170,"lastTurnBeginning":1347141425327}]}]}
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
+debug: setting request GET /api/socket.io/1/xhr-polling/GhbqLPbQVbz8otc64nyT?t=1347141429361
 debug: setting poll timeout
 debug: discarding transport
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
 debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"discussionOver"}]}
 debug: clearing poll timeout
 debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"discussionOver"}]}
-debug: set close timeout for client vsOcIrD6A19aJIzh2jeW
+debug: set close timeout for client GhbqLPbQVbz8otc64nyT
 debug: xhr-polling received data packet 0::
 debug: got disconnection packet
 info: transport end by forced client disconnection
 info: transport end (booted)
-debug: cleared close timeout for client vsOcIrD6A19aJIzh2jeW
+debug: cleared close timeout for client GhbqLPbQVbz8otc64nyT
 debug: discarding transport
-debug: fired close timeout for client weuYolRRBTQby8VV2jeS
-info: transport end (close timeout)
+====== New group: name: 1 discussion length: 6000
+debug: client authorized
+info: handshake authorized xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141438585
+debug: setting poll timeout
+debug: client authorized for 
+debug: clearing poll timeout
+debug: xhr-polling writing 1::
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: xhr-polling received data packet 5:::{"name":"login","args":[{"name":"Us2","room":"1"}]}
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141438596
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"userAccepted"}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
 debug: discarding transport
-debug: fired close timeout for client MnNjErKKj21jjUOt2jeT
-info: transport end (close timeout)
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141438639
+debug: setting poll timeout
 debug: discarding transport
-debug: fired close timeout for client WEXTlvthPB8s1swY2jeU
-info: transport end (close timeout)
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":6000}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141439338
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141439349
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":5000}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141440334
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141440351
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":4640}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141440701
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":4001}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141441332
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141441342
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":3392}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141441951
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"requestToSpeak"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":2702}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141442627
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141442642
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"newSpeaker","name":"Us2","timeLeft":1702}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141443628
+debug: setting poll timeout
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"yourTurn"}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141443639
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"relinquishTurn"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"waitingForNewSpeaker","timeLeft":1385}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141443957
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+users persisted
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"usersSaved","data":[{"id":"xEm-p7R0ZVqTkyL_4nyU","room":"1","name":"Us2","elapsedTime":3285,"lastTurnBeginning":1347141443623}]}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: setting request GET /api/socket.io/1/xhr-polling/xEm-p7R0ZVqTkyL_4nyU?t=1347141445384
+debug: setting poll timeout
+debug: discarding transport
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: xhr-polling received data packet 5:::{"name":"clientMessage","args":[{"type":"discussionOver"}]}
+debug: clearing poll timeout
+debug: xhr-polling writing 5:::{"name":"message","args":[{"messageType":"discussionOver"}]}
+debug: set close timeout for client xEm-p7R0ZVqTkyL_4nyU
+debug: xhr-polling received data packet 0::
+debug: got disconnection packet
+info: transport end by forced client disconnection
+info: transport end (booted)
+debug: cleared close timeout for client xEm-p7R0ZVqTkyL_4nyU
 debug: discarding transport

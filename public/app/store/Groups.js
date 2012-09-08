@@ -8,7 +8,8 @@ Ext.define('testing.store.Groups', {
             cacheString: 'dcdcdc',
             url : 'api/data/groups.json',
             api: {
-                destroy: 'api/data/deleteGroup.json'
+                destroy: 'api/data/doNothing.json',
+                update: 'api/data/doNothing.json'
             },
             reader: 'json'
         },
