@@ -26,7 +26,6 @@ app.post('/data/groups.json', function(req, res) {
         result = { data: [] };
     }
     var newGroup = new room(newGroupData);
-    // workaround for this being called when it shouldn't, TODO see if group id prop lacking is the problem
     result.data.push(newGroup);
     console.log('====== New group: name: ' + newGroup.name + ' discussion length: ' + newGroup.discussionLength);
     db.save({ id: 'groups', data: result.data });

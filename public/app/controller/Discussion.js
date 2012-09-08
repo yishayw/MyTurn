@@ -23,19 +23,21 @@ Ext.define('testing.controller.Discussion', {
     },
 
     doDiscussionOver: function (data) {
-        this.clearTick();
-        this.getMessageLabel().setHtml('Waiting for New Speaker');
-        this.getTimeRemainingLabel().setHtml('');
         Ext.Msg.alert('', 'The discussion is over.');
         // a group was deleted on server, time to reload
         Ext.getStore('groups').load();
+    },
+
+    doUsersSaved: function(data) {
+       this.clearTick();
+       this.initMessageScreen();
     },
 
     doNewSpeaker: function (data) {
         this.getMessageLabel().setHtml('Current speaker is ' + data.name);
         this.doUpdateTimeRemaining(data);
         if (this.getUserName() != data.name) {
-            this.clearTick();   
+            this.clearTick();
         }
     },
 
@@ -51,6 +53,11 @@ Ext.define('testing.controller.Discussion', {
             return users.getAt(0).get('name');
         }
         return null;
+    },
+
+    initMessageScreen: function () {
+        this.getMessageLabel().setHtml('Waiting for New Speaker');
+        this.getTimeRemainingLabel().setHtml('');
     },
 
     clearTick: function () {
@@ -84,6 +91,7 @@ Ext.define('testing.controller.Discussion', {
     init: function () {
         this.getApplication().on({
             discussionOver: this.doDiscussionOver,
+            usersSaved: this.doUsersSaved,
             newSpeaker: this.doNewSpeaker,
             yourTurn: this.doMyTurn,
             waitingForNewSpeaker: this.doWaitingForNewSpeaker,
@@ -96,6 +104,7 @@ Ext.define('testing.controller.Discussion', {
             touchstart: 'doAddToQueue',
             touchend: 'doRemoveFromQueue',
             scope: this
-        })
+        });
+        this.initMessageScreen();
     }
 });
