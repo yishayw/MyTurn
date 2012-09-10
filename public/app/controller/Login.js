@@ -1,7 +1,7 @@
 
 Ext.define('testing.controller.Login', {
     extend: 'Ext.app.Controller',
-    requires: ['testing.model.DefaultUser', 'Ext.Ajax', 'Ext.Panel', 'Ext.Viewport'],
+    requires: ['testing.model.DefaultUser', 'Ext.Ajax', 'Ext.Panel', 'Ext.Viewport', 'Ext.field.TextArea'],
     config: {
         control: {
             createGroupButton: { tap: "doCreateGroup" },
@@ -31,6 +31,7 @@ Ext.define('testing.controller.Login', {
             success: function (response, request) {
                 //console.log("success -- response: "+response.responseText);
                 var msgbox = Ext.create('Ext.Panel', {
+                    layout: 'fit',
                     modal: true,
                     hideOnMaskTap: true,
                     centered: true,
@@ -38,9 +39,14 @@ Ext.define('testing.controller.Login', {
                     width: '70%',
                     scrollable: {
                         direcion: 'vertical'
-                    },
-                    html: response.responseText
+                    }
                 });
+                var text = Ext.create('Ext.field.TextArea', {
+                    value: response.responseText,
+                    readOnly: true,
+                    maxRows: 10000000
+                });
+                msgbox.add(text);
                 //if it has not been added to a container, add it to the Viewport.
                 if (!msgbox.getParent() && Ext.Viewport) {
                     Ext.Viewport.add(msgbox);
