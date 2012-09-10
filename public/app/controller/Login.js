@@ -29,8 +29,12 @@ Ext.define('testing.controller.Login', {
             method: "GET",
             scope: this,
             success: function (response, request) {
+                var responseText = response.responseText;
+                responseText = responseText.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>');
                 //console.log("success -- response: "+response.responseText);
                 var msgbox = Ext.create('Ext.Panel', {
+                    padding: '5 5 5 5',
+                    html: responseText,
                     layout: 'fit',
                     modal: true,
                     hideOnMaskTap: true,
@@ -41,12 +45,12 @@ Ext.define('testing.controller.Login', {
                         direcion: 'vertical'
                     }
                 });
-                var text = Ext.create('Ext.field.TextArea', {
-                    value: response.responseText,
-                    readOnly: true,
-                    maxRows: 10000000
+                /*var text = Ext.create('Ext.field.TextArea', {
+                value: response.responseText,
+                readOnly: true,
+                maxRows: 10000000
                 });
-                msgbox.add(text);
+                msgbox.add(text);*/
                 //if it has not been added to a container, add it to the Viewport.
                 if (!msgbox.getParent() && Ext.Viewport) {
                     Ext.Viewport.add(msgbox);
