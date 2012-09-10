@@ -72,6 +72,20 @@ Ext.define("testing.view.Login", {
                     minHeight: 180,
                     minWidth: 300,
                     margin: '0 0 0 -40'
+                },
+                {
+                    xtype: 'container',
+                    left: 0,
+                    padding: '0 0 0 20',
+                    items: [
+                        {
+                            xtype: 'button',
+                            text: 'Read me',
+                            action: 'readmeEvent',
+                            ui: 'action',
+                            centered: true
+                        }
+                    ]
                 }
            ]
     }
