@@ -1,4 +1,4 @@
-// For this demo, using an in-memory store. Could easily switch to persistent storage with Mongo or similar.
+// For this demo, we're using an in-memory store. Could easily switch to persistent storage with Mongo or similar.
 var uuid = require('node-uuid'),
     persistentDb = require('mongojs').connect('mongodb://time:123@alex.mongohq.com:10019/TimeAllocation'),
     items = [];
