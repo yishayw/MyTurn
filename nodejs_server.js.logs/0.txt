@@ -7,8 +7,3 @@ debug: served static content /socket.io.js
 debug: served static content /socket.io.js
 debug: served static content /socket.io.js
 debug: served static content /socket.io.js
-debug: served static content /socket.io.js
-debug: served static content /socket.io.js
-debug: served static content /socket.io.js
-debug: served static content /socket.io.js
-debug: served static content /socket.io.js

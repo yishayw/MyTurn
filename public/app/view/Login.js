@@ -2,66 +2,66 @@ Ext.define("testing.view.Login", {
     extend: 'Ext.form.Panel',
     xtype: 'loginView',
     align: 'center',
-    requires: ['Ext.Button', 'Ext.field.Text', 'Ext.field.Select', 'testing.view.CreateGroup'],
+    requires: ['Ext.Button', 'Ext.field.Text', 'Ext.field.Select', 'testing.view.CreateGroup', 'Ext.Img'],
 
     config: {
         items: [
-         {
-            xtype: 'container',
-            layout: 'vbox',
-            padding: '0 40 0 0',
-            centered: true,
-            items: 
-                [
-                    {
-                        xtype: 'container',
-                        layout: 'hbox',
-                        items: [
-                            {
-                                xtype: 'selectfield',
-                                label: 'Group',
-                                store: 'groups',
-                                displayField: 'name',
-                                valueField: 'name',
-                                labelWidth: 98,
-                                name: 'groupName',
-                                id: 'groupSelect',
-                                flex: 1
-                              },
-                            {
-                                xtype: 'button',
-                                text: 'add',
-                                ui: 'small',
-                                action: 'createGroupEvent'
-                            }
-                         ]  
-                       },
-                        {
-                            xtype: 'textfield',
-                            name: 'userName',
-                            label: 'Name',
-                            id: 'loginTextField'
-                        },
-                        {
-                            xtype: 'container',
-                            padding: 10,
-                            items: [
+                  {
+                     xtype: 'container',
+                     layout: 'vbox',
+                     padding: '0 40 0 0',
+                     centered: true,
+                     items:
+                        [
+                             {
+                                xtype: 'container',
+                                layout: 'hbox',
+                                items: [
+                                    {
+                                        xtype: 'selectfield',
+                                        label: 'Group',
+                                        store: 'groups',
+                                        displayField: 'name',
+                                        valueField: 'name',
+                                        labelWidth: 98,
+                                        name: 'groupName',
+                                        id: 'groupSelect',
+                                        flex: 1
+                                    },
+                                    {
+                                        xtype: 'button',
+                                        text: 'add',
+                                        ui: 'small',
+                                        action: 'createGroupEvent'
+                                    }
+                                 ]
+                            },
                                 {
-                                    xtype: 'button',
-                                    action: 'loginEvent',
-                                    centered: true,
-                                    text: 'Login'
-                                 }, 
+                                    xtype: 'textfield',
+                                    name: 'userName',
+                                    label: 'Name',
+                                    id: 'loginTextField'
+                                },
                                 {
-                                    xtype: 'button',
-                                    action: 'logoutEvent',
-                                    centered: true,
-                                    text: 'Logout'
+                                    xtype: 'container',
+                                    padding: 10,
+                                    items: [
+                                        {
+                                            xtype: 'button',
+                                            action: 'loginEvent',
+                                            centered: true,
+                                            text: 'Login'
+                                        },
+                                        {
+                                            xtype: 'button',
+                                            action: 'logoutEvent',
+                                            centered: true,
+                                            text: 'Logout'
+                                        }
+                                    ]
                                 }
                             ]
-                        }
-                    ]
-                },
+                 },
                 {
                     xtype: 'createGroupView',
                     modal: true,
@@ -73,6 +73,19 @@ Ext.define("testing.view.Login", {
                     minWidth: 300,
                     margin: '0 0 0 -40'
                 },
+               /*{
+                    xtype: 'container',
+                    docked: 'left',
+                    layout: {
+                       type: 'vbox',
+                       pack: 'center'
+                    },
+                    defaults: {xtype: 'img', height: 57, width: 57, margin: 4},
+                    items: [
+                         { src:  'resources/images/logo/logo1.png'},
+                         { src:  'resources/images/logo/logo2.png'},
+                         { src:  'resources/images/logo/logo5.png'}                    ]
+                },*/
                 {
                     xtype: 'container',
                     left: 0,
@@ -80,7 +93,7 @@ Ext.define("testing.view.Login", {
                     items: [
                         {
                             xtype: 'button',
-                            text: 'Read me',
+                            text: 'Help',
                             action: 'readmeEvent',
                             ui: 'action',
                             centered: true

@@ -1,7 +1,7 @@
 
 Ext.define('testing.controller.Discussion', {
     extend: 'Ext.app.Controller',
-    requires: ['Ext.Logger', 'testing.util.TimeUtils'],
+    requires: ['testing.util.TimeUtils'],
     config: {
         refs: {
             addToQueueButton: "button[action=addToQueueEvent]",
@@ -44,6 +44,7 @@ Ext.define('testing.controller.Discussion', {
     doWaitingForNewSpeaker: function (data) {
         this.getMessageLabel().setHtml('Waiting for New Speaker');
         this.doUpdateTimeRemaining(data);
+        this.getBeepSound().play();
         this.clearTick();
     },
 

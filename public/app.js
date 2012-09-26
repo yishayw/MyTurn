@@ -1,8 +1,8 @@
 Ext.application({
     name: 'testing',
-
+    autoCreateViewport: false,
     requires: [
-        'Ext.MessageBox', 'testing.util.TimeUtils'
+        'Ext.MessageBox', 'testing.util.TimeUtils', 'Ext.Logger', 'Ext.viewport.Viewport'
     ],
 
     views: ['Main'],
