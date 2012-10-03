@@ -12,7 +12,7 @@ Ext.define('testing.controller.Discussion', {
         }
     },
 
-    timeUtils: Ext.create('testing.util.TimeUtils'),
+    timeUtils: null,
 
     doAddToQueue: function () {
         this.getApplication().fireEvent('clientMessage', { type: 'requestToSpeak' });
@@ -98,6 +98,7 @@ Ext.define('testing.controller.Discussion', {
             waitingForNewSpeaker: this.doWaitingForNewSpeaker,
             scope: this
         });
+        this.timeUtils = Ext.create('testing.util.TimeUtils');
     },
 
     launch: function () {

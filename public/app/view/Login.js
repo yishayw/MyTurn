@@ -1,105 +1,88 @@
 Ext.define("testing.view.Login", {
     extend: 'Ext.form.Panel',
     xtype: 'loginView',
-    align: 'center',
-    requires: ['Ext.Button', 'Ext.field.Text', 'Ext.field.Select', 'testing.view.CreateGroup', 'Ext.Img'],
+    requires: ['Ext.Button', 'Ext.field.Text', 'Ext.field.Select', 'Ext.Img', 'Ext.form.FieldSet'],
 
     config: {
+    	height: '100%',
+    	width: '100%',
+    	layout: 'fit',
         items: [
-                  {
-                     xtype: 'container',
-                     layout: 'vbox',
-                     padding: '0 40 0 0',
-                     centered: true,
-                     items:
-                        [
-                             {
-                                xtype: 'container',
-                                layout: 'hbox',
-                                items: [
-                                    {
-                                        xtype: 'selectfield',
-                                        label: 'Group',
-                                        store: 'groups',
-                                        displayField: 'name',
-                                        valueField: 'name',
-                                        labelWidth: 98,
-                                        name: 'groupName',
-                                        id: 'groupSelect',
-                                        flex: 1
-                                    },
-                                    {
-                                        xtype: 'button',
-                                        text: 'add',
-                                        ui: 'small',
-                                        action: 'createGroupEvent'
-                                    }
-                                 ]
-                            },
+        			{
+        				xtype: 'container',
+        				height: '100%',
+        				width: '100%',
+        				layout: {
+        					type: 'vbox',
+        					pack: 'center',
+        					align: 'center'
+        				},
+        				items: [
+		                 {
+		                     xtype: 'fieldset',
+		                     items:
+		                        [
+		                            {
+		                                xtype: 'container',
+		                                layout: 'hbox',
+		                                items: [
+		                                    {
+		                                        xtype: 'selectfield',
+		                                        label: 'Group',
+		                                        store: 'groups',
+		                                        displayField: 'name',
+		                                        valueField: 'name',
+		                                        labelWidth: 76,
+		                                        name: 'groupName',
+		                                        id: 'groupSelect',
+		                                        flex: 1
+		                                    },
+		                                    {
+		                                        xtype: 'button',
+		                                        text: 'add',
+		                                        ui: 'small',
+		                                        action: 'createGroupEvent'
+		                                    }
+		                                ]
+		                            },
+		                            {
+		                                xtype: 'textfield',
+		                                name: 'userName',
+		                                label: 'Name',
+		                                labelWidth: 76,
+		                                id: 'loginTextField'
+		                            }
+		                        ]
+		                 },
+                        {
+                            xtype: 'container',
+                            width: '100%',
+                            items: [
                                 {
-                                    xtype: 'textfield',
-                                    name: 'userName',
-                                    label: 'Name',
-                                    id: 'loginTextField'
+                                    xtype: 'button',
+                                    action: 'loginEvent',
+                                    centered: true,
+                                    text: 'Login'
                                 },
                                 {
-                                    xtype: 'container',
-                                    padding: 10,
-                                    items: [
-                                        {
-                                            xtype: 'button',
-                                            action: 'loginEvent',
-                                            centered: true,
-                                            text: 'Login'
-                                        },
-                                        {
-                                            xtype: 'button',
-                                            action: 'logoutEvent',
-                                            centered: true,
-                                            text: 'Logout'
-                                        }
-                                    ]
+                                    xtype: 'button',
+                                    action: 'logoutEvent',
+                                    centered: true,
+                                    text: 'Logout'
                                 }
                             ]
-                 },
-                {
-                    xtype: 'createGroupView',
-                    modal: true,
-                    hideOnMaskTap: true,
-                    centered: true,
-                    height: '70%',
-                    width: '70%',
-                    minHeight: 180,
-                    minWidth: 300,
-                    margin: '0 0 0 -40'
-                },
-               /*{
-                    xtype: 'container',
-                    docked: 'left',
-                    layout: {
-                       type: 'vbox',
-                       pack: 'center'
-                    },
-                    defaults: {xtype: 'img', height: 57, width: 57, margin: 4},
-                    items: [
-                         { src:  'resources/images/logo/logo1.png'},
-                         { src:  'resources/images/logo/logo2.png'},
-                         { src:  'resources/images/logo/logo5.png'}                    ]
-                },*/
-                {
-                    xtype: 'container',
-                    left: 0,
-                    padding: '0 0 0 20',
-                    items: [
-                        {
-                            xtype: 'button',
-                            text: 'Help',
-                            action: 'readmeEvent',
-                            ui: 'action',
-                            centered: true
-                        }
-                    ]
-                }
-           ]
+                         }
+		                 ]
+        			},
+	                {
+	                    xtype: 'button',
+	                    margin: '20 0 0 20',
+	                    width: 60,
+	                    height: 25,
+	                    text: 'Help',
+	                    action: 'readmeEvent',
+	                    ui: 'action'                        
+	                }
+        ]
     }
 });

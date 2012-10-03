@@ -1,7 +1,7 @@
 
 Ext.define('testing.controller.Login', {
     extend: 'Ext.app.Controller',
-    requires: ['testing.model.DefaultUser', 'Ext.Ajax', 'Ext.Panel', 'Ext.Viewport', 'Ext.field.TextArea'],
+    requires: ['testing.model.DefaultUser', 'Ext.Ajax', 'Ext.Panel', 'Ext.viewport.Viewport', 'Ext.field.TextArea', 'testing.view.CreateGroup'],
     config: {
         control: {
             createGroupButton: { tap: "doCreateGroup" },
@@ -17,7 +17,6 @@ Ext.define('testing.controller.Login', {
             loginTextField: "#loginTextField",
             groupSelect: "#groupSelect",
             discussionView: "discussionView",
-            createGroupView: "createGroupView",
             userReportView: "userReportView"
         }
     },
@@ -103,7 +102,21 @@ Ext.define('testing.controller.Login', {
     },
 
     doCreateGroup: function () {
-        this.getCreateGroupView().show();
+        var createGroup = Ext.create('testing.view.CreateGroup', {
+            modal: true,
+            hideOnMaskTap: true,
+            centered: true,
+            height: '70%',
+            width: '70%',
+            minHeight: 180,
+            minWidth: 300,
+            margin: '0 0 0 -40'
+        });
+        //if it has not been added to a container, add it to the Viewport.
+        if (!createGroup.getParent() && Ext.Viewport) {
+            Ext.Viewport.add(createGroup);
+        }
+        createGroup.show();
     },
 
     init: function () {
@@ -116,7 +129,6 @@ Ext.define('testing.controller.Login', {
 
     launch: function () {
         this.doLogout();
-        this.getCreateGroupView().hide();
         this.getUserReportView().setDisabled(true);
     }
 });

@@ -13,7 +13,7 @@ Ext.define('testing.controller.UserReport', {
 
     messageBox: null,
 
-    timeUtils: Ext.create('testing.util.TimeUtils'),
+    timeUtils: null,
 
     doUsersSaved: function(dataContainer) {
         var userReportData = this.getUserReportData();
@@ -61,6 +61,7 @@ Ext.define('testing.controller.UserReport', {
             discussionOver: this.clearMessageBox,
             scope: this
         });
+        this.timeUtils = Ext.create('testing.util.TimeUtils');        
     },
 
     launch: function() {

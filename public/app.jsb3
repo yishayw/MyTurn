@@ -600,11 +600,6 @@
                     "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/app/"
                 },
                 {
-                    "clsName": "testing.util.TimeUtils",
-                    "name": "TimeUtils.js",
-                    "path": "app/util/"
-                },
-                {
                     "clsName": "Ext.Button",
                     "name": "Button.js",
                     "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
@@ -680,19 +675,14 @@
                     "path": "app/controller/"
                 },
                 {
-                    "clsName": "testing.controller.Discussion",
-                    "name": "Discussion.js",
-                    "path": "app/controller/"
-                },
-                {
                     "clsName": "testing.controller.CreateGroup",
                     "name": "CreateGroup.js",
                     "path": "app/controller/"
                 },
                 {
-                    "clsName": "testing.controller.UserReport",
-                    "name": "UserReport.js",
-                    "path": "app/controller/"
+                    "clsName": "testing.util.TimeUtils",
+                    "name": "TimeUtils.js",
+                    "path": "app/util/"
                 },
                 {
                     "clsName": "Ext.data.identifier.Simple",
@@ -703,6 +693,11 @@
                     "clsName": "Ext.Img",
                     "name": "Img.js",
                     "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.form.FieldSet",
+                    "name": "FieldSet.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/form/"
                 },
                 {
                     "clsName": "Ext.Label",
@@ -723,6 +718,11 @@
                     "clsName": "Ext.data.Connection",
                     "name": "Connection.js",
                     "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "Ext.field.Number",
+                    "name": "Number.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/field/"
                 },
                 {
                     "clsName": "Ext.data.Operation",
@@ -785,11 +785,6 @@
                     "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/field/"
                 },
                 {
-                    "clsName": "Ext.field.Number",
-                    "name": "Number.js",
-                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/field/"
-                },
-                {
                     "clsName": "Ext.Media",
                     "name": "Media.js",
                     "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
@@ -823,6 +818,16 @@
                     "clsName": "Ext.data.ResultSet",
                     "name": "ResultSet.js",
                     "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "testing.controller.Discussion",
+                    "name": "Discussion.js",
+                    "path": "app/controller/"
+                },
+                {
+                    "clsName": "testing.controller.UserReport",
+                    "name": "UserReport.js",
+                    "path": "app/controller/"
                 },
                 {
                     "clsName": "Ext.Ajax",

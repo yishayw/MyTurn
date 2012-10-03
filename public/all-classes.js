@@ -25314,15 +25314,6 @@ Ext.define('Ext.app.Application', {
 
 });
 
-Ext.define('testing.util.TimeUtils', {
-    getFormattedTime: function(time) {
-        var date = new Date(null);
-        var offsetInSeconds = (date.getTimezoneOffset()) * 60;
-        date.setSeconds(time / 1000 + offsetInSeconds);
-        var formattedTime = date.toTimeString().substr(0, 8);
-        return formattedTime;
-    }
-});
 /**
  * {@link Ext.Button} is a simple class to display a button in Sencha Touch. There are various
  * different styles of {@link Ext.Button} you can create by using the {@link #icon},
@@ -29650,117 +29641,6 @@ Ext.define('testing.controller.Socket', {
 
 });
 
-Ext.define('testing.controller.Discussion', {
-    extend: 'Ext.app.Controller',
-    requires: ['testing.util.TimeUtils'],
-    config: {
-        refs: {
-            addToQueueButton: "button[action=addToQueueEvent]",
-            messageLabel: "#messageLabel",
-            timeRemainingLabel: "#timeRemainingLabel",
-            beepSound: "#beeper",
-            tickSound: "#ticker"
-        }
-    },
-
-    timeUtils: Ext.create('testing.util.TimeUtils'),
-
-    doAddToQueue: function () {
-        this.getApplication().fireEvent('clientMessage', { type: 'requestToSpeak' });
-    },
-
-    doRemoveFromQueue: function () {
-        this.getApplication().fireEvent('clientMessage', { type: 'relinquishTurn' });
-    },
-
-    doDiscussionOver: function (data) {
-        Ext.Msg.alert('', 'The discussion is over.');
-        // a group was deleted on server, time to reload
-        Ext.getStore('groups').load();
-    },
-
-    doUsersSaved: function(data) {
-       this.clearTick();
-       this.initMessageScreen();
-    },
-
-    doNewSpeaker: function (data) {
-        this.getMessageLabel().setHtml('Current speaker is ' + data.name);
-        this.doUpdateTimeRemaining(data);
-        if (this.getUserName() != data.name) {
-            this.clearTick();
-        }
-    },
-
-    doWaitingForNewSpeaker: function (data) {
-        this.getMessageLabel().setHtml('Waiting for New Speaker');
-        this.doUpdateTimeRemaining(data);
-        this.getBeepSound().play();
-        this.clearTick();
-    },
-
-    getUserName: function () {
-        var users = Ext.getStore('defaultUsers');
-        if (users.getCount() == 1) {
-            return users.getAt(0).get('name');
-        }
-        return null;
-    },
-
-    initMessageScreen: function () {
-        this.getMessageLabel().setHtml('Waiting for New Speaker');
-        this.getTimeRemainingLabel().setHtml('');
-    },
-
-    clearTick: function () {
-        if (this.tickSoundInterval) {
-            clearInterval(this.tickSoundInterval);
-            this.tickSoundInterval = null;
-        }
-    },
-
-    doMyTurn: function (data) {
-        if (this.tickSoundInterval) {
-            return;
-        }
-        this.getBeepSound().play();
-        var context = this;
-        this.clearTick();
-        this.tickSoundInterval = setInterval(function () {
-            context.doTick();
-        }, 1000);
-    },
-
-    doTick: function () {
-        this.getTickSound().play();
-    },
-
-    doUpdateTimeRemaining: function (data) {
-        var formattedTime = this.timeUtils.getFormattedTime(data.timeLeft);
-        this.getTimeRemainingLabel().setHtml(formattedTime);
-    },
-
-    init: function () {
-        this.getApplication().on({
-            discussionOver: this.doDiscussionOver,
-            usersSaved: this.doUsersSaved,
-            newSpeaker: this.doNewSpeaker,
-            yourTurn: this.doMyTurn,
-            waitingForNewSpeaker: this.doWaitingForNewSpeaker,
-            scope: this
-        });
-    },
-
-    launch: function () {
-        this.getAddToQueueButton().element.on({
-            touchstart: 'doAddToQueue',
-            touchend: 'doRemoveFromQueue',
-            scope: this
-        });
-        this.initMessageScreen();
-    }
-});
-
 Ext.define('testing.controller.CreateGroup', {
     extend: 'Ext.app.Controller',
     config: {
@@ -29796,74 +29676,13 @@ Ext.define('testing.controller.CreateGroup', {
         this.getCreateGroupForm().hide();
     }
 });
-
-Ext.define('testing.controller.UserReport', {
-    extend: 'Ext.app.Controller',
-    requires: ['testing.util.TimeUtils', 'Ext.MessageBox'],
-    config: {
-        refs: {
-            userReportView: "userReportView",
-            userReportData: "#userReportData",
-            mainView: "mainView",
-            discussionView: "discussionView"
-        }
-    },
-
-    messageBox: null,
-
-    timeUtils: Ext.create('testing.util.TimeUtils'),
-
-    doUsersSaved: function(dataContainer) {
-        var userReportData = this.getUserReportData();
-        var store = userReportData.getStore();
-        store.remove(store.getRange());
-        var length = dataContainer && dataContainer.data ? dataContainer.data.length : 0;
-        for(var i = 0; i < length; i++) {
-            var user = dataContainer.data[i];
-            var formattedTime = this.timeUtils.getFormattedTime(user.elapsedTime);
-            store.add({ name: user.name, elapsedTime: formattedTime });
-        }
-        var userReportView = this.getUserReportView();
-        userReportView.setDisabled(false);
-        this.getMainView().setActiveItem(userReportView);
-        this.messageBox = Ext.Msg.confirm('', "Discussion time is up. Do you wish to repeat it?", function(answer) {
-            var application = this.getApplication();
-            if(answer == 'yes') {
-                application.fireEvent('clientMessage', { type: 'repeatDiscussion' });
-            } else {
-                application.fireEvent('clientMessage', { type: 'discussionOver' });
-            }
-            this.messageBox = null;
-        }, this);
-    },
-
-    clearMessageBox: function() {
-        if(this.messageBox) {
-            this.messageBox.hide();
-            this.messageBox.setModal(false);
-            this.messageBox = null;
-        }
-    },
-
-    doRepeatingDiscussion: function() {
-        var mainView = this.getMainView();
-        mainView.setActiveItem(this.getDiscussionView());
-        this.getUserReportView().setDisabled(true);
-        this.clearMessageBox();
-    },
-
-    init: function() {
-        this.getApplication().on({
-            usersSaved: this.doUsersSaved,
-            repeatingDiscussion: this.doRepeatingDiscussion,
-            discussionOver: this.clearMessageBox,
-            scope: this
-        });
-    },
-
-    launch: function() {
-        var store = this.getUserReportData().getStore();
-        store.remove(store.getRange());
+Ext.define('testing.util.TimeUtils', {
+    getFormattedTime: function(time) {
+        var date = new Date(null);
+        var offsetInSeconds = (date.getTimezoneOffset()) * 60;
+        date.setSeconds(time / 1000 + offsetInSeconds);
+        var formattedTime = date.toTimeString().substr(0, 8);
+        return formattedTime;
     }
 });
 /**
@@ -30104,6 +29923,118 @@ Ext.define('Ext.Img', {
         delete this.imageObject;
 
         this.callParent();
+    }
+});
+
+/**
+ * @aside guide forms
+ *
+ * A FieldSet is a great way to visually separate elements of a form. It's normally used when you have a form with
+ * fields that can be divided into groups - for example a customer's billing details in one fieldset and their shipping
+ * address in another. A fieldset can be used inside a form or on its own elsewhere in your app. Fieldsets can
+ * optionally have a title at the top and instructions at the bottom. Here's how we might create a FieldSet inside a
+ * form:
+ *
+ *     @example
+ *     Ext.create('Ext.form.Panel', {
+ *         fullscreen: true,
+ *         items: [
+ *             {
+ *                 xtype: 'fieldset',
+ *                 title: 'About You',
+ *                 instructions: 'Tell us all about yourself',
+ *                 items: [
+ *                     {
+ *                         xtype: 'textfield',
+ *                         name : 'firstName',
+ *                         label: 'First Name'
+ *                     },
+ *                     {
+ *                         xtype: 'textfield',
+ *                         name : 'lastName',
+ *                         label: 'Last Name'
+ *                     }
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *
+ * Above we created a {@link Ext.form.Panel form} with a fieldset that contains two text fields. In this case, all
+ * of the form fields are in the same fieldset, but for longer forms we may choose to use multiple fieldsets. We also
+ * configured a {@link #title} and {@link #instructions} to give the user more information on filling out the form if
+ * required.
+ */
+Ext.define('Ext.form.FieldSet', {
+    extend  : 'Ext.Container',
+    alias   : 'widget.fieldset',
+    requires: ['Ext.Title'],
+
+    config: {
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        baseCls: Ext.baseCSSPrefix + 'form-fieldset',
+
+        /**
+         * @cfg {String} title Optional fieldset title, rendered just above the grouped fields
+         * @accessor
+         */
+        title: null,
+
+        /**
+         * @cfg {String} instructions Optional fieldset instructions, rendered just below the grouped fields
+         * @accessor
+         */
+        instructions: null
+    },
+
+    // @private
+    applyTitle: function(title) {
+        if (typeof title == 'string') {
+            title = {title: title};
+        }
+
+        Ext.applyIf(title, {
+            docked : 'top',
+            baseCls: this.getBaseCls() + '-title'
+        });
+
+        return Ext.factory(title, Ext.Title, this.getTitle());
+    },
+
+    // @private
+    updateTitle: function(newTitle, oldTitle) {
+        if (newTitle) {
+            this.add(newTitle);
+        }
+        if (oldTitle) {
+            this.remove(oldTitle);
+        }
+    },
+
+    // @private
+    applyInstructions: function(instructions) {
+        if (typeof instructions == 'string') {
+            instructions = {title: instructions};
+        }
+
+        Ext.applyIf(instructions, {
+            docked : 'bottom',
+            baseCls: this.getBaseCls() + '-instructions'
+        });
+
+        return Ext.factory(instructions, Ext.Title, this.getInstructions());
+    },
+
+    // @private
+    updateInstructions: function(newInstructions, oldInstructions) {
+        if (newInstructions) {
+            this.add(newInstructions);
+        }
+        if (oldInstructions) {
+            this.remove(oldInstructions);
+        }
     }
 });
 
@@ -31884,6 +31815,147 @@ Ext.define('Ext.data.Connection', {
             aborted: request.aborted,
             timedout: request.timedout
         };
+    }
+});
+
+/**
+ * @aside guide forms
+ *
+ * The Number field creates an HTML5 number input and is usually created inside a form. Because it creates an HTML
+ * number input field, most browsers will show a specialized virtual keyboard for entering numbers. The Number field
+ * only accepts numerical input and also provides additional spinner UI that increases or decreases the current value
+ * by a configured {@link #stepValue step value}. Here's how we might use one in a form:
+ *
+ *     @example
+ *     Ext.create('Ext.form.Panel', {
+ *         fullscreen: true,
+ *         items: [
+ *             {
+ *                 xtype: 'fieldset',
+ *                 title: 'How old are you?',
+ *                 items: [
+ *                     {
+ *                         xtype: 'numberfield',
+ *                         label: 'Age',
+ *                         minValue: 18,
+ *                         maxValue: 150,
+ *                         name: 'age'
+ *                     }
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *
+ * Or on its own, outside of a form:
+ *
+ *     Ext.create('Ext.field.Number', {
+ *         label: 'Age',
+ *         value: '26'
+ *     });
+ *
+ * ## minValue, maxValue and stepValue
+ *
+ * The {@link #minValue} and {@link #maxValue} configurations are self-explanatory and simply constrain the value
+ * entered to the range specified by the configured min and max values. The other option exposed by this component
+ * is {@link #stepValue}, which enables you to set how much the value changes every time the up and down spinners
+ * are tapped on. For example, to create a salary field that ticks up and down by $1,000 each tap we can do this:
+ *
+ *     @example
+ *     Ext.create('Ext.form.Panel', {
+ *         fullscreen: true,
+ *         items: [
+ *             {
+ *                 xtype: 'fieldset',
+ *                 title: 'Are you rich yet?',
+ *                 items: [
+ *                     {
+ *                         xtype: 'numberfield',
+ *                         label: 'Salary',
+ *                         value: 30000,
+ *                         minValue: 25000,
+ *                         maxValue: 50000,
+ *                         stepValue: 1000
+ *                     }
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *
+ * This creates a field that starts with a value of $30,000, steps up and down in $1,000 increments and will not go
+ * beneath $25,000 or above $50,000.
+ *
+ * Because number field inherits from {@link Ext.field.Text textfield} it gains all of the functionality that text
+ * fields provide, including getting and setting the value at runtime, validations and various events that are fired as
+ * the user interacts with the component. Check out the {@link Ext.field.Text} docs to see the additional functionality
+ * available.
+ */
+Ext.define('Ext.field.Number', {
+    extend: 'Ext.field.Text',
+    xtype: 'numberfield',
+    alternateClassName: 'Ext.form.Number',
+
+    config: {
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        component: {
+            type: 'number'
+        },
+
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        ui: 'number'
+    },
+
+    proxyConfig: {
+        /**
+         * @cfg {Number} minValue The minimum value that this Number field can accept
+         * @accessor
+         */
+        minValue: null,
+
+        /**
+         * @cfg {Number} maxValue The maximum value that this Number field can accept
+         * @accessor
+         */
+        maxValue: null,
+
+        /**
+         * @cfg {Number} stepValue The amount by which the field is incremented or decremented each time the spinner is tapped.
+         * Defaults to undefined, which means that the field goes up or down by 1 each time the spinner is tapped
+         * @accessor
+         */
+        stepValue: null
+    },
+
+    applyValue: function(value) {
+        var minValue = this.getMinValue(),
+            maxValue = this.getMaxValue();
+
+        if (Ext.isNumber(minValue)) {
+            value = Math.max(value, minValue);
+        }
+
+        if (Ext.isNumber(maxValue)) {
+            value = Math.min(value, maxValue);
+        }
+
+        value = parseFloat(value);
+        return (isNaN(value)) ? '' : value;
+    },
+
+    getValue: function() {
+        var value = parseFloat(this.callParent(), 10);
+        return (isNaN(value)) ? null : value;
+    },
+
+    doClearIconTap: function(me, e) {
+        me.getComponent().setValue('');
+        me.getValue();
+        me.hideClearIcon();
     }
 });
 
@@ -34392,147 +34464,6 @@ Ext.define('Ext.field.Checkbox', {
 });
 
 /**
- * @aside guide forms
- *
- * The Number field creates an HTML5 number input and is usually created inside a form. Because it creates an HTML
- * number input field, most browsers will show a specialized virtual keyboard for entering numbers. The Number field
- * only accepts numerical input and also provides additional spinner UI that increases or decreases the current value
- * by a configured {@link #stepValue step value}. Here's how we might use one in a form:
- *
- *     @example
- *     Ext.create('Ext.form.Panel', {
- *         fullscreen: true,
- *         items: [
- *             {
- *                 xtype: 'fieldset',
- *                 title: 'How old are you?',
- *                 items: [
- *                     {
- *                         xtype: 'numberfield',
- *                         label: 'Age',
- *                         minValue: 18,
- *                         maxValue: 150,
- *                         name: 'age'
- *                     }
- *                 ]
- *             }
- *         ]
- *     });
- *
- * Or on its own, outside of a form:
- *
- *     Ext.create('Ext.field.Number', {
- *         label: 'Age',
- *         value: '26'
- *     });
- *
- * ## minValue, maxValue and stepValue
- *
- * The {@link #minValue} and {@link #maxValue} configurations are self-explanatory and simply constrain the value
- * entered to the range specified by the configured min and max values. The other option exposed by this component
- * is {@link #stepValue}, which enables you to set how much the value changes every time the up and down spinners
- * are tapped on. For example, to create a salary field that ticks up and down by $1,000 each tap we can do this:
- *
- *     @example
- *     Ext.create('Ext.form.Panel', {
- *         fullscreen: true,
- *         items: [
- *             {
- *                 xtype: 'fieldset',
- *                 title: 'Are you rich yet?',
- *                 items: [
- *                     {
- *                         xtype: 'numberfield',
- *                         label: 'Salary',
- *                         value: 30000,
- *                         minValue: 25000,
- *                         maxValue: 50000,
- *                         stepValue: 1000
- *                     }
- *                 ]
- *             }
- *         ]
- *     });
- *
- * This creates a field that starts with a value of $30,000, steps up and down in $1,000 increments and will not go
- * beneath $25,000 or above $50,000.
- *
- * Because number field inherits from {@link Ext.field.Text textfield} it gains all of the functionality that text
- * fields provide, including getting and setting the value at runtime, validations and various events that are fired as
- * the user interacts with the component. Check out the {@link Ext.field.Text} docs to see the additional functionality
- * available.
- */
-Ext.define('Ext.field.Number', {
-    extend: 'Ext.field.Text',
-    xtype: 'numberfield',
-    alternateClassName: 'Ext.form.Number',
-
-    config: {
-        /**
-         * @cfg
-         * @inheritdoc
-         */
-        component: {
-            type: 'number'
-        },
-
-        /**
-         * @cfg
-         * @inheritdoc
-         */
-        ui: 'number'
-    },
-
-    proxyConfig: {
-        /**
-         * @cfg {Number} minValue The minimum value that this Number field can accept
-         * @accessor
-         */
-        minValue: null,
-
-        /**
-         * @cfg {Number} maxValue The maximum value that this Number field can accept
-         * @accessor
-         */
-        maxValue: null,
-
-        /**
-         * @cfg {Number} stepValue The amount by which the field is incremented or decremented each time the spinner is tapped.
-         * Defaults to undefined, which means that the field goes up or down by 1 each time the spinner is tapped
-         * @accessor
-         */
-        stepValue: null
-    },
-
-    applyValue: function(value) {
-        var minValue = this.getMinValue(),
-            maxValue = this.getMaxValue();
-
-        if (Ext.isNumber(minValue)) {
-            value = Math.max(value, minValue);
-        }
-
-        if (Ext.isNumber(maxValue)) {
-            value = Math.min(value, maxValue);
-        }
-
-        value = parseFloat(value);
-        return (isNaN(value)) ? '' : value;
-    },
-
-    getValue: function() {
-        var value = parseFloat(this.callParent(), 10);
-        return (isNaN(value)) ? null : value;
-    },
-
-    doClearIconTap: function(me, e) {
-        me.getComponent().setValue('');
-        me.getValue();
-        me.hideClearIcon();
-    }
-});
-
-/**
  * Provides a base class for audio/visual controls. Should not be used directly.
  *
  * Please see the {@link Ext.Audio} and {@link Ext.Video} classes for more information.
@@ -35883,6 +35814,189 @@ Ext.define('Ext.data.ResultSet', {
      */
     updateRecords: function(records) {
         this.setCount(records.length);
+    }
+});
+
+Ext.define('testing.controller.Discussion', {
+    extend: 'Ext.app.Controller',
+    requires: ['testing.util.TimeUtils'],
+    config: {
+        refs: {
+            addToQueueButton: "button[action=addToQueueEvent]",
+            messageLabel: "#messageLabel",
+            timeRemainingLabel: "#timeRemainingLabel",
+            beepSound: "#beeper",
+            tickSound: "#ticker"
+        }
+    },
+
+    timeUtils: null,
+
+    doAddToQueue: function () {
+        this.getApplication().fireEvent('clientMessage', { type: 'requestToSpeak' });
+    },
+
+    doRemoveFromQueue: function () {
+        this.getApplication().fireEvent('clientMessage', { type: 'relinquishTurn' });
+    },
+
+    doDiscussionOver: function (data) {
+        Ext.Msg.alert('', 'The discussion is over.');
+        // a group was deleted on server, time to reload
+        Ext.getStore('groups').load();
+    },
+
+    doUsersSaved: function(data) {
+       this.clearTick();
+       this.initMessageScreen();
+    },
+
+    doNewSpeaker: function (data) {
+        this.getMessageLabel().setHtml('Current speaker is ' + data.name);
+        this.doUpdateTimeRemaining(data);
+        if (this.getUserName() != data.name) {
+            this.clearTick();
+        }
+    },
+
+    doWaitingForNewSpeaker: function (data) {
+        this.getMessageLabel().setHtml('Waiting for New Speaker');
+        this.doUpdateTimeRemaining(data);
+        this.getBeepSound().play();
+        this.clearTick();
+    },
+
+    getUserName: function () {
+        var users = Ext.getStore('defaultUsers');
+        if (users.getCount() == 1) {
+            return users.getAt(0).get('name');
+        }
+        return null;
+    },
+
+    initMessageScreen: function () {
+        this.getMessageLabel().setHtml('Waiting for New Speaker');
+        this.getTimeRemainingLabel().setHtml('');
+    },
+
+    clearTick: function () {
+        if (this.tickSoundInterval) {
+            clearInterval(this.tickSoundInterval);
+            this.tickSoundInterval = null;
+        }
+    },
+
+    doMyTurn: function (data) {
+        if (this.tickSoundInterval) {
+            return;
+        }
+        this.getBeepSound().play();
+        var context = this;
+        this.clearTick();
+        this.tickSoundInterval = setInterval(function () {
+            context.doTick();
+        }, 1000);
+    },
+
+    doTick: function () {
+        this.getTickSound().play();
+    },
+
+    doUpdateTimeRemaining: function (data) {
+        var formattedTime = this.timeUtils.getFormattedTime(data.timeLeft);
+        this.getTimeRemainingLabel().setHtml(formattedTime);
+    },
+
+    init: function () {
+        this.getApplication().on({
+            discussionOver: this.doDiscussionOver,
+            usersSaved: this.doUsersSaved,
+            newSpeaker: this.doNewSpeaker,
+            yourTurn: this.doMyTurn,
+            waitingForNewSpeaker: this.doWaitingForNewSpeaker,
+            scope: this
+        });
+        this.timeUtils = Ext.create('testing.util.TimeUtils');
+    },
+
+    launch: function () {
+        this.getAddToQueueButton().element.on({
+            touchstart: 'doAddToQueue',
+            touchend: 'doRemoveFromQueue',
+            scope: this
+        });
+        this.initMessageScreen();
+    }
+});
+
+Ext.define('testing.controller.UserReport', {
+    extend: 'Ext.app.Controller',
+    requires: ['testing.util.TimeUtils', 'Ext.MessageBox'],
+    config: {
+        refs: {
+            userReportView: "userReportView",
+            userReportData: "#userReportData",
+            mainView: "mainView",
+            discussionView: "discussionView"
+        }
+    },
+
+    messageBox: null,
+
+    timeUtils: null,
+
+    doUsersSaved: function(dataContainer) {
+        var userReportData = this.getUserReportData();
+        var store = userReportData.getStore();
+        store.remove(store.getRange());
+        var length = dataContainer && dataContainer.data ? dataContainer.data.length : 0;
+        for(var i = 0; i < length; i++) {
+            var user = dataContainer.data[i];
+            var formattedTime = this.timeUtils.getFormattedTime(user.elapsedTime);
+            store.add({ name: user.name, elapsedTime: formattedTime });
+        }
+        var userReportView = this.getUserReportView();
+        userReportView.setDisabled(false);
+        this.getMainView().setActiveItem(userReportView);
+        this.messageBox = Ext.Msg.confirm('', "Discussion time is up. Do you wish to repeat it?", function(answer) {
+            var application = this.getApplication();
+            if(answer == 'yes') {
+                application.fireEvent('clientMessage', { type: 'repeatDiscussion' });
+            } else {
+                application.fireEvent('clientMessage', { type: 'discussionOver' });
+            }
+            this.messageBox = null;
+        }, this);
+    },
+
+    clearMessageBox: function() {
+        if(this.messageBox) {
+            this.messageBox.hide();
+            this.messageBox.setModal(false);
+            this.messageBox = null;
+        }
+    },
+
+    doRepeatingDiscussion: function() {
+        var mainView = this.getMainView();
+        mainView.setActiveItem(this.getDiscussionView());
+        this.getUserReportView().setDisabled(true);
+        this.clearMessageBox();
+    },
+
+    init: function() {
+        this.getApplication().on({
+            usersSaved: this.doUsersSaved,
+            repeatingDiscussion: this.doRepeatingDiscussion,
+            discussionOver: this.clearMessageBox,
+            scope: this
+        });
+        this.timeUtils = Ext.create('testing.util.TimeUtils');        
+    },
+
+    launch: function() {
+        var store = this.getUserReportData().getStore();
+        store.remove(store.getRange());
     }
 });
 /**
@@ -51292,106 +51406,89 @@ selectBox.setOptions(
 Ext.define("testing.view.Login", {
     extend: 'Ext.form.Panel',
     xtype: 'loginView',
-    align: 'center',
-    requires: ['Ext.Button', 'Ext.field.Text', 'Ext.field.Select', 'testing.view.CreateGroup', 'Ext.Img'],
+    requires: ['Ext.Button', 'Ext.field.Text', 'Ext.field.Select', 'Ext.Img', 'Ext.form.FieldSet'],
 
     config: {
+    	height: '100%',
+    	width: '100%',
+    	layout: 'fit',
         items: [
-                  {
-                     xtype: 'container',
-                     layout: 'vbox',
-                     padding: '0 40 0 0',
-                     centered: true,
-                     items:
-                        [
-                             {
-                                xtype: 'container',
-                                layout: 'hbox',
-                                items: [
-                                    {
-                                        xtype: 'selectfield',
-                                        label: 'Group',
-                                        store: 'groups',
-                                        displayField: 'name',
-                                        valueField: 'name',
-                                        labelWidth: 98,
-                                        name: 'groupName',
-                                        id: 'groupSelect',
-                                        flex: 1
-                                    },
-                                    {
-                                        xtype: 'button',
-                                        text: 'add',
-                                        ui: 'small',
-                                        action: 'createGroupEvent'
-                                    }
-                                 ]
-                            },
+        			{
+        				xtype: 'container',
+        				height: '100%',
+        				width: '100%',
+        				layout: {
+        					type: 'vbox',
+        					pack: 'center',
+        					align: 'center'
+        				},
+        				items: [
+		                 {
+		                     xtype: 'fieldset',
+		                     items:
+		                        [
+		                            {
+		                                xtype: 'container',
+		                                layout: 'hbox',
+		                                items: [
+		                                    {
+		                                        xtype: 'selectfield',
+		                                        label: 'Group',
+		                                        store: 'groups',
+		                                        displayField: 'name',
+		                                        valueField: 'name',
+		                                        labelWidth: 76,
+		                                        name: 'groupName',
+		                                        id: 'groupSelect',
+		                                        flex: 1
+		                                    },
+		                                    {
+		                                        xtype: 'button',
+		                                        text: 'add',
+		                                        ui: 'small',
+		                                        action: 'createGroupEvent'
+		                                    }
+		                                ]
+		                            },
+		                            {
+		                                xtype: 'textfield',
+		                                name: 'userName',
+		                                label: 'Name',
+		                                labelWidth: 76,
+		                                id: 'loginTextField'
+		                            }
+		                        ]
+		                 },
+                        {
+                            xtype: 'container',
+                            width: '100%',
+                            items: [
                                 {
-                                    xtype: 'textfield',
-                                    name: 'userName',
-                                    label: 'Name',
-                                    id: 'loginTextField'
+                                    xtype: 'button',
+                                    action: 'loginEvent',
+                                    centered: true,
+                                    text: 'Login'
                                 },
                                 {
-                                    xtype: 'container',
-                                    padding: 10,
-                                    items: [
-                                        {
-                                            xtype: 'button',
-                                            action: 'loginEvent',
-                                            centered: true,
-                                            text: 'Login'
-                                        },
-                                        {
-                                            xtype: 'button',
-                                            action: 'logoutEvent',
-                                            centered: true,
-                                            text: 'Logout'
-                                        }
-                                    ]
+                                    xtype: 'button',
+                                    action: 'logoutEvent',
+                                    centered: true,
+                                    text: 'Logout'
                                 }
                             ]
-                 },
-                {
-                    xtype: 'createGroupView',
-                    modal: true,
-                    hideOnMaskTap: true,
-                    centered: true,
-                    height: '70%',
-                    width: '70%',
-                    minHeight: 180,
-                    minWidth: 300,
-                    margin: '0 0 0 -40'
-                },
-               /*{
-                    xtype: 'container',
-                    docked: 'left',
-                    layout: {
-                       type: 'vbox',
-                       pack: 'center'
-                    },
-                    defaults: {xtype: 'img', height: 57, width: 57, margin: 4},
-                    items: [
-                         { src:  'resources/images/logo/logo1.png'},
-                         { src:  'resources/images/logo/logo2.png'},
-                         { src:  'resources/images/logo/logo5.png'}                    ]
-                },*/
-                {
-                    xtype: 'container',
-                    left: 0,
-                    padding: '0 0 0 20',
-                    items: [
-                        {
-                            xtype: 'button',
-                            text: 'Help',
-                            action: 'readmeEvent',
-                            ui: 'action',
-                            centered: true
-                        }
-                    ]
-                }
-           ]
+                         }
+		                 ]
+        			},
+	                {
+	                    xtype: 'button',
+	                    margin: '20 0 0 20',
+	                    width: 60,
+	                    height: 25,
+	                    text: 'Help',
+	                    action: 'readmeEvent',
+	                    ui: 'action'                        
+	                }
+        ]
     }
 });
 Ext.define("testing.view.Main", {
@@ -51920,7 +52017,7 @@ Ext.define('testing.model.DefaultUser', {
 
 Ext.define('testing.controller.Login', {
     extend: 'Ext.app.Controller',
-    requires: ['testing.model.DefaultUser', 'Ext.Ajax', 'Ext.Panel', 'Ext.Viewport', 'Ext.field.TextArea'],
+    requires: ['testing.model.DefaultUser', 'Ext.Ajax', 'Ext.Panel', 'Ext.viewport.Viewport', 'Ext.field.TextArea', 'testing.view.CreateGroup'],
     config: {
         control: {
             createGroupButton: { tap: "doCreateGroup" },
@@ -51936,7 +52033,6 @@ Ext.define('testing.controller.Login', {
             loginTextField: "#loginTextField",
             groupSelect: "#groupSelect",
             discussionView: "discussionView",
-            createGroupView: "createGroupView",
             userReportView: "userReportView"
         }
     },
@@ -52022,7 +52118,21 @@ Ext.define('testing.controller.Login', {
     },
 
     doCreateGroup: function () {
-        this.getCreateGroupView().show();
+        var createGroup = Ext.create('testing.view.CreateGroup', {
+            modal: true,
+            hideOnMaskTap: true,
+            centered: true,
+            height: '70%',
+            width: '70%',
+            minHeight: 180,
+            minWidth: 300,
+            margin: '0 0 0 -40'
+        });
+        //if it has not been added to a container, add it to the Viewport.
+        if (!createGroup.getParent() && Ext.Viewport) {
+            Ext.Viewport.add(createGroup);
+        }
+        createGroup.show();
     },
 
     init: function () {
@@ -52035,7 +52145,6 @@ Ext.define('testing.controller.Login', {
 
     launch: function () {
         this.doLogout();
-        this.getCreateGroupView().hide();
         this.getUserReportView().setDisabled(true);
     }
 });
