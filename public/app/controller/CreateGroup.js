@@ -3,13 +3,19 @@ Ext.define('testing.controller.CreateGroup', {
     extend: 'Ext.app.Controller',
     config: {
         control: {
-            submitButton: { tap: 'doSubmitNewGroup' }
+            submitButton: { tap: 'doSubmitNewGroup' },
+            cancelButton: { tap: 'doCancelNewGroup' }
         },
         refs: {
             submitButton: "button[action=submitNewGroup]",
+            cancelButton: "button[action=cancelNewGroup]",
             createGroupForm: 'createGroupView',
             groupNameTextField: '#createGroupTextfield'
         }
+    },
+
+    doCancelNewGroup: function() {
+        this.getCreateGroupForm().hide();
     },
 
     doSubmitNewGroup: function() {

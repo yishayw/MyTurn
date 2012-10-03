@@ -106,11 +106,11 @@ Ext.define('testing.controller.Login', {
             modal: true,
             hideOnMaskTap: true,
             centered: true,
-            height: '70%',
-            width: '70%',
-            minHeight: 180,
+            /*height: '70%',*/
+            /*width: '70%',*/
+            minHeight: 280,
             minWidth: 300,
-            margin: '0 0 0 -40'
+            margin: '0 0 0 0'
         });
         //if it has not been added to a container, add it to the Viewport.
         if (!createGroup.getParent() && Ext.Viewport) {
