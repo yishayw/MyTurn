@@ -20,6 +20,7 @@ Ext.define("testing.view.Login", {
         				items: [
 		                 {
 		                     xtype: 'fieldset',
+                             maxWidth: 300,
 		                     items:
 		                        [
 		                            {
@@ -77,7 +78,7 @@ Ext.define("testing.view.Login", {
 	                {
 	                    xtype: 'button',
 	                    margin: '20 0 0 20',
-	                    width: 60,
+	                    width: 70,
 	                    height: 25,
 	                    text: 'Help',
 	                    action: 'readmeEvent',

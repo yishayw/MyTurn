@@ -36,8 +36,9 @@
             "path": "sdk/sencha-touch.js"
         },
         {
+            "path": "app.js",
+            /*"path": "app-all.js",*/
             /*"path": "app.js",*/
-            "path": "app-all.js",
             "bundle": true,  /* Indicates that all class dependencies are concatenated into this file when build */
             "update": "full"
         }
