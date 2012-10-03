@@ -33,7 +33,7 @@ Ext.define("testing.view.Login", {
 		                                        store: 'groups',
 		                                        displayField: 'name',
 		                                        valueField: 'name',
-		                                        labelWidth: 76,
+		                                        labelWidth: 120,
 		                                        name: 'groupName',
 		                                        id: 'groupSelect',
 		                                        flex: 1
@@ -50,7 +50,7 @@ Ext.define("testing.view.Login", {
 		                                xtype: 'textfield',
 		                                name: 'userName',
 		                                label: 'Name',
-		                                labelWidth: 76,
+		                                labelWidth: 120,
 		                                id: 'loginTextField'
 		                            }
 		                        ]
@@ -78,7 +78,7 @@ Ext.define("testing.view.Login", {
 	                {
 	                    xtype: 'button',
 	                    margin: '20 0 0 20',
-	                    width: 70,
+	                    width: 100,
 	                    height: 25,
 	                    text: 'Help',
 	                    action: 'readmeEvent',

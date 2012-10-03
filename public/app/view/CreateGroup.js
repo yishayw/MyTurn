@@ -4,14 +4,15 @@ Ext.define("testing.view.CreateGroup", {
     requires: ['Ext.Button', 'Ext.field.Text', 'Ext.field.Number', 'Ext.form.FieldSet'],
     config: {
         layout: {
-            type: 'vbox',
-            /*align: 'center',
-            pack: 'center'*/
+            type: 'vbox'
         },
         items: [
             {
                 xtype: 'fieldset',
                 width: '100%',
+                defaults: {
+                    labelWidth: 120
+                },
                 items: [
                     {
                         xtype: 'textfield',
