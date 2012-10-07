@@ -51508,16 +51508,19 @@ Ext.define("testing.view.Login", {
                          }
 		                 ]
         			},
-	                {
-	                    xtype: 'button',
-	                    margin: '20 0 0 20',
-	                    width: 100,
-	                    height: 25,
-	                    text: 'Help',
-	                    action: 'readmeEvent',
-	                    ui: 'action'                        
-	                }
-        ]
+        			{
+        				xtype: 'container',
+        				layout: 'hbox',
+        				docked: 'top',
+        				padding: '20 0 0 20',
+        				items: {
+        					xtype: 'button',
+        					text: 'Help',
+        					ui: 'action',
+	                   		action: 'readmeEvent'
+        				}
+        			}        
+        	]
     }
 });
 Ext.define("testing.view.Main", {
