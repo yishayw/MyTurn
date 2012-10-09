@@ -29682,14 +29682,83 @@ Ext.define('testing.controller.CreateGroup', {
         this.getCreateGroupForm().hide();
     }
 });
-Ext.define('testing.util.TimeUtils', {
-    getFormattedTime: function(time) {
-        var date = new Date(null);
-        var offsetInSeconds = (date.getTimezoneOffset()) * 60;
-        date.setSeconds(time / 1000 + offsetInSeconds);
-        var formattedTime = date.toTimeString().substr(0, 8);
-        return formattedTime;
+
+Ext.define('testing.controller.UserReport', {
+    extend: 'Ext.app.Controller',
+    requires: ['Ext.MessageBox'],
+    config: {
+        refs: {
+            userReportView: "userReportView",
+            userReportData: "#userReportData",
+            mainView: "mainView",
+            discussionView: "discussionView"
+        }
+    },
+
+    messageBox: null,
+
+    doUsersSaved: function(dataContainer) {
+        var userReportData = this.getUserReportData();
+        var store = userReportData.getStore();
+        store.remove(store.getRange());
+        var length = dataContainer && dataContainer.data ? dataContainer.data.length : 0;
+        for(var i = 0; i < length; i++) {
+            var user = dataContainer.data[i];
+            store.add({ name: user.name, elapsedTime: user.elapsedTime });
+        }
+        var userReportView = this.getUserReportView();
+        userReportView.setDisabled(false);
+        this.getMainView().setActiveItem(userReportView);
+        this.messageBox = Ext.Msg.confirm('', "Discussion time is up. Do you wish to repeat it?", function(answer) {
+            var application = this.getApplication();
+            if(answer == 'yes') {
+                application.fireEvent('clientMessage', { type: 'repeatDiscussion' });
+            } else {
+                application.fireEvent('clientMessage', { type: 'discussionOver' });
+            }
+            this.messageBox = null;
+        }, this);
+    },
+
+    clearMessageBox: function() {
+        if(this.messageBox) {
+            this.messageBox.hide();
+            this.messageBox.setModal(false);
+            this.messageBox = null;
+        }
+    },
+
+    doRepeatingDiscussion: function() {
+        var mainView = this.getMainView();
+        mainView.setActiveItem(this.getDiscussionView());
+        this.getUserReportView().setDisabled(true);
+        this.clearMessageBox();
+    },
+
+    init: function() {
+        this.getApplication().on({
+            usersSaved: this.doUsersSaved,
+            repeatingDiscussion: this.doRepeatingDiscussion,
+            discussionOver: this.clearMessageBox,
+            scope: this
+        });
+    },
+
+    launch: function() {
+        var store = this.getUserReportData().getStore();
+        store.remove(store.getRange());
     }
+});
+Ext.define('testing.util.TimeUtils', {
+	statics: {
+	    getFormattedTime: function(time) {
+	        var date = new Date(null);
+	        var offsetInSeconds = (date.getTimezoneOffset()) * 60;
+	        date.setSeconds(time / 1000 + offsetInSeconds);
+	        var formattedTime = date.toTimeString().substr(0, 8);
+	        return formattedTime;
+	    }
+	}
 });
 /**
  * @author Tommy Maintz
@@ -34965,6 +35034,146 @@ Ext.define('Ext.dataview.component.DataItem', {
     }
 });
 
+Ext.define('Ext.ux.touch.grid.feature.Abstract', {
+    config : {
+        events   : {},
+        extraCls : null,
+        grid     : null
+    },
+
+    constructor : function(config) {
+        this.initConfig(config);
+
+        this.callParent([config]);
+    },
+
+    updateEvents : function(events) {
+        var me   = this,
+            grid = me.getGrid(),
+            cls, clsEvents;
+
+        for (cls in events) {
+            if (events.hasOwnProperty(cls)) {
+                clsEvents = events[cls];
+
+                if (cls === 'grid') {
+                    cls = grid;
+                } else if (cls === 'header') {
+                    cls = grid.getHeader();
+                } else if (cls === 'headerEl') {
+                    cls = grid.getHeader().element;
+                } else if (cls === 'gridBody') {
+                    cls = grid.element.down('div.x-body');
+                } else if (cls === 'store') {
+                    cls = grid.getStore();
+                } else {
+                    cls = grid[cls];
+                }
+
+                var eventName, eventFn, eventCfg;
+
+                if (Ext.isObject(cls)) {
+                    for (eventName in clsEvents) {
+                        eventFn = clsEvents[eventName];
+
+                        if (Ext.isObject(eventFn)) {
+                            eventCfg = Ext.apply({}, eventFn);
+
+                            delete eventCfg.fn;
+
+                            eventFn = eventFn.fn;
+                        }
+
+                        cls.on(eventName, me[eventFn], me, eventCfg || {});
+                    }
+                } else {
+                    console.warn('Class could not be found in config.events Object');
+                }
+            }
+        }
+    }
+});
+Ext.define('Ext.ux.touch.grid.feature.Feature', {
+    extend: 'Ext.mixin.Mixin',
+
+    mixinConfig: {
+        id : 'feature'
+    },
+
+    initFeatures: function(features, launchFn) {
+        var me = this;
+
+        features = me.getFeatures(features, launchFn);
+
+        var f    = 0,
+            fNum = features.length,
+            feature, cfg, cls;
+
+        if (!me._featuresCollection) {
+            me._featuresCollection = Ext.create('Ext.util.MixedCollection');
+        }
+
+        for (; f < fNum; f++) {
+            feature = features[f];
+            cfg     = {};
+
+            if (typeof feature === 'object') {
+                Ext.apply(cfg, feature);
+                feature = cfg.ftype;
+                delete cfg.ftype;
+            }
+
+            cfg.grid = me;
+
+            feature = Ext.create(feature, cfg);
+
+            cls = feature.getExtraCls();
+
+            if (cls) {
+                me.addCls(cls);
+            }
+
+            if (feature && typeof feature.init === 'function') {
+                me._featuresCollection.add(feature);
+
+                feature.init(me);
+
+                me.on('beforedestroy', me.destroyFeatures, me, { single : true });
+            }
+        }
+    },
+
+    destroyFeatures: function() {
+        var me       = this,
+            features = me._featuresCollection;
+
+        features.each(function(feature) {
+            if (typeof feature.onDestroy === 'function') {
+                feature.onDestroy();
+            }
+        });
+    },
+
+    getFeatures: function(features, launchFn) {
+        features = features || [];
+
+        var f           = 0,
+            fNum        = features.length,
+            retFeatures = [],
+            feature;
+
+        for (; f < fNum; f++) {
+            feature = features[f];
+
+            if (feature.launchFn === launchFn) {
+                retFeatures.push(feature);
+            }
+        }
+
+        return retFeatures
+    }
+});
+
 /**
 Represents a collection of a set of key and value pairs. Each key in the HashMap must be unique, the same
 key cannot exist twice. Access to items is provided via the key only. Sample usage:
@@ -35836,8 +36045,6 @@ Ext.define('testing.controller.Discussion', {
         }
     },
 
-    timeUtils: null,
-
     doAddToQueue: function () {
         this.getApplication().fireEvent('clientMessage', { type: 'requestToSpeak' });
     },
@@ -35909,7 +36116,7 @@ Ext.define('testing.controller.Discussion', {
     },
 
     doUpdateTimeRemaining: function (data) {
-        var formattedTime = this.timeUtils.getFormattedTime(data.timeLeft);
+        var formattedTime = testing.util.TimeUtils.getFormattedTime(data.timeLeft);
         this.getTimeRemainingLabel().setHtml(formattedTime);
     },
 
@@ -35922,7 +36129,6 @@ Ext.define('testing.controller.Discussion', {
             waitingForNewSpeaker: this.doWaitingForNewSpeaker,
             scope: this
         });
-        this.timeUtils = Ext.create('testing.util.TimeUtils');
     },
 
     launch: function () {
@@ -35932,77 +36138,6 @@ Ext.define('testing.controller.Discussion', {
             scope: this
         });
         this.initMessageScreen();
-    }
-});
-
-Ext.define('testing.controller.UserReport', {
-    extend: 'Ext.app.Controller',
-    requires: ['testing.util.TimeUtils', 'Ext.MessageBox'],
-    config: {
-        refs: {
-            userReportView: "userReportView",
-            userReportData: "#userReportData",
-            mainView: "mainView",
-            discussionView: "discussionView"
-        }
-    },
-
-    messageBox: null,
-
-    timeUtils: null,
-
-    doUsersSaved: function(dataContainer) {
-        var userReportData = this.getUserReportData();
-        var store = userReportData.getStore();
-        store.remove(store.getRange());
-        var length = dataContainer && dataContainer.data ? dataContainer.data.length : 0;
-        for(var i = 0; i < length; i++) {
-            var user = dataContainer.data[i];
-            var formattedTime = this.timeUtils.getFormattedTime(user.elapsedTime);
-            store.add({ name: user.name, elapsedTime: formattedTime });
-        }
-        var userReportView = this.getUserReportView();
-        userReportView.setDisabled(false);
-        this.getMainView().setActiveItem(userReportView);
-        this.messageBox = Ext.Msg.confirm('', "Discussion time is up. Do you wish to repeat it?", function(answer) {
-            var application = this.getApplication();
-            if(answer == 'yes') {
-                application.fireEvent('clientMessage', { type: 'repeatDiscussion' });
-            } else {
-                application.fireEvent('clientMessage', { type: 'discussionOver' });
-            }
-            this.messageBox = null;
-        }, this);
-    },
-
-    clearMessageBox: function() {
-        if(this.messageBox) {
-            this.messageBox.hide();
-            this.messageBox.setModal(false);
-            this.messageBox = null;
-        }
-    },
-
-    doRepeatingDiscussion: function() {
-        var mainView = this.getMainView();
-        mainView.setActiveItem(this.getDiscussionView());
-        this.getUserReportView().setDisabled(true);
-        this.clearMessageBox();
-    },
-
-    init: function() {
-        this.getApplication().on({
-            usersSaved: this.doUsersSaved,
-            repeatingDiscussion: this.doRepeatingDiscussion,
-            discussionOver: this.clearMessageBox,
-            scope: this
-        });
-        this.timeUtils = Ext.create('testing.util.TimeUtils');        
-    },
-
-    launch: function() {
-        var store = this.getUserReportData().getStore();
-        store.remove(store.getRange());
     }
 });
 /**
@@ -40313,73 +40448,6 @@ Ext.define('Ext.dataview.DataView', {
 
 });
 
-Ext.define("testing.view.UserReport", {
-    extend: 'Ext.Container',
-    requires: ['Ext.Button', 'Ext.dataview.DataView'],
-    xtype: 'userReportView',
-    config: {
-     layout: 'fit',
-     items: [
-      {
-        xtype: 'dataview',
-        id: 'userReportData',
-        store: {
-            fields: ['name', 'elapsedTime']
-        },
-        itemTpl: '<p>{name}    {elapsedTime}</p>'
-      }
-     ]
-    }
-});
-Ext.define("testing.view.Discussion", {
-    extend: 'Ext.Container',
-    xtype: 'discussionView',
-    requires: ['Ext.Button', 'Ext.Label', 'Ext.Audio', 'testing.view.UserReport'],
-    layout: {
-        type: 'vbox'
-    },
-    config: {
-        padding: '10px',
-        items: [
-            {
-                xtype: 'audio',
-                hidden: true,
-                id: 'beeper',
-                url: 'resources/sounds/beep.mp3'
-            },
-            {
-                xtype: 'audio',
-                hidden: true,
-                id: 'ticker',
-                url: 'resources/sounds/tick.mp3'
-            },
-            {
-                xtype: 'container',
-                layout: 'vbox',
-                style: "background-color: #878787; font-size: larger",
-                items: [
-                    {
-                        xtype: 'label',
-                        id: 'timeRemainingLabel'
-                    },
-                   {
-                        xtype: 'label',
-                        id: 'messageLabel',
-                        html: 'Waiting for New Speaker'
-                    }
-                ]
-            },
-            {
-                xtype: 'button',
-                centered: true,
-                action: 'addToQueueEvent',
-                height: '50%',
-                width: '50%',
-                text: 'My turn'
-            },
-         ]
-    }
-});
 /**
  * @aside guide list
  * @aside video list
@@ -41031,6 +41099,515 @@ Ext.define('Ext.dataview.List', {
     }
 });
 
+Ext.define('Ext.ux.touch.grid.feature.Sorter', {
+    extend   : 'Ext.ux.touch.grid.feature.Abstract',
+    requires : 'Ext.ux.touch.grid.feature.Abstract',
+
+    config : {
+        events : {
+            grid    : {
+                sort : 'updateHeaderIcons'
+            },
+            headerEl : {
+                tap : 'handleHeaderTap'
+            }
+        },
+
+        extraCls : 'sorter',
+
+        asc  : 'x-grid-sort-asc',
+        desc : 'x-grid-sort-desc'
+    },
+
+    init : function(grid) {
+        var store  = grid.getStore(),
+            sorted = store.isSorted ? store.isSorted() : store.getData().sorted;
+
+        if (sorted) {
+            if (grid.rendered) {
+                grid.fireEvent('sort');
+            } else {
+                grid.on('painted', function() {
+                    grid.fireEvent('sort');
+                }, null, { single : true });
+            }
+        }
+    },
+
+    onDestroy: function() {
+        var me     = this,
+            grid   = me.grid,
+            header = grid.header,
+            el     = header.el;
+
+        el.un({
+            scope : me,
+            tap   : me.handleHeaderTap
+        });
+
+        grid.un({
+            scope : me,
+            sort  : me.updateHeaderIcons
+        });
+    },
+
+    isSortable: function(grid, column) {
+        return !(grid.stopSort || column.sortable == false);
+    },
+
+    handleHeaderTap: function(e, t) {
+        e.isStopped = true;
+
+        var me        = this,
+            grid      = me.getGrid(),
+            columns   = grid.getColumns(),
+            c         = 0,
+            cNum      = columns.length,
+            store     = grid.getStore(),
+            el        = Ext.get(t),
+            dataIndex = el.getAttribute('dataindex'),
+            sorters   = store.getSorters(),
+            sorter    = sorters[0],
+            dir       = (sorter && (sorter.getProperty() === dataIndex)) ? sorter.getDirection() : 'DESC',
+            column;
+
+        for (; c < cNum; c++) {
+            column = columns[c];
+
+            if (column.dataIndex === dataIndex) {
+                break;
+            }
+        }
+
+        if (grid.fireEvent('beforesort', grid, column) === false || !me.isSortable(grid, column)) {
+            return;
+        }
+
+        store.sort(dataIndex, dir === 'DESC' ? 'ASC' : 'DESC');
+        
+        if (store.getRemoteSort() === true) {
+            store.load();
+        } else {
+            grid.refresh();
+        }
+
+        grid.fireEvent('sort');
+    },
+
+    updateHeaderIcons: function() {
+        var me       = this,
+            grid     = me.getGrid(),
+            store    = grid.getStore(),
+            sorters  = store.getSorters(),
+            header   = grid.getHeader(),
+            headerEl = header.element,
+            s        = 0,
+            sNum     = sorters.length,
+            asc      = this.getAsc(),
+            desc     = this.getDesc(),
+            column, dataIndex, colEl, sorter, dir;
+
+        me.clearSort();
+
+        for (; s < sNum; s++) {
+            sorter    = sorters[s];
+            dataIndex = sorter.getProperty();
+            dir       = sorter.getDirection();
+            column    = grid.getColumn(dataIndex);
+            colEl     = column.element;
+
+            if (!colEl) {
+                colEl = column.element = Ext.get(headerEl.down('div.x-grid-cell-hd[dataindex=' + dataIndex + ']'));
+            }
+
+            colEl && colEl.addCls(dir === 'DESC' ? desc : asc);
+        }
+    },
+
+    clearSort : function() {
+        var grid     = this.getGrid(),
+            columns  = grid.getColumns(),
+            header   = grid.getHeader(),
+            headerEl = header.element,
+            c        = 0,
+            cNum     = columns.length,
+            asc      = this.getAsc(),
+            desc     = this.getDesc(),
+            column, dataIndex, colEl;
+
+        for (; c < cNum; c++) {
+            column    = columns[c];
+            dataIndex = column.dataIndex;
+            colEl     = column.element;
+
+            if (!colEl) {
+                colEl = column.element = Ext.get(headerEl.down('div.x-grid-cell-hd[dataindex=' + dataIndex + ']'));
+            }
+
+            //column is hidden?
+            if (colEl) {
+                colEl.removeCls(asc).removeCls(desc);
+            }
+        }
+    }
+});
+Ext.define('Ext.ux.touch.grid.List', {
+    extend : 'Ext.dataview.List',
+    xtype  : 'touchgridpanel',
+
+    requires : [
+        'Ext.ux.touch.grid.feature.Feature',
+        'Ext.Toolbar'
+    ],
+    mixins   : ['Ext.ux.touch.grid.feature.Feature'],
+
+    config : {
+        /*
+         * @property {String|Function} [rowCls=null]
+         *  Either a string (or a Function that returns a string) designating the class
+         *  string to be applied to row.  Current record values are passed as the first argument.
+         */
+        rowCls : null,
+
+        columns : [
+            {}
+        ],
+        cls     : 'touchgridpanel',
+        header  : {
+            xtype  : 'toolbar',
+            docked : 'top',
+            cls    : 'x-grid-header'
+        },
+        itemTpl : false,
+        itemCls : 'x-touchgrid-item'
+    },
+
+    constructor : function (config) {
+        var me = this,
+            features = me.features = config.features || me.config.features || me.features;
+
+        me.callParent([config]);
+
+        if (typeof me.initFeatures === 'function' && typeof config.features === 'object') {
+            me.initFeatures(features, 'constructor');
+        }
+
+        me.setWidth(me._buildWidth());
+    },
+
+    initialize : function () {
+        var me = this;
+
+        me.callParent();
+
+        if (typeof me.initFeatures === 'function' && typeof me.features === 'object') {
+            me.initFeatures(me.features, 'initialize');
+        }
+    },
+
+    applyColumns : function (columns) {
+        var c = 0,
+            cLen = columns.length,
+            newColumns = [];
+
+        for (; c < cLen; c++) {
+            newColumns.push(
+                Ext.merge({}, columns[c])
+            );
+        }
+
+        return newColumns;
+    },
+
+    updateColumns : function () {
+        if (this._itemTpl) {
+            this.setItemTpl(null);
+        }
+    },
+
+    refreshScroller : function () {
+        var scroller = this.getScrollable().getScroller();
+
+        scroller.refresh();
+    },
+
+    applyHeader : function (config) {
+        Ext.apply(config, {
+            docked : 'top',
+            cls    : 'x-grid-header'
+        });
+
+        return Ext.factory(config, Ext.Toolbar);
+    },
+
+    updateHeader : function (header) {
+        this.insert(0, header);
+    },
+
+    _buildWidth : function () {
+        var me = this,
+            columns = me.getColumns(),
+            c = 0,
+            cNum = columns.length,
+            retWidth = 0,
+            stop = false,
+            defaults = this.getDefaults() || {},
+            column, width;
+
+        for (; c < cNum; c++) {
+            column = columns[c];
+            width = column.width || defaults.column_width;
+
+            if (!Ext.isNumber(width)) {
+                stop = true;
+                break;
+            }
+
+            retWidth += width;
+        }
+
+        return stop ? undefined : retWidth;
+    },
+
+    _defaultRenderer : function (value) {
+        return Ext.isEmpty(value) ? '&nbsp;' : value;
+    },
+
+    applyItemTpl : function (tpl) {
+        if (!tpl) {
+            tpl = this._buildTpl(this.getColumns(), false);
+        }
+
+        if (!(tpl instanceof Ext.XTemplate)) {
+            tpl = Ext.create('Ext.XTemplate', tpl.tpl, tpl.renderers);
+        }
+
+        return tpl;
+    },
+
+    updateItemTpl : function () {
+        var header = this.getHeader(),
+            html = this._buildTpl(this.getColumns(), true);
+
+        header.setHtml(html.tpl);
+
+        this.refresh();
+    },
+
+    _buildTpl : function (columns, header) {
+        var me = this,
+            tpl = [],
+            c = 0,
+            cNum = columns.length,
+            basePrefix = Ext.baseCSSPrefix,
+            renderers = {},
+            defaults = me.getDefaults() || {},
+            rowCls = me.getRowCls(),
+            column, hidden, css, styles, attributes, width, renderer, rendererName, innerText;
+
+        for (; c < cNum; c++) {
+            column = columns[c];
+            hidden = column.hidden;
+
+            if (hidden) {
+                continue;
+            }
+
+            css = [basePrefix + 'grid-cell'];
+            styles = [];
+            attributes = ['dataindex="' + column.dataIndex + '"'];
+            width = column.width || defaults.column_width;
+            renderer = column[header ? 'headerRenderer' : 'renderer'] || this._defaultRenderer;
+            rendererName = column.dataIndex + '_renderer';
+
+            if (header) {
+                css.push(basePrefix + 'grid-cell-hd');
+                innerText = renderer.call(this, column.header);
+            } else {
+                innerText = '{[this.' + rendererName + '(values.' + column.dataIndex + ', values)]}';
+
+                if (column.style) {
+                    styles.push(column.style);
+                }
+
+                renderers[rendererName] = renderer;
+            }
+
+            if (column.cls) {
+                css.push(column.cls);
+            }
+
+            if (width) {
+                styles.push('width: ' + width + (Ext.isString(width) ? '' : 'px') + ';');
+            }
+
+            if (styles.length > 0) {
+                attributes.push('style="' + styles.join(' ') + '"');
+            }
+
+            tpl.push('<div class="' + css.join(' ') + '" ' + attributes.join(' ') + '>' + innerText + '</div>');
+        }
+
+        tpl = tpl.join('');
+
+        if (!header && (Ext.isFunction(rowCls) || Ext.isString(rowCls))) {
+            renderers._getRowCls = Ext.bind(me.getRowCls, me);
+            tpl = '<div class="' + basePrefix + 'grid-row {[this._getRowCls(values) || \'\']}">' + tpl + '</div>';
+        }
+
+        return {
+            tpl       : tpl,
+            renderers : renderers
+        };
+    },
+
+    getRowCls : function (data) {
+        var me = this,
+            rowCls = me._rowCls;
+
+        if (typeof rowCls === 'function') {
+            return rowCls.call(me, data);
+        }
+
+        return rowCls;
+    },
+
+    getColumn : function (dataIndex) {
+        var me = this,
+            columns = me.getColumns(),
+            c = 0,
+            cNum = columns.length,
+            column;
+
+        for (; c < cNum; c++) {
+            column = columns[c];
+
+            if (column.dataIndex === dataIndex) {
+                break;
+            }
+        }
+
+        return column;
+    },
+
+    toggleColumn : function (index, hide) {
+        var columns = this.getColumns(),
+            column = columns[index];
+
+        if (!Ext.isDefined(hide)) {
+            hide = !column.hidden;
+        }
+
+        column.hidden = hide;
+
+        this.setItemTpl(null); //trigger new tpl on items and header
+        this.refresh();
+    },
+
+    hideColumn : function (index) {
+        this.toggleColumn(index, true);
+    },
+
+    showColumn : function (index) {
+        this.toggleColumn(index, false);
+    }
+});
+Ext.define("testing.view.UserReport", {
+    extend: 'Ext.Container',
+    requires: [
+    	'Ext.Button', 
+    	'Ext.ux.touch.grid.feature.Sorter', 
+    	'Ext.ux.touch.grid.List',
+    	'testing.util.TimeUtils'
+    ],
+    xtype: 'userReportView',
+    config: {
+     layout: 'fit',
+     items: [
+	     {
+	     	xtype: 'touchgridpanel',
+	        id: 'userReportData',
+	        store: {
+	            fields: ['name', 'elapsedTime']
+	        },
+            features   : [
+                {
+                    ftype    : 'Ext.ux.touch.grid.feature.Sorter',
+                    launchFn : 'initialize'
+                }
+            ],
+            columns    : [
+                {
+                    header    : 'Name',
+                    dataIndex : 'name',
+                    style     : 'padding-left: 1em;',
+                    width     : '50%'
+                },
+                {
+                    header    : 'Elapsed Time',
+                    dataIndex : 'elapsedTime',
+                    style     : 'text-align: center;',
+                    width     : '50%',
+                    renderer  : function (value) {
+                        var formattedTime = testing.util.TimeUtils.getFormattedTime(value);
+                        return formattedTime;
+                   }
+
+                }
+             ]
+	     }
+     ]
+    }
+});
+Ext.define("testing.view.Discussion", {
+    extend: 'Ext.Container',
+    xtype: 'discussionView',
+    requires: ['Ext.Button', 'Ext.Label', 'Ext.Audio', 'testing.view.UserReport'],
+    layout: {
+        type: 'vbox'
+    },
+    config: {
+        padding: '10px',
+        items: [
+            {
+                xtype: 'audio',
+                hidden: true,
+                id: 'beeper',
+                url: 'resources/sounds/beep.mp3'
+            },
+            {
+                xtype: 'audio',
+                hidden: true,
+                id: 'ticker',
+                url: 'resources/sounds/tick.mp3'
+            },
+            {
+                xtype: 'container',
+                layout: 'vbox',
+                style: "background-color: #878787; font-size: larger",
+                items: [
+                    {
+                        xtype: 'label',
+                        id: 'timeRemainingLabel'
+                    },
+                   {
+                        xtype: 'label',
+                        id: 'messageLabel',
+                        html: 'Waiting for New Speaker'
+                    }
+                ]
+            },
+            {
+                xtype: 'button',
+                centered: true,
+                action: 'addToQueueEvent',
+                height: '50%',
+                width: '50%',
+                text: 'My turn'
+            },
+         ]
+    }
+});
 /**
  * @class Ext.data.Types
  * <p>This is s static class containing the system-supplied data types which may be given to a {@link Ext.data.Field Field}.<p/>

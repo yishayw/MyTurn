@@ -2,13 +2,20 @@
 <html manifest="" lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <title>Time Allocation</title>
+    <title>My Turn</title>
+    <link rel="stylesheet" href="resources/css/Ext.ux.grid.View.css" type="text/css">	 	
     <style type="text/css">
          /**
          * Example of an initial loading indicator.
          * It is recommended to keep this as minimal as possible to provide instant feedback
          * while other resources are still being loaded for the first time
          */
+        .centered-cell {
+            text-align: center;
+        }
+        .touchgridpanel .x-list-item:nth-child(odd) {
+            background-color: #fff;
+        }
         html, body {
             height: 100%;
             background-color: #1985D0
@@ -57,7 +64,7 @@
                 opacity: 0.8
             }
         }
-    </style>
+</style>
     <script type="text/javascript" src="/api/socket.io/socket.io.js"></script>
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" type="text/javascript" src="sdk/microloader/development.js"></script>

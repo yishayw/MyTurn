@@ -680,6 +680,11 @@
                     "path": "app/controller/"
                 },
                 {
+                    "clsName": "testing.controller.UserReport",
+                    "name": "UserReport.js",
+                    "path": "app/controller/"
+                },
+                {
                     "clsName": "testing.util.TimeUtils",
                     "name": "TimeUtils.js",
                     "path": "app/util/"
@@ -795,6 +800,16 @@
                     "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/dataview/component/"
                 },
                 {
+                    "clsName": "Ext.ux.touch.grid.feature.Abstract",
+                    "name": "Abstract.js",
+                    "path": "./Ext.ux.touch.grid/feature/"
+                },
+                {
+                    "clsName": "Ext.ux.touch.grid.feature.Feature",
+                    "name": "Feature.js",
+                    "path": "./Ext.ux.touch.grid/feature/"
+                },
+                {
                     "clsName": "Ext.util.HashMap",
                     "name": "HashMap.js",
                     "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
@@ -822,11 +837,6 @@
                 {
                     "clsName": "testing.controller.Discussion",
                     "name": "Discussion.js",
-                    "path": "app/controller/"
-                },
-                {
-                    "clsName": "testing.controller.UserReport",
-                    "name": "UserReport.js",
                     "path": "app/controller/"
                 },
                 {
@@ -885,6 +895,21 @@
                     "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/dataview/"
                 },
                 {
+                    "clsName": "Ext.dataview.List",
+                    "name": "List.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/dataview/"
+                },
+                {
+                    "clsName": "Ext.ux.touch.grid.feature.Sorter",
+                    "name": "Sorter.js",
+                    "path": "./Ext.ux.touch.grid/feature/"
+                },
+                {
+                    "clsName": "Ext.ux.touch.grid.List",
+                    "name": "List.js",
+                    "path": "./Ext.ux.touch.grid/"
+                },
+                {
                     "clsName": "testing.view.UserReport",
                     "name": "UserReport.js",
                     "path": "app/view/"
@@ -893,11 +918,6 @@
                     "clsName": "testing.view.Discussion",
                     "name": "Discussion.js",
                     "path": "app/view/"
-                },
-                {
-                    "clsName": "Ext.dataview.List",
-                    "name": "List.js",
-                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/dataview/"
                 },
                 {
                     "clsName": "Ext.data.Types",

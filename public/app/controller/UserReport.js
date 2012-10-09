@@ -1,7 +1,7 @@
 
 Ext.define('testing.controller.UserReport', {
     extend: 'Ext.app.Controller',
-    requires: ['testing.util.TimeUtils', 'Ext.MessageBox'],
+    requires: ['Ext.MessageBox'],
     config: {
         refs: {
             userReportView: "userReportView",
@@ -13,8 +13,6 @@ Ext.define('testing.controller.UserReport', {
 
     messageBox: null,
 
-    timeUtils: null,
-
     doUsersSaved: function(dataContainer) {
         var userReportData = this.getUserReportData();
         var store = userReportData.getStore();
@@ -22,8 +20,7 @@ Ext.define('testing.controller.UserReport', {
         var length = dataContainer && dataContainer.data ? dataContainer.data.length : 0;
         for(var i = 0; i < length; i++) {
             var user = dataContainer.data[i];
-            var formattedTime = this.timeUtils.getFormattedTime(user.elapsedTime);
-            store.add({ name: user.name, elapsedTime: formattedTime });
+            store.add({ name: user.name, elapsedTime: user.elapsedTime });
         }
         var userReportView = this.getUserReportView();
         userReportView.setDisabled(false);
@@ -61,7 +58,6 @@ Ext.define('testing.controller.UserReport', {
             discussionOver: this.clearMessageBox,
             scope: this
         });
-        this.timeUtils = Ext.create('testing.util.TimeUtils');        
     },
 
     launch: function() {

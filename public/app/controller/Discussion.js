@@ -12,8 +12,6 @@ Ext.define('testing.controller.Discussion', {
         }
     },
 
-    timeUtils: null,
-
     doAddToQueue: function () {
         this.getApplication().fireEvent('clientMessage', { type: 'requestToSpeak' });
     },
@@ -85,7 +83,7 @@ Ext.define('testing.controller.Discussion', {
     },
 
     doUpdateTimeRemaining: function (data) {
-        var formattedTime = this.timeUtils.getFormattedTime(data.timeLeft);
+        var formattedTime = testing.util.TimeUtils.getFormattedTime(data.timeLeft);
         this.getTimeRemainingLabel().setHtml(formattedTime);
     },
 
@@ -98,7 +96,6 @@ Ext.define('testing.controller.Discussion', {
             waitingForNewSpeaker: this.doWaitingForNewSpeaker,
             scope: this
         });
-        this.timeUtils = Ext.create('testing.util.TimeUtils');
     },
 
     launch: function () {

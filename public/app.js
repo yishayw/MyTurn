@@ -1,3 +1,10 @@
+Ext.Loader.setConfig({
+    enabled : true,
+    paths   : {
+        'Ext.ux.touch.grid': './Ext.ux.touch.grid'
+    }
+});
+
 Ext.application({
     name: 'testing',
     autoCreateViewport: false,

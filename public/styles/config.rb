@@ -8,7 +8,6 @@ load File.join(dir, '..', 'sdk', 'resources', 'themes')
 # Place compiled *.css files in parent directory
 sass_path 	= dir
 css_path	= File.join(dir, "..")
-#output_style	= :expanded
-#environment	= :development
-output_style	= :compressed
-environment	= :production   
+# output_style	= :expanded
+# environment	= :developmentoutput_style	= :compressed
+environment	= :production   
