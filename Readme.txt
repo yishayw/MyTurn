@@ -19,6 +19,6 @@ If the Group already exists:
 
 3. The Discussion page will appear. Press "Request to Speak" when ready. Hold the Button until you finish speaking. It is like a 'Push-to-Talk' button, but is not active until you get a beep.
 
-"Complete documentation: 
+Complete documentation: 
 
-http://doc.myturn.mobi"
+http://doc.myturn.mobi
