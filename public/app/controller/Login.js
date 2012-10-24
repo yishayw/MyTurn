@@ -1,7 +1,15 @@
 
 Ext.define('testing.controller.Login', {
     extend: 'Ext.app.Controller',
-    requires: ['testing.model.DefaultUser', 'Ext.Ajax', 'Ext.Panel', 'Ext.viewport.Viewport', 'Ext.field.TextArea', 'testing.view.CreateGroup'],
+    requires: [
+        'testing.model.DefaultUser', 
+    	'Ext.Ajax', 
+    	'Ext.Panel', 
+    	'Ext.viewport.Viewport', 
+    	'Ext.field.TextArea', 
+    	'testing.view.CreateGroup',
+    	'testing.util.UrlUtils'
+    ],
     config: {
         control: {
             createGroupButton: { tap: "doCreateGroup" },
@@ -22,9 +30,10 @@ Ext.define('testing.controller.Login', {
     },
 
     doReadme: function () {
+    	var url = testing.util.UrlUtils.getBaseUrl() + 'data/readme.json';
         Ext.Ajax.request({
             disableCaching: false,
-            url: '/data/readme.json',
+            url: url,
             method: "GET",
             scope: this,
             success: function (response, request) {
@@ -128,7 +137,17 @@ Ext.define('testing.controller.Login', {
     },
 
     launch: function () {
-        this.doLogout();
-        this.getUserReportView().setDisabled(true);
-    }
+       if (Ext.os.is('Android') || Ext.os.is('iOS')) {
+		   var media = new Media(
+		   		testing.util.UrlUtils.getBaseUrl() + 'resources/sounds/tick.mp3', 
+	    		function() {}, 
+	    		function(err) { 
+	    			Ext.Msg.alert('error: ' + err.message)
+	    		}
+	    	);
+	    	media.play();
+        }
+	    this.doLogout();
+	    this.getUserReportView().setDisabled(true);
+}
 });
