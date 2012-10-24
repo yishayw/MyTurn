@@ -1,0 +1,1106 @@
+{
+    "projectName": "Project Name",
+    "licenseText": "Copyright(c) 2012 Company Name",
+    "builds": [
+        {
+            "name": "All Classes",
+            "target": "all-classes.js",
+            "options": {
+                "debug": true
+            },
+            "files": [
+                {
+                    "clsName": "Ext.event.ListenerStack",
+                    "name": "ListenerStack.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/"
+                },
+                {
+                    "clsName": "Ext.event.Controller",
+                    "name": "Controller.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/"
+                },
+                {
+                    "clsName": "Ext.event.publisher.Publisher",
+                    "name": "Publisher.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/publisher/"
+                },
+                {
+                    "clsName": "Ext.event.Event",
+                    "name": "Event.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/"
+                },
+                {
+                    "clsName": "Ext.event.Dispatcher",
+                    "name": "Dispatcher.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/"
+                },
+                {
+                    "clsName": "Ext.event.Dom",
+                    "name": "Dom.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/"
+                },
+                {
+                    "clsName": "Ext.event.publisher.Dom",
+                    "name": "Dom.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/publisher/"
+                },
+                {
+                    "clsName": "Ext.util.Point",
+                    "name": "Point.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.event.Touch",
+                    "name": "Touch.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/"
+                },
+                {
+                    "clsName": "Ext.event.publisher.TouchGesture",
+                    "name": "TouchGesture.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/publisher/"
+                },
+                {
+                    "clsName": "Ext.event.recognizer.Recognizer",
+                    "name": "Recognizer.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/recognizer/"
+                },
+                {
+                    "clsName": "Ext.event.recognizer.Touch",
+                    "name": "Touch.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/recognizer/"
+                },
+                {
+                    "clsName": "Ext.event.recognizer.SingleTouch",
+                    "name": "SingleTouch.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/recognizer/"
+                },
+                {
+                    "clsName": "Ext.event.recognizer.Drag",
+                    "name": "Drag.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/recognizer/"
+                },
+                {
+                    "clsName": "Ext.event.recognizer.Tap",
+                    "name": "Tap.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/recognizer/"
+                },
+                {
+                    "clsName": "Ext.event.recognizer.DoubleTap",
+                    "name": "DoubleTap.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/recognizer/"
+                },
+                {
+                    "clsName": "Ext.event.recognizer.LongPress",
+                    "name": "LongPress.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/recognizer/"
+                },
+                {
+                    "clsName": "Ext.event.recognizer.Swipe",
+                    "name": "Swipe.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/recognizer/"
+                },
+                {
+                    "clsName": "Ext.event.recognizer.HorizontalSwipe",
+                    "name": "HorizontalSwipe.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/recognizer/"
+                },
+                {
+                    "clsName": "Ext.event.recognizer.MultiTouch",
+                    "name": "MultiTouch.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/recognizer/"
+                },
+                {
+                    "clsName": "Ext.event.recognizer.Pinch",
+                    "name": "Pinch.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/recognizer/"
+                },
+                {
+                    "clsName": "Ext.event.recognizer.Rotate",
+                    "name": "Rotate.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/recognizer/"
+                },
+                {
+                    "clsName": "Ext.ComponentQuery",
+                    "name": "ComponentQuery.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.ComponentManager",
+                    "name": "ComponentManager.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.mixin.Mixin",
+                    "name": "Mixin.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/mixin/"
+                },
+                {
+                    "clsName": "Ext.behavior.Behavior",
+                    "name": "Behavior.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/behavior/"
+                },
+                {
+                    "clsName": "Ext.mixin.Observable",
+                    "name": "Observable.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/mixin/"
+                },
+                {
+                    "clsName": "Ext.XTemplateParser",
+                    "name": "XTemplateParser.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.fx.easing.Abstract",
+                    "name": "Abstract.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/easing/"
+                },
+                {
+                    "clsName": "Ext.mixin.Traversable",
+                    "name": "Traversable.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/mixin/"
+                },
+                {
+                    "clsName": "Ext.Evented",
+                    "name": "Evented.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.AbstractComponent",
+                    "name": "AbstractComponent.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.XTemplateCompiler",
+                    "name": "XTemplateCompiler.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.DateExtras",
+                    "name": "DateExtras.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.util.Format",
+                    "name": "Format.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.Template",
+                    "name": "Template.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.XTemplate",
+                    "name": "XTemplate.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.util.SizeMonitor",
+                    "name": "SizeMonitor.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.fx.easing.Linear",
+                    "name": "Linear.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/easing/"
+                },
+                {
+                    "clsName": "Ext.util.translatable.Abstract",
+                    "name": "Abstract.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/translatable/"
+                },
+                {
+                    "clsName": "Ext.util.translatable.CssTransform",
+                    "name": "CssTransform.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/translatable/"
+                },
+                {
+                    "clsName": "Ext.util.translatable.ScrollPosition",
+                    "name": "ScrollPosition.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/translatable/"
+                },
+                {
+                    "clsName": "Ext.util.Translatable",
+                    "name": "Translatable.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.behavior.Translatable",
+                    "name": "Translatable.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/behavior/"
+                },
+                {
+                    "clsName": "Ext.util.Draggable",
+                    "name": "Draggable.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.behavior.Draggable",
+                    "name": "Draggable.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/behavior/"
+                },
+                {
+                    "clsName": "Ext.Component",
+                    "name": "Component.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.event.publisher.ComponentDelegation",
+                    "name": "ComponentDelegation.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/publisher/"
+                },
+                {
+                    "clsName": "Ext.event.publisher.ComponentPaint",
+                    "name": "ComponentPaint.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/publisher/"
+                },
+                {
+                    "clsName": "Ext.event.publisher.ComponentSize",
+                    "name": "ComponentSize.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/event/publisher/"
+                },
+                {
+                    "clsName": "Ext.log.Base",
+                    "name": "Base.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/log/"
+                },
+                {
+                    "clsName": "Ext.log.Logger",
+                    "name": "Logger.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/log/"
+                },
+                {
+                    "clsName": "Ext.log.formatter.Formatter",
+                    "name": "Formatter.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/log/formatter/"
+                },
+                {
+                    "clsName": "Ext.log.writer.Writer",
+                    "name": "Writer.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/log/writer/"
+                },
+                {
+                    "clsName": "Ext.log.writer.Console",
+                    "name": "Console.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/log/writer/"
+                },
+                {
+                    "clsName": "Ext.log.formatter.Default",
+                    "name": "Default.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/log/formatter/"
+                },
+                {
+                    "clsName": "Ext.fx.State",
+                    "name": "State.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/"
+                },
+                {
+                    "clsName": "Ext.fx.animation.Abstract",
+                    "name": "Abstract.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/animation/"
+                },
+                {
+                    "clsName": "Ext.fx.animation.Slide",
+                    "name": "Slide.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/animation/"
+                },
+                {
+                    "clsName": "Ext.fx.animation.SlideOut",
+                    "name": "SlideOut.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/animation/"
+                },
+                {
+                    "clsName": "Ext.fx.animation.Fade",
+                    "name": "Fade.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/animation/"
+                },
+                {
+                    "clsName": "Ext.fx.animation.FadeOut",
+                    "name": "FadeOut.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/animation/"
+                },
+                {
+                    "clsName": "Ext.fx.animation.Flip",
+                    "name": "Flip.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/animation/"
+                },
+                {
+                    "clsName": "Ext.fx.animation.Pop",
+                    "name": "Pop.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/animation/"
+                },
+                {
+                    "clsName": "Ext.fx.animation.PopOut",
+                    "name": "PopOut.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/animation/"
+                },
+                {
+                    "clsName": "Ext.fx.Animation",
+                    "name": "Animation.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/"
+                },
+                {
+                    "clsName": "Ext.fx.runner.Css",
+                    "name": "Css.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/runner/"
+                },
+                {
+                    "clsName": "Ext.fx.runner.CssTransition",
+                    "name": "CssTransition.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/runner/"
+                },
+                {
+                    "clsName": "Ext.fx.Runner",
+                    "name": "Runner.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/"
+                },
+                {
+                    "clsName": "Ext.Mask",
+                    "name": "Mask.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.layout.Default",
+                    "name": "Default.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/layout/"
+                },
+                {
+                    "clsName": "Ext.layout.AbstractBox",
+                    "name": "AbstractBox.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/layout/"
+                },
+                {
+                    "clsName": "Ext.util.Filter",
+                    "name": "Filter.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.util.Sorter",
+                    "name": "Sorter.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.fx.easing.EaseOut",
+                    "name": "EaseOut.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/easing/"
+                },
+                {
+                    "clsName": "Ext.fx.layout.card.Abstract",
+                    "name": "Abstract.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/layout/card/"
+                },
+                {
+                    "clsName": "Ext.fx.easing.Momentum",
+                    "name": "Momentum.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/easing/"
+                },
+                {
+                    "clsName": "Ext.fx.easing.Bounce",
+                    "name": "Bounce.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/easing/"
+                },
+                {
+                    "clsName": "Ext.scroll.indicator.Abstract",
+                    "name": "Abstract.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/scroll/indicator/"
+                },
+                {
+                    "clsName": "Ext.LoadMask",
+                    "name": "LoadMask.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.layout.Fit",
+                    "name": "Fit.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/layout/"
+                },
+                {
+                    "clsName": "Ext.layout.HBox",
+                    "name": "HBox.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/layout/"
+                },
+                {
+                    "clsName": "Ext.layout.VBox",
+                    "name": "VBox.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/layout/"
+                },
+                {
+                    "clsName": "Ext.util.AbstractMixedCollection",
+                    "name": "AbstractMixedCollection.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.util.Sortable",
+                    "name": "Sortable.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.util.MixedCollection",
+                    "name": "MixedCollection.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.ItemCollection",
+                    "name": "ItemCollection.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.fx.layout.card.Scroll",
+                    "name": "Scroll.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/layout/card/"
+                },
+                {
+                    "clsName": "Ext.fx.easing.BoundMomentum",
+                    "name": "BoundMomentum.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/easing/"
+                },
+                {
+                    "clsName": "Ext.scroll.Scroller",
+                    "name": "Scroller.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/scroll/"
+                },
+                {
+                    "clsName": "Ext.scroll.indicator.Default",
+                    "name": "Default.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/scroll/indicator/"
+                },
+                {
+                    "clsName": "Ext.scroll.indicator.ScrollPosition",
+                    "name": "ScrollPosition.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/scroll/indicator/"
+                },
+                {
+                    "clsName": "Ext.scroll.indicator.CssTransform",
+                    "name": "CssTransform.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/scroll/indicator/"
+                },
+                {
+                    "clsName": "Ext.scroll.Indicator",
+                    "name": "Indicator.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/scroll/"
+                },
+                {
+                    "clsName": "Ext.scroll.View",
+                    "name": "View.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/scroll/"
+                },
+                {
+                    "clsName": "Ext.behavior.Scrollable",
+                    "name": "Scrollable.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/behavior/"
+                },
+                {
+                    "clsName": "Ext.fx.layout.card.Style",
+                    "name": "Style.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/layout/card/"
+                },
+                {
+                    "clsName": "Ext.fx.layout.card.Slide",
+                    "name": "Slide.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/layout/card/"
+                },
+                {
+                    "clsName": "Ext.fx.layout.card.Cover",
+                    "name": "Cover.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/layout/card/"
+                },
+                {
+                    "clsName": "Ext.fx.layout.card.Reveal",
+                    "name": "Reveal.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/layout/card/"
+                },
+                {
+                    "clsName": "Ext.fx.layout.card.Fade",
+                    "name": "Fade.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/layout/card/"
+                },
+                {
+                    "clsName": "Ext.fx.layout.card.Flip",
+                    "name": "Flip.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/layout/card/"
+                },
+                {
+                    "clsName": "Ext.fx.layout.card.Pop",
+                    "name": "Pop.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/layout/card/"
+                },
+                {
+                    "clsName": "Ext.fx.layout.Card",
+                    "name": "Card.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/fx/layout/"
+                },
+                {
+                    "clsName": "Ext.layout.Card",
+                    "name": "Card.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/layout/"
+                },
+                {
+                    "clsName": "Ext.layout.Layout",
+                    "name": "Layout.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/layout/"
+                },
+                {
+                    "clsName": "Ext.Container",
+                    "name": "Container.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.viewport.Default",
+                    "name": "Default.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/viewport/"
+                },
+                {
+                    "clsName": "Ext.viewport.Ios",
+                    "name": "Ios.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/viewport/"
+                },
+                {
+                    "clsName": "Ext.viewport.Android",
+                    "name": "Android.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/viewport/"
+                },
+                {
+                    "clsName": "Ext.viewport.Viewport",
+                    "name": "Viewport.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/viewport/"
+                },
+                {
+                    "clsName": "Ext.app.Controller",
+                    "name": "Controller.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/app/"
+                },
+                {
+                    "clsName": "Ext.app.History",
+                    "name": "History.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/app/"
+                },
+                {
+                    "clsName": "Ext.app.Profile",
+                    "name": "Profile.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/app/"
+                },
+                {
+                    "clsName": "Ext.app.Action",
+                    "name": "Action.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/app/"
+                },
+                {
+                    "clsName": "Ext.app.Route",
+                    "name": "Route.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/app/"
+                },
+                {
+                    "clsName": "Ext.app.Router",
+                    "name": "Router.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/app/"
+                },
+                {
+                    "clsName": "Ext.app.Application",
+                    "name": "Application.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/app/"
+                },
+                {
+                    "clsName": "Ext.Button",
+                    "name": "Button.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.Title",
+                    "name": "Title.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.Spacer",
+                    "name": "Spacer.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.util.LineSegment",
+                    "name": "LineSegment.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.Decorator",
+                    "name": "Decorator.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.field.Input",
+                    "name": "Input.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/field/"
+                },
+                {
+                    "clsName": "Ext.Toolbar",
+                    "name": "Toolbar.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.Panel",
+                    "name": "Panel.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.Sheet",
+                    "name": "Sheet.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.field.Field",
+                    "name": "Field.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/field/"
+                },
+                {
+                    "clsName": "Ext.field.Text",
+                    "name": "Text.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/field/"
+                },
+                {
+                    "clsName": "Ext.field.TextAreaInput",
+                    "name": "TextAreaInput.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/field/"
+                },
+                {
+                    "clsName": "Ext.field.TextArea",
+                    "name": "TextArea.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/field/"
+                },
+                {
+                    "clsName": "Ext.MessageBox",
+                    "name": "MessageBox.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "testing.controller.Socket",
+                    "name": "Socket.js",
+                    "path": "app/controller/"
+                },
+                {
+                    "clsName": "testing.controller.CreateGroup",
+                    "name": "CreateGroup.js",
+                    "path": "app/controller/"
+                },
+                {
+                    "clsName": "testing.controller.UserReport",
+                    "name": "UserReport.js",
+                    "path": "app/controller/"
+                },
+                {
+                    "clsName": "testing.util.TimeUtils",
+                    "name": "TimeUtils.js",
+                    "path": "app/util/"
+                },
+                {
+                    "clsName": "Ext.data.identifier.Simple",
+                    "name": "Simple.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/identifier/"
+                },
+                {
+                    "clsName": "Ext.Img",
+                    "name": "Img.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.form.FieldSet",
+                    "name": "FieldSet.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/form/"
+                },
+                {
+                    "clsName": "Ext.Label",
+                    "name": "Label.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.mixin.Selectable",
+                    "name": "Selectable.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/mixin/"
+                },
+                {
+                    "clsName": "Ext.dataview.element.Container",
+                    "name": "Container.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/dataview/element/"
+                },
+                {
+                    "clsName": "Ext.data.Connection",
+                    "name": "Connection.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "Ext.field.Number",
+                    "name": "Number.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/field/"
+                },
+                {
+                    "clsName": "Ext.data.Operation",
+                    "name": "Operation.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "Ext.util.Grouper",
+                    "name": "Grouper.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.mixin.Sortable",
+                    "name": "Sortable.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/mixin/"
+                },
+                {
+                    "clsName": "Ext.mixin.Filterable",
+                    "name": "Filterable.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/mixin/"
+                },
+                {
+                    "clsName": "Ext.data.SortTypes",
+                    "name": "SortTypes.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "Ext.util.Inflector",
+                    "name": "Inflector.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.data.Error",
+                    "name": "Error.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "Ext.tab.Tab",
+                    "name": "Tab.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/tab/"
+                },
+                {
+                    "clsName": "Ext.dataview.element.List",
+                    "name": "List.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/dataview/element/"
+                },
+                {
+                    "clsName": "Ext.dataview.IndexBar",
+                    "name": "IndexBar.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/dataview/"
+                },
+                {
+                    "clsName": "Ext.dataview.ListItemHeader",
+                    "name": "ListItemHeader.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/dataview/"
+                },
+                {
+                    "clsName": "Ext.field.Checkbox",
+                    "name": "Checkbox.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/field/"
+                },
+                {
+                    "clsName": "Ext.Media",
+                    "name": "Media.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.dataview.component.DataItem",
+                    "name": "DataItem.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/dataview/component/"
+                },
+                {
+                    "clsName": "Ext.ux.touch.grid.feature.Abstract",
+                    "name": "Abstract.js",
+                    "path": "./Ext.ux.touch.grid/feature/"
+                },
+                {
+                    "clsName": "Ext.ux.touch.grid.feature.Feature",
+                    "name": "Feature.js",
+                    "path": "./Ext.ux.touch.grid/feature/"
+                },
+                {
+                    "clsName": "Ext.util.HashMap",
+                    "name": "HashMap.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.data.Request",
+                    "name": "Request.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "Ext.data.Batch",
+                    "name": "Batch.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "Ext.data.writer.Writer",
+                    "name": "Writer.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/writer/"
+                },
+                {
+                    "clsName": "Ext.data.ResultSet",
+                    "name": "ResultSet.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "testing.controller.Discussion",
+                    "name": "Discussion.js",
+                    "path": "app/controller/"
+                },
+                {
+                    "clsName": "Ext.Ajax",
+                    "name": "Ajax.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.util.Collection",
+                    "name": "Collection.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
+                },
+                {
+                    "clsName": "Ext.data.Errors",
+                    "name": "Errors.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "Ext.tab.Bar",
+                    "name": "Bar.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/tab/"
+                },
+                {
+                    "clsName": "Ext.tab.Panel",
+                    "name": "Panel.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/tab/"
+                },
+                {
+                    "clsName": "Ext.data.StoreManager",
+                    "name": "StoreManager.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "Ext.form.Panel",
+                    "name": "Panel.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/form/"
+                },
+                {
+                    "clsName": "testing.view.CreateGroup",
+                    "name": "CreateGroup.js",
+                    "path": "app/view/"
+                },
+                {
+                    "clsName": "Ext.Audio",
+                    "name": "Audio.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.dataview.component.Container",
+                    "name": "Container.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/dataview/component/"
+                },
+                {
+                    "clsName": "Ext.dataview.DataView",
+                    "name": "DataView.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/dataview/"
+                },
+                {
+                    "clsName": "Ext.dataview.List",
+                    "name": "List.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/dataview/"
+                },
+                {
+                    "clsName": "Ext.ux.touch.grid.feature.Sorter",
+                    "name": "Sorter.js",
+                    "path": "./Ext.ux.touch.grid/feature/"
+                },
+                {
+                    "clsName": "Ext.ux.touch.grid.List",
+                    "name": "List.js",
+                    "path": "./Ext.ux.touch.grid/"
+                },
+                {
+                    "clsName": "testing.view.UserReport",
+                    "name": "UserReport.js",
+                    "path": "app/view/"
+                },
+                {
+                    "clsName": "testing.view.Discussion",
+                    "name": "Discussion.js",
+                    "path": "app/view/"
+                },
+                {
+                    "clsName": "Ext.data.Types",
+                    "name": "Types.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "Ext.data.Field",
+                    "name": "Field.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "Ext.AbstractManager",
+                    "name": "AbstractManager.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/"
+                },
+                {
+                    "clsName": "Ext.data.ModelManager",
+                    "name": "ModelManager.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "Ext.data.association.Association",
+                    "name": "Association.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/association/"
+                },
+                {
+                    "clsName": "Ext.data.association.HasMany",
+                    "name": "HasMany.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/association/"
+                },
+                {
+                    "clsName": "Ext.data.association.BelongsTo",
+                    "name": "BelongsTo.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/association/"
+                },
+                {
+                    "clsName": "Ext.data.association.HasOne",
+                    "name": "HasOne.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/association/"
+                },
+                {
+                    "clsName": "Ext.data.writer.Json",
+                    "name": "Json.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/writer/"
+                },
+                {
+                    "clsName": "Ext.data.reader.Reader",
+                    "name": "Reader.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/reader/"
+                },
+                {
+                    "clsName": "Ext.data.reader.Json",
+                    "name": "Json.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/reader/"
+                },
+                {
+                    "clsName": "Ext.data.proxy.Proxy",
+                    "name": "Proxy.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/proxy/"
+                },
+                {
+                    "clsName": "Ext.data.proxy.Server",
+                    "name": "Server.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/proxy/"
+                },
+                {
+                    "clsName": "Ext.data.proxy.Ajax",
+                    "name": "Ajax.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/proxy/"
+                },
+                {
+                    "clsName": "Ext.data.Model",
+                    "name": "Model.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "testing.model.Group",
+                    "name": "Group.js",
+                    "path": "app/model/"
+                },
+                {
+                    "clsName": "testing.model.User",
+                    "name": "User.js",
+                    "path": "app/model/"
+                },
+                {
+                    "clsName": "Ext.data.proxy.Client",
+                    "name": "Client.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/proxy/"
+                },
+                {
+                    "clsName": "Ext.data.proxy.Memory",
+                    "name": "Memory.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/proxy/"
+                },
+                {
+                    "clsName": "Ext.data.Store",
+                    "name": "Store.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "testing.store.Groups",
+                    "name": "Groups.js",
+                    "path": "app/store/"
+                },
+                {
+                    "clsName": "testing.store.DefaultUsers",
+                    "name": "DefaultUsers.js",
+                    "path": "app/store/"
+                },
+                {
+                    "clsName": "Ext.picker.Slot",
+                    "name": "Slot.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/picker/"
+                },
+                {
+                    "clsName": "Ext.picker.Picker",
+                    "name": "Picker.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/picker/"
+                },
+                {
+                    "clsName": "Ext.field.Select",
+                    "name": "Select.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/field/"
+                },
+                {
+                    "clsName": "testing.view.Login",
+                    "name": "Login.js",
+                    "path": "app/view/"
+                },
+                {
+                    "clsName": "testing.view.Main",
+                    "name": "Main.js",
+                    "path": "app/view/"
+                },
+                {
+                    "clsName": "Ext.data.proxy.WebStorage",
+                    "name": "WebStorage.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/proxy/"
+                },
+                {
+                    "clsName": "Ext.data.proxy.LocalStorage",
+                    "name": "LocalStorage.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/proxy/"
+                },
+                {
+                    "clsName": "testing.model.DefaultUser",
+                    "name": "DefaultUser.js",
+                    "path": "app/model/"
+                },
+                {
+                    "clsName": "testing.controller.Login",
+                    "name": "Login.js",
+                    "path": "app/controller/"
+                },
+                {
+                    "clsName": "Ext.data.ArrayStore",
+                    "name": "ArrayStore.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
+                },
+                {
+                    "clsName": "Ext.data.reader.Array",
+                    "name": "Array.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/reader/"
+                }
+            ]
+        },
+        {
+            "name": "Application - Production",
+            "target": "app-all.js",
+            "compress": true,
+            "files": [
+                {
+                    "path": "",
+                    "name": "all-classes.js"
+                },
+                {
+                    "path": "",
+                    "name": "app.js"
+                }
+            ]
+        }
+    ],
+    "resources": []
+}
