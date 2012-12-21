@@ -166,5 +166,9 @@ Ext.define('testing.controller.Discussion', {
     	);
     	this.setNativeTickSound(tickMedia);
     	this.setNativeBeepSound(beepMedia);
+    	tickMedia.play();
+    	tickMedia.stop();
+    	beepMedia.play();
+    	beepMedia.stop();
     }
 });
