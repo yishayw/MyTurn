@@ -685,6 +685,11 @@
                     "path": "app/controller/"
                 },
                 {
+                    "clsName": "testing.util.UrlUtils",
+                    "name": "UrlUtils.js",
+                    "path": "app/util/"
+                },
+                {
                     "clsName": "testing.util.TimeUtils",
                     "name": "TimeUtils.js",
                     "path": "app/util/"
@@ -810,6 +815,21 @@
                     "path": "./Ext.ux.touch.grid/feature/"
                 },
                 {
+                    "clsName": "Ext.device.communicator.Default",
+                    "name": "Default.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/device/communicator/"
+                },
+                {
+                    "clsName": "Ext.device.communicator.Android",
+                    "name": "Android.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/device/communicator/"
+                },
+                {
+                    "clsName": "Ext.device.notification.Abstract",
+                    "name": "Abstract.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/device/notification/"
+                },
+                {
                     "clsName": "Ext.util.HashMap",
                     "name": "HashMap.js",
                     "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/util/"
@@ -833,11 +853,6 @@
                     "clsName": "Ext.data.ResultSet",
                     "name": "ResultSet.js",
                     "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/data/"
-                },
-                {
-                    "clsName": "testing.controller.Discussion",
-                    "name": "Discussion.js",
-                    "path": "app/controller/"
                 },
                 {
                     "clsName": "Ext.Ajax",
@@ -918,6 +933,36 @@
                     "clsName": "testing.view.Discussion",
                     "name": "Discussion.js",
                     "path": "app/view/"
+                },
+                {
+                    "clsName": "Ext.device.Communicator",
+                    "name": "Communicator.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/device/"
+                },
+                {
+                    "clsName": "Ext.device.notification.PhoneGap",
+                    "name": "PhoneGap.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/device/notification/"
+                },
+                {
+                    "clsName": "Ext.device.notification.Sencha",
+                    "name": "Sencha.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/device/notification/"
+                },
+                {
+                    "clsName": "Ext.device.notification.Simulator",
+                    "name": "Simulator.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/device/notification/"
+                },
+                {
+                    "clsName": "Ext.device.Notification",
+                    "name": "Notification.js",
+                    "path": "../../../My%20Web%20Sites/Express%20Site1/public/sdk/src/device/"
+                },
+                {
+                    "clsName": "testing.controller.Discussion",
+                    "name": "Discussion.js",
+                    "path": "app/controller/"
                 },
                 {
                     "clsName": "Ext.data.Types",
@@ -1003,6 +1048,11 @@
                     "clsName": "testing.model.User",
                     "name": "User.js",
                     "path": "app/model/"
+                },
+                {
+                    "clsName": "testing.proxy.CrossAjax",
+                    "name": "CrossAjax.js",
+                    "path": "app/proxy/"
                 },
                 {
                     "clsName": "Ext.data.proxy.Client",

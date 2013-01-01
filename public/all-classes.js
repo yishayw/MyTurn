@@ -29749,6 +29749,15 @@ Ext.define('testing.controller.UserReport', {
         store.remove(store.getRange());
     }
 });
+Ext.define('testing.util.UrlUtils', {
+	singleton: true,
+	getBaseUrl: function() {
+		var isNative = Ext.os.is('Android') || Ext.os.is('iOS');
+		var url = isNative ? 'http://mturn.hp.af.cm/' : '';
+//		var url = isNative ? 'http://myturn.eu01.aws.af.cm/' : '';
+		return url;
+	}
+});
 Ext.define('testing.util.TimeUtils', {
 	statics: {
 	    getFormattedTime: function(time) {
@@ -35175,6 +35184,247 @@ Ext.define('Ext.ux.touch.grid.feature.Feature', {
 });
 
 /**
+ * @private
+ *
+ * This object handles communication between the WebView and Sencha's native shell.
+ * Currently it has two primary responsibilities:
+ *
+ * 1. Maintaining unique string ids for callback functions, together with their scope objects
+ * 2. Serializing given object data into HTTP GET request parameters
+ *
+ * As an example, to capture a photo from the device's camera, we use `Ext.device.Camera.capture()` like:
+ *
+ *     Ext.device.Camera.capture(
+ *         function(dataUri){
+ *             // Do something with the base64-encoded `dataUri` string
+ *         },
+ *         function(errorMessage) {
+ *    
+ *         },
+ *         callbackScope,
+ *         {
+ *             quality: 75,
+ *             width: 500,
+ *             height: 500
+ *         }
+ *     );
+ * 
+ * Internally, `Ext.device.Communicator.send()` will then be invoked with the following argument:
+ * 
+ *     Ext.device.Communicator.send({
+ *         command: 'Camera#capture',
+ *         callbacks: {
+ *             onSuccess: function() { ... },
+ *             onError: function() { ... },
+ *         },
+ *         scope: callbackScope,
+ *         quality: 75,
+ *         width: 500,
+ *         height: 500
+ *     });
+ * 
+ * Which will then be transformed into a HTTP GET request, sent to native shell's local
+ * HTTP server with the following parameters:
+ * 
+ *     ?quality=75&width=500&height=500&command=Camera%23capture&onSuccess=3&onError=5
+ * 
+ * Notice that `onSuccess` and `onError` have been converted into string ids (`3` and `5`
+ * respectively) and maintained by `Ext.device.Communicator`.
+ * 
+ * Whenever the requested operation finishes, `Ext.device.Communicator.invoke()` simply needs
+ * to be executed from the native shell with the corresponding ids given before. For example:
+ * 
+ *     Ext.device.Communicator.invoke('3', ['DATA_URI_OF_THE_CAPTURED_IMAGE_HERE']);
+ * 
+ * will invoke the original `onSuccess` callback under the given scope. (`callbackScope`), with
+ * the first argument of 'DATA_URI_OF_THE_CAPTURED_IMAGE_HERE'
+ * 
+ * Note that `Ext.device.Communicator` maintains the uniqueness of each function callback and
+ * its scope object. If subsequent calls to `Ext.device.Communicator.send()` have the same
+ * callback references, the same old ids will simply be reused, which guarantee the best possible
+ * performance for a large amount of repeative calls.
+ */
+Ext.define('Ext.device.communicator.Default', {
+
+    SERVER_URL: 'http://localhost:3000', // Change this to the correct server URL
+
+    callbackDataMap: {},
+
+    callbackIdMap: {},
+
+    idSeed: 0,
+
+    globalScopeId: '0',
+
+    generateId: function() {
+        return String(++this.idSeed);
+    },
+
+    getId: function(object) {
+        var id = object.$callbackId;
+
+        if (!id) {
+            object.$callbackId = id = this.generateId();
+        }
+
+        return id;
+    },
+
+    getCallbackId: function(callback, scope) {
+        var idMap = this.callbackIdMap,
+            dataMap = this.callbackDataMap,
+            id, scopeId, callbackId, data;
+
+        if (!scope) {
+            scopeId = this.globalScopeId;
+        }
+        else if (scope.isIdentifiable) {
+            scopeId = scope.getId();
+        }
+        else {
+            scopeId = this.getId(scope);
+        }
+
+        callbackId = this.getId(callback);
+
+        if (!idMap[scopeId]) {
+            idMap[scopeId] = {};
+        }
+
+        if (!idMap[scopeId][callbackId]) {
+            id = this.generateId();
+            data = {
+                callback: callback,
+                scope: scope
+            };
+
+            idMap[scopeId][callbackId] = id;
+            dataMap[id] = data;
+        }
+
+        return idMap[scopeId][callbackId];
+    },
+
+    getCallbackData: function(id) {
+        return this.callbackDataMap[id];
+    },
+
+    invoke: function(id, args) {
+        var data = this.getCallbackData(id);
+
+        data.callback.apply(data.scope, args);
+    },
+
+    send: function(args) {
+        var callbacks, scope, name, callback;
+
+        if (!args) {
+            args = {};
+        }
+        else if (args.callbacks) {
+            callbacks = args.callbacks;
+            scope = args.scope;
+
+            delete args.callbacks;
+            delete args.scope;
+
+            for (name in callbacks) {
+                if (callbacks.hasOwnProperty(name)) {
+                    callback = callbacks[name];
+
+                    if (typeof callback == 'function') {
+                        args[name] = this.getCallbackId(callback, scope);
+                    }
+                }
+            }
+        }
+
+        this.doSend(args);
+    },
+
+    doSend: function(args) {
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', this.SERVER_URL + '?' + Ext.Object.toQueryString(args), false);
+        xhr.send(null);
+    }
+});
+
+
+/**
+ * @private
+ */
+Ext.define('Ext.device.communicator.Android', {
+    extend: 'Ext.device.communicator.Default',
+
+    doSend: function(args) {
+        window.Sencha.action(JSON.stringify(args));
+    }
+});
+
+/**
+ * @private
+ */
+Ext.define('Ext.device.notification.Abstract', {
+    /**
+     * A simple way to show a notification.
+     *
+     *     Ext.device.Notification.show({
+     *        title: 'Verification',
+     *        message: 'Is your email address is: test@sencha.com',
+     *        buttons: Ext.MessageBox.OKCANCEL,
+     *        callback: function(button) {
+     *            if (button == "ok") {
+     *                console.log('Verified');
+     *            } else {
+     *                console.log('Nope.');
+     *            }
+     *        }
+     *     });
+     *
+     * @param {Object} config An object which contains the following config options:
+     *
+     * @param {String} config.title The title of the notification
+     *
+     * @param {String} config.message The message to be displayed on the notification
+     *
+     * @param {String/String[]} [config.buttons="OK"]
+     * The buttons to be displayed on the notification. It can be a string, which is the title of the button, or an array of multiple strings.
+     * Please not that you should not use more than 2 buttons, as they may not be displayed correct on all devices.
+     *
+     * @param {Function} config.callback
+     * A callback function which is called when the notification is dismissed by clicking on the configured buttons.
+     * @param {String} config.callback.buttonId The id of the button pressed, one of: 'ok', 'yes', 'no', 'cancel'.
+     *
+     * @param {Object} config.scope The scope of the callback function
+     */
+    show: function(config) {
+        if (!config.message) {
+            throw('[Ext.device.Notification#show] You passed no message');
+        }
+
+        if (!config.buttons) {
+            config.buttons = "OK";
+        }
+
+        if (!Ext.isArray(config.buttons)) {
+            config.buttons = [config.buttons];
+        }
+
+        if (!config.scope) {
+            config.scope = this;
+        }
+
+        return config;
+    },
+
+    /**
+     * Vibrates the device.
+     */
+    vibrate: Ext.emptyFn
+});
+
+/**
 Represents a collection of a set of key and value pairs. Each key in the HashMap must be unique, the same
 key cannot exist twice. Access to items is provided via the key only. Sample usage:
 
@@ -36029,115 +36279,6 @@ Ext.define('Ext.data.ResultSet', {
      */
     updateRecords: function(records) {
         this.setCount(records.length);
-    }
-});
-
-Ext.define('testing.controller.Discussion', {
-    extend: 'Ext.app.Controller',
-    requires: ['testing.util.TimeUtils'],
-    config: {
-        refs: {
-            addToQueueButton: "button[action=addToQueueEvent]",
-            messageLabel: "#messageLabel",
-            timeRemainingLabel: "#timeRemainingLabel",
-            beepSound: "#beeper",
-            tickSound: "#ticker"
-        }
-    },
-
-    doAddToQueue: function () {
-        this.getApplication().fireEvent('clientMessage', { type: 'requestToSpeak' });
-    },
-
-    doRemoveFromQueue: function () {
-        this.getApplication().fireEvent('clientMessage', { type: 'relinquishTurn' });
-    },
-
-    doDiscussionOver: function (data) {
-        Ext.Msg.alert('', 'The discussion is over.');
-        // a group was deleted on server, time to reload
-        Ext.getStore('groups').load();
-    },
-
-    doUsersSaved: function(data) {
-       this.clearTick();
-       this.initMessageScreen();
-    },
-
-    doNewSpeaker: function (data) {
-        this.getMessageLabel().setHtml('Current speaker is ' + data.name);
-        this.doUpdateTimeRemaining(data);
-        if (this.getUserName() != data.name) {
-            this.clearTick();
-        }
-    },
-
-    doWaitingForNewSpeaker: function (data) {
-        this.getMessageLabel().setHtml('Waiting for New Speaker');
-        this.doUpdateTimeRemaining(data);
-        this.getBeepSound().play();
-        this.clearTick();
-    },
-
-    getUserName: function () {
-        var users = Ext.getStore('defaultUsers');
-        if (users.getCount() == 1) {
-            return users.getAt(0).get('name');
-        }
-        return null;
-    },
-
-    initMessageScreen: function () {
-        this.getMessageLabel().setHtml('Waiting for New Speaker');
-        this.getTimeRemainingLabel().setHtml('');
-    },
-
-    clearTick: function () {
-        if (this.tickSoundInterval) {
-            clearInterval(this.tickSoundInterval);
-            this.tickSoundInterval = null;
-        }
-    },
-
-    doMyTurn: function (data) {
-        if (this.tickSoundInterval) {
-            return;
-        }
-        this.getBeepSound().play();
-        var context = this;
-        this.clearTick();
-        this.tickSoundInterval = setInterval(function () {
-            context.doTick();
-        }, 1000);
-    },
-
-    doTick: function () {
-        this.getTickSound().play();
-    },
-
-    doUpdateTimeRemaining: function (data) {
-        var formattedTime = testing.util.TimeUtils.getFormattedTime(data.timeLeft);
-        this.getTimeRemainingLabel().setHtml(formattedTime);
-    },
-
-    init: function () {
-        this.getApplication().on({
-            discussionOver: this.doDiscussionOver,
-            usersSaved: this.doUsersSaved,
-            newSpeaker: this.doNewSpeaker,
-            yourTurn: this.doMyTurn,
-            waitingForNewSpeaker: this.doWaitingForNewSpeaker,
-            scope: this
-        });
-    },
-
-    launch: function () {
-        this.getAddToQueueButton().element.on({
-            touchstart: 'doAddToQueue',
-            touchend: 'doRemoveFromQueue',
-            scope: this
-        });
-        this.initMessageScreen();
     }
 });
 /**
@@ -41606,6 +41747,398 @@ Ext.define("testing.view.Discussion", {
                 text: 'My turn'
             },
          ]
+    }
+});
+/**
+ * @private
+ */
+Ext.define('Ext.device.Communicator', {
+    requires: [
+        'Ext.device.communicator.Default',
+        'Ext.device.communicator.Android'
+    ],
+
+    singleton: true,
+
+    constructor: function() {
+        if (Ext.os.is.Android) {
+            return new Ext.device.communicator.Android();
+        }
+
+        return new Ext.device.communicator.Default();
+    }
+});
+
+/**
+ * @private
+ */
+Ext.define('Ext.device.notification.PhoneGap', {
+    extend: 'Ext.device.notification.Abstract',
+    requires: ['Ext.device.Communicator'],
+
+    show: function() {
+        var config = this.callParent(arguments),
+            buttons = (config.buttons) ? config.buttons.join(',') : null,
+            onShowCallback = function(index) {
+                if (config.callback) {
+                    config.callback.apply(config.scope, (config.buttons) ? [config.buttons[index - 1]] : []);
+                }
+            };
+
+        navigator.notification.confirm(
+            config.message,
+            onShowCallback,
+            config.title,
+            buttons
+        );
+    },
+
+    vibrate: function() {
+        navigator.notification.vibrate(2000);
+    }
+});
+
+/**
+ * @private
+ */
+Ext.define('Ext.device.notification.Sencha', {
+    extend: 'Ext.device.notification.Abstract',
+    requires: ['Ext.device.Communicator'],
+
+    show: function() {
+        var config = this.callParent(arguments);
+
+        Ext.device.Communicator.send({
+            command: 'Notification#show',
+            callbacks: {
+                callback: config.callback
+            },
+            scope  : config.scope,
+            title  : config.title,
+            message: config.message,
+            buttons: config.buttons.join(',') //@todo fix this
+        });
+    },
+
+    vibrate: function() {
+        Ext.device.Communicator.send({
+            command: 'Notification#vibrate'
+        });
+    }
+});
+
+/**
+ * @private
+ */
+Ext.define('Ext.device.notification.Simulator', {
+    extend: 'Ext.device.notification.Abstract',
+    requires: ['Ext.MessageBox'],
+
+    // @private
+    msg: null,
+
+	show: function() {
+        var config = this.callParent(arguments),
+            buttons = [],
+            ln = config.buttons.length,
+            button, i, callback, msg;
+
+        //buttons
+        for (i = 0; i < ln; i++) {
+            button = config.buttons[i];
+            if (Ext.isString(button)) {
+                button = {
+                    text: config.buttons[i],
+                    itemId: config.buttons[i].toLowerCase()
+                };
+            }
+
+            buttons.push(button);
+        }
+
+        this.msg = Ext.create('Ext.MessageBox');
+
+        msg = this.msg;
+
+        callback = function(itemId) {
+            if (config.callback) {
+                config.callback.apply(config.scope, [itemId]);
+            }
+        };
+
+        this.msg.show({
+            title  : config.title,
+            message: config.message,
+            scope  : this.msg,
+            buttons: buttons,
+            fn     : callback
+        });
+    },
+
+    vibrate: function() {
+        //nice animation to fake vibration
+        var animation = [
+            "@-webkit-keyframes vibrate{",
+            "    from {",
+            "        -webkit-transform: rotate(-2deg);",
+            "    }",
+            "    to{",
+            "        -webkit-transform: rotate(2deg);",
+            "    }",
+            "}",
+
+            "body {",
+            "    -webkit-animation: vibrate 50ms linear 10 alternate;",
+            "}"
+        ];
+
+        var head = document.getElementsByTagName("head")[0];
+        var cssNode = document.createElement('style');
+        cssNode.innerHTML = animation.join('\n');
+        head.appendChild(cssNode);
+
+        setTimeout(function() {
+            head.removeChild(cssNode);
+        }, 400);
+    }
+});
+
+/**
+ * Provides a cross device way to show notifications. There are 3 different implementations:
+ *
+ * - Sencha Packager
+ * - PhoneGap
+ * - Simulator
+ *
+ * When this singleton is instantiated, it will automatically use the correct implementation depending on the current device.
+ *
+ * Both the Sencha Packager and PhoneGap versions will use the native implementations to display the notification. The
+ * Simulator implementation will use {@link Ext.MessageBox} for {@link #show} and a simply animation when you call {@link #vibrate}.
+ *
+ * ## Examples
+ *
+ * To show a simple notification:
+ *
+ *     Ext.device.Notification.show({
+ *         title: 'Verification',
+ *         message: 'Is your email address is: test@sencha.com',
+ *         buttons: Ext.MessageBox.OKCANCEL,
+ *         callback: function(button) {
+ *             if (button == "ok") {
+ *                 console.log('Verified');
+ *             } else {
+ *                 console.log('Nope.');
+ *             }
+ *         }
+ *     });
+ *
+ * To make the device virbate:
+ *
+ *     Ext.device.Notification.vibrate();
+ * 
+ * @mixins Ext.device.notification.Abstract
+ *
+ * @aside guide native_apis
+ */
+Ext.define('Ext.device.Notification', {
+    singleton: true,
+
+    requires: [
+        'Ext.device.Communicator',
+        'Ext.device.notification.PhoneGap',
+        'Ext.device.notification.Sencha',
+        'Ext.device.notification.Simulator'
+    ],
+
+    constructor: function() {
+        var browserEnv = Ext.browser.is;
+
+        if (browserEnv.WebView) {
+            if (browserEnv.PhoneGap) {
+                return Ext.create('Ext.device.notification.PhoneGap');
+            }
+            else {
+                return Ext.create('Ext.device.notification.Sencha');
+            }
+        }
+        else {
+            return Ext.create('Ext.device.notification.Simulator');
+        }
+    }
+});
+
+
+Ext.define('testing.controller.Discussion', {
+    extend: 'Ext.app.Controller',
+    requires: [
+    	'testing.util.UrlUtils',
+    	'testing.util.TimeUtils', 
+    	'Ext.device.Notification'
+    ],
+    config: {
+	    nativeTickSound: null,
+	    nativeBeepSound: null,
+        refs: {
+            addToQueueButton: "button[action=addToQueueEvent]",
+            messageLabel: "#messageLabel",
+            timeRemainingLabel: "#timeRemainingLabel",
+            beepSound: "#beeper",
+            tickSound: "#ticker"
+        }
+    },
+
+    doAddToQueue: function () {
+        this.getApplication().fireEvent('clientMessage', { type: 'requestToSpeak' });
+    },
+
+    doRemoveFromQueue: function () {
+        this.getApplication().fireEvent('clientMessage', { type: 'relinquishTurn' });
+    },
+
+    doDiscussionOver: function (data) {
+        Ext.Msg.alert('', 'The discussion is over.');
+        // a group was deleted on server, time to reload
+        Ext.getStore('groups').load();
+    },
+
+    doUsersSaved: function(data) {
+       this.clearTick();
+       this.initMessageScreen();
+    },
+
+    doNewSpeaker: function (data) {
+        this.getMessageLabel().setHtml('Current speaker is ' + data.name);
+        this.doUpdateTimeRemaining(data);
+        if (this.getUserName() != data.name) {
+            this.clearTick();
+        }
+    },
+
+    doWaitingForNewSpeaker: function (data) {
+        this.getMessageLabel().setHtml('Waiting for New Speaker');
+        this.doUpdateTimeRemaining(data);
+        this.doBeep();
+        this.clearTick();
+    },
+
+    getUserName: function () {
+        var users = Ext.getStore('defaultUsers');
+        if (users.getCount() == 1) {
+            return users.getAt(0).get('name');
+        }
+        return null;
+    },
+
+    initMessageScreen: function () {
+        this.getMessageLabel().setHtml('Waiting for New Speaker');
+        this.getTimeRemainingLabel().setHtml('');
+    },
+
+    clearTick: function () {
+        if (this.tickSoundInterval) {
+            clearInterval(this.tickSoundInterval);
+            this.tickSoundInterval = null;
+        }
+    },
+
+    doMyTurn: function (data) {
+        if (this.tickSoundInterval) {
+            return;
+        }
+        this.doBeep();
+        var context = this;
+        this.clearTick();
+        this.tickSoundInterval = setInterval(function () {
+            context.doTick();
+        }, 1000);
+    },
+    
+	crossPlatformPlay: function(soundObject) {
+        if (Ext.os.is('Android') || Ext.os.is('iOS')) {
+        	var soundSrc = soundObject.getUrl();
+        	var url = testing.util.UrlUtils.getBaseUrl() + soundSrc;
+        	var media = new Media(
+        		url, 
+        		function() {}, 
+        		function(err) { 
+        			Ext.Msg.alert('media error: ' + err.message);
+        		}
+        	);
+        	media.play();
+        } else {
+        	soundObject.play();
+        }
+	},
+	
+    doBeep: function() {
+    	if (Ext.os.is('Android') || Ext.os.is('iOS')) {
+    		this.getNativeBeepSound().play();
+    	} else {
+    		this.crossPlatformPlay(this.getBeepSound());
+    	}
+    	if (Ext.os.is('Android'))
+    	{
+       		Ext.device.Notification.vibrate();
+    	}
+    },
+    
+    doTick: function () {
+    	if (Ext.os.is('Android') || Ext.os.is('iOS')) {
+    		this.getNativeTickSound().play();
+    	} else {
+    		this.crossPlatformPlay(this.getTickSound());
+    	}
+    },
+
+    doUpdateTimeRemaining: function (data) {
+        var formattedTime = testing.util.TimeUtils.getFormattedTime(data.timeLeft);
+        this.getTimeRemainingLabel().setHtml(formattedTime);
+    },
+
+    init: function () {
+        this.getApplication().on({
+            discussionOver: this.doDiscussionOver,
+            usersSaved: this.doUsersSaved,
+            newSpeaker: this.doNewSpeaker,
+            yourTurn: this.doMyTurn,
+            waitingForNewSpeaker: this.doWaitingForNewSpeaker,
+            scope: this
+        });
+    },
+
+    launch: function () {
+        this.getAddToQueueButton().element.on({
+            touchstart: 'doAddToQueue',
+            touchend: 'doRemoveFromQueue',
+            scope: this
+        });
+        this.initMessageScreen();
+        if (!Ext.os.is('Android') && !Ext.os.is('iOS')) {
+        	return;
+        }
+        // set media objects for native apps
+        var tickUrl = testing.util.UrlUtils.getBaseUrl() + this.getTickSound().getUrl();
+        var beepUrl = testing.util.UrlUtils.getBaseUrl() + this.getBeepSound().getUrl();
+        var tickMedia = new Media(
+    		tickUrl, 
+    		function() {}, 
+    		function(err) { 
+    			Ext.Msg.alert('media error: ' + err.message);
+    		}
+    	);
+        var beepMedia = new Media(
+    		beepUrl, 
+    		function() {}, 
+    		function(err) { 
+    			Ext.Msg.alert('media error: ' + err.message);
+    		}
+    	);
+    	this.setNativeTickSound(tickMedia);
+    	this.setNativeBeepSound(beepMedia);
+    	tickMedia.play();
+    	tickMedia.stop();
+    	beepMedia.play();
+    	beepMedia.stop();
     }
 });
 /**
@@ -48124,6 +48657,16 @@ Ext.define('testing.model.User', {
     }
 });
 
+Ext.define('testing.proxy.CrossAjax', {
+    extend: 'Ext.data.proxy.Ajax',
+    requires: ['testing.util.UrlUtils'],
+    alias: 'proxy.crossajax',
+    buildUrl: function(request) {
+    	var originalUrl = this.callParent([request]);
+    	var resultUrl = testing.util.UrlUtils.getBaseUrl() + originalUrl;
+    	return resultUrl;
+    }
+});
 /**
  * @author Ed Spencer
  *
@@ -50443,11 +50986,12 @@ Ext.define('Ext.data.Store', {
 
 Ext.define('testing.store.Groups', {
     extend: 'Ext.data.Store',
+    requires: ['testing.proxy.CrossAjax'],
     config: {
         model: 'testing.model.Group',
         storeId: 'groups',
         proxy: {
-            type: 'ajax',
+            type: 'crossajax',
             cacheString: 'dcdcdc',
             url : 'api/data/groups.json',
             api: {
@@ -52626,7 +53170,15 @@ Ext.define('testing.model.DefaultUser', {
 
 Ext.define('testing.controller.Login', {
     extend: 'Ext.app.Controller',
-    requires: ['testing.model.DefaultUser', 'Ext.Ajax', 'Ext.Panel', 'Ext.viewport.Viewport', 'Ext.field.TextArea', 'testing.view.CreateGroup'],
+    requires: [
+        'testing.model.DefaultUser', 
+    	'Ext.Ajax', 
+    	'Ext.Panel', 
+    	'Ext.viewport.Viewport', 
+    	'Ext.field.TextArea', 
+    	'testing.view.CreateGroup',
+    	'testing.util.UrlUtils'
+    ],
     config: {
         control: {
             createGroupButton: { tap: "doCreateGroup" },
@@ -52647,9 +53199,10 @@ Ext.define('testing.controller.Login', {
     },
 
     doReadme: function () {
+    	var url = testing.util.UrlUtils.getBaseUrl() + 'data/readme.json';
         Ext.Ajax.request({
             disableCaching: false,
-            url: '/data/readme.json',
+            url: url,
             method: "GET",
             scope: this,
             success: function (response, request) {
@@ -52753,9 +53306,19 @@ Ext.define('testing.controller.Login', {
     },
 
     launch: function () {
-        this.doLogout();
-        this.getUserReportView().setDisabled(true);
-    }
+       if (Ext.os.is('Android') || Ext.os.is('iOS')) {
+		   var media = new Media(
+		   		testing.util.UrlUtils.getBaseUrl() + 'resources/sounds/tick.mp3', 
+	    		function() {}, 
+	    		function(err) { 
+	    			Ext.Msg.alert('error: ' + err.message)
+	    		}
+	    	);
+	    	media.play();
+        }
+	    this.doLogout();
+	    this.getUserReportView().setDisabled(true);
+}
 });
 /**
  * @author Ed Spencer
