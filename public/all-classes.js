@@ -41745,7 +41745,7 @@ Ext.define("testing.view.Discussion", {
                 height: '50%',
                 width: '50%',
                 text: 'My turn'
-            },
+            }
          ]
     }
 });
@@ -42123,22 +42123,21 @@ Ext.define('testing.controller.Discussion', {
     		tickUrl, 
     		function() {}, 
     		function(err) { 
-    			Ext.Msg.alert('media error: ' + err.message);
+    			//Ext.Msg.alert('tick media error: ' + err.message);
     		}
     	);
         var beepMedia = new Media(
     		beepUrl, 
     		function() {}, 
     		function(err) { 
-    			Ext.Msg.alert('media error: ' + err.message);
+    			//Ext.Msg.alert('beep media error: ' + err.message);
     		}
     	);
     	this.setNativeTickSound(tickMedia);
     	this.setNativeBeepSound(beepMedia);
+    	// first plays are slow so we do this at launch
     	tickMedia.play();
-    	tickMedia.stop();
     	beepMedia.play();
-    	beepMedia.stop();
     }
 });
 /**
@@ -53182,7 +53181,9 @@ Ext.define('testing.controller.Login', {
     config: {
         control: {
             createGroupButton: { tap: "doCreateGroup" },
-            readmeButton: { tap: "doReadme" }
+            readmeButton: { tap: "doReadme" },
+            loginButton: { tap: "maskOn"},
+            logoutButton: { tap: "maskOn"}
         },
         refs: {
             loginForm: "loginView",
@@ -53240,6 +53241,20 @@ Ext.define('testing.controller.Login', {
         });
     },
 
+    maskOn: function() {
+    	this.getMainView().setMasked({
+		    xtype: 'loadmask',
+		    message: '',
+   			indicator: true
+		});
+    },
+    
+    maskOff: function() {
+    	Ext.defer(function() {
+    		this.getMainView().setMasked(false);
+    	}, 100, this);
+    },
+    
     doLogout: function () {
         var mainView = this.getMainView();
         var loginForm = this.getLoginForm();
@@ -53257,6 +53272,7 @@ Ext.define('testing.controller.Login', {
             var name = defaultUser.get('name');
             this.getLoginTextField().setValue(name);
         }
+        this.maskOff();
     },
 
     doLogin: function () {
@@ -53277,6 +53293,7 @@ Ext.define('testing.controller.Login', {
         var defaultUser = users.getAt(0);
         defaultUser.set('name', this.getLoginTextField().getValue());
         users.sync();
+        this.maskOff();
     },
 
     doCreateGroup: function () {
@@ -53306,19 +53323,9 @@ Ext.define('testing.controller.Login', {
     },
 
     launch: function () {
-       if (Ext.os.is('Android') || Ext.os.is('iOS')) {
-		   var media = new Media(
-		   		testing.util.UrlUtils.getBaseUrl() + 'resources/sounds/tick.mp3', 
-	    		function() {}, 
-	    		function(err) { 
-	    			Ext.Msg.alert('error: ' + err.message)
-	    		}
-	    	);
-	    	media.play();
-        }
 	    this.doLogout();
 	    this.getUserReportView().setDisabled(true);
-}
+	}
 });
 /**
  * @author Ed Spencer

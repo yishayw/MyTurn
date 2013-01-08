@@ -154,21 +154,20 @@ Ext.define('testing.controller.Discussion', {
     		tickUrl, 
     		function() {}, 
     		function(err) { 
-    			Ext.Msg.alert('media error: ' + err.message);
+    			//Ext.Msg.alert('tick media error: ' + err.message);
     		}
     	);
         var beepMedia = new Media(
     		beepUrl, 
     		function() {}, 
     		function(err) { 
-    			Ext.Msg.alert('media error: ' + err.message);
+    			//Ext.Msg.alert('beep media error: ' + err.message);
     		}
     	);
     	this.setNativeTickSound(tickMedia);
     	this.setNativeBeepSound(beepMedia);
+    	// first plays are slow so we do this at launch
     	tickMedia.play();
-    	tickMedia.stop();
     	beepMedia.play();
-    	beepMedia.stop();
     }
 });
