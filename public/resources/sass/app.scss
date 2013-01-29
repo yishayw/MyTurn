@@ -17,3 +17,12 @@
 @include sencha-msgbox;
 
 // Your custom code goes here...
+
+@mixin custom-iconmask($name) {
+  .x-tab .x-button-icon.#{$name},
+  .x-button .x-button-icon.x-icon-mask.#{$name} {
+    -webkit-mask-image: inline-image('icons/' + $name + '.png');
+  }
+}
+
+@include custom-iconmask('myturn-logo');

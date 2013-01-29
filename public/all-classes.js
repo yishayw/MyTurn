@@ -29645,15 +29645,37 @@ Ext.define('testing.controller.CreateGroup', {
     extend: 'Ext.app.Controller',
     config: {
         control: {
+            createGroupButton: { tap: "doCreateGroup" },
             submitButton: { tap: 'doSubmitNewGroup' },
             cancelButton: { tap: 'doCancelNewGroup' }
         },
         refs: {
             submitButton: "button[action=submitNewGroup]",
             cancelButton: "button[action=cancelNewGroup]",
+            createGroupButton: "button[action=createGroupEvent]",
             createGroupForm: 'createGroupView',
             groupNameTextField: '#createGroupTextfield'
         }
+    },
+
+    doCreateGroup: function () {
+    	var createGroup = this.getCreateGroupForm();
+    	if (!createGroup) {
+	        createGroup = Ext.create('testing.view.CreateGroup', {
+	            modal: true,
+	            hideOnMaskTap: true,
+	            centered: true,
+	            /*height: '70%',*/
+	            /*width: '70%',*/
+	            minHeight: 280,
+	            minWidth: 300,
+	            margin: '0 0 0 0'
+	        });
+	        Ext.Viewport.add([createGroup]);
+    	} else {
+    		this.getGroupNameTextField().setValue("");
+    	}
+        createGroup.show();
     },
 
     doCancelNewGroup: function() {
@@ -29667,7 +29689,7 @@ Ext.define('testing.controller.CreateGroup', {
         // validate
         if(groups.findExact('name', name) != -1) {
             Ext.Msg.alert('', 'Group ' + name + ' already exists');
-            this.getGroupNameTextField().value = "";
+            this.getGroupNameTextField().setValue("");
             return;
         }
         // store
@@ -38981,7 +39003,7 @@ Ext.define("testing.view.CreateGroup", {
                         xtype: 'textfield',
                         name: 'name',
                         label: 'Name',
-                        id: 'createGroupTextfield'
+                        itemId: 'createGroupTextfield'
                     },
                     {
                         xtype: 'numberfield',
@@ -41742,9 +41764,11 @@ Ext.define("testing.view.Discussion", {
                 xtype: 'button',
                 centered: true,
                 action: 'addToQueueEvent',
-                height: '50%',
-                width: '50%',
-                text: 'My turn'
+                height: 200,
+                width: 200,
+                style: 'backgroundImage: url(resources/images/icons/myturn-logo.png); ' +
+                		'backgroundRepeat: no-repeat; backgroundPosition: center; background-size: contain'
+//                icon: 'resources/images/icons/myturn-logo.png'
             }
          ]
     }
@@ -52660,7 +52684,7 @@ Ext.define("testing.view.Main", {
             {
                 xtype: 'loginView',
                 title: 'Home',
-                iconCls: 'home'
+              	iconCls: 'home'
             },
             {
                 xtype: 'discussionView',
@@ -53175,12 +53199,10 @@ Ext.define('testing.controller.Login', {
     	'Ext.Panel', 
     	'Ext.viewport.Viewport', 
     	'Ext.field.TextArea', 
-    	'testing.view.CreateGroup',
     	'testing.util.UrlUtils'
     ],
     config: {
         control: {
-            createGroupButton: { tap: "doCreateGroup" },
             readmeButton: { tap: "doReadme" },
             loginButton: { tap: "maskOn"},
             logoutButton: { tap: "maskOn"}
@@ -53294,24 +53316,6 @@ Ext.define('testing.controller.Login', {
         defaultUser.set('name', this.getLoginTextField().getValue());
         users.sync();
         this.maskOff();
-    },
-
-    doCreateGroup: function () {
-        var createGroup = Ext.create('testing.view.CreateGroup', {
-            modal: true,
-            hideOnMaskTap: true,
-            centered: true,
-            /*height: '70%',*/
-            /*width: '70%',*/
-            minHeight: 280,
-            minWidth: 300,
-            margin: '0 0 0 0'
-        });
-        //if it has not been added to a container, add it to the Viewport.
-        if (!createGroup.getParent() && Ext.Viewport) {
-            Ext.Viewport.add(createGroup);
-        }
-        createGroup.show();
     },
 
     init: function () {

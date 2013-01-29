@@ -18,3 +18,17 @@
 @include sencha-carousel;
 @include sencha-form;
 @include sencha-msgbox;
+
+// Your custom code goes here...
+
+@include pictos-iconmask('myturn-logo');
+@include pictos-iconmask('list');
+
+.ButtonWithImage {
+  width: 80%;
+  height: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: block;
+}

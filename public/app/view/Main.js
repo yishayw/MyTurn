@@ -15,7 +15,7 @@ Ext.define("testing.view.Main", {
             {
                 xtype: 'loginView',
                 title: 'Home',
-                iconCls: 'home'
+              	iconCls: 'home'
             },
             {
                 xtype: 'discussionView',

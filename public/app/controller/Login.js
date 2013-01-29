@@ -7,12 +7,10 @@ Ext.define('testing.controller.Login', {
     	'Ext.Panel', 
     	'Ext.viewport.Viewport', 
     	'Ext.field.TextArea', 
-    	'testing.view.CreateGroup',
     	'testing.util.UrlUtils'
     ],
     config: {
         control: {
-            createGroupButton: { tap: "doCreateGroup" },
             readmeButton: { tap: "doReadme" },
             loginButton: { tap: "maskOn"},
             logoutButton: { tap: "maskOn"}
@@ -126,24 +124,6 @@ Ext.define('testing.controller.Login', {
         defaultUser.set('name', this.getLoginTextField().getValue());
         users.sync();
         this.maskOff();
-    },
-
-    doCreateGroup: function () {
-        var createGroup = Ext.create('testing.view.CreateGroup', {
-            modal: true,
-            hideOnMaskTap: true,
-            centered: true,
-            /*height: '70%',*/
-            /*width: '70%',*/
-            minHeight: 280,
-            minWidth: 300,
-            margin: '0 0 0 0'
-        });
-        //if it has not been added to a container, add it to the Viewport.
-        if (!createGroup.getParent() && Ext.Viewport) {
-            Ext.Viewport.add(createGroup);
-        }
-        createGroup.show();
     },
 
     init: function () {

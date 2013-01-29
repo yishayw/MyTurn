@@ -40,9 +40,11 @@ Ext.define("testing.view.Discussion", {
                 xtype: 'button',
                 centered: true,
                 action: 'addToQueueEvent',
-                height: '50%',
-                width: '50%',
-                text: 'My turn'
+                height: 200,
+                width: 200,
+                style: 'backgroundImage: url(resources/images/icons/myturn-logo.png); ' +
+                		'backgroundRepeat: no-repeat; backgroundPosition: center; background-size: contain'
+//                icon: 'resources/images/icons/myturn-logo.png'
             }
          ]
     }

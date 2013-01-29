@@ -18,7 +18,7 @@ Ext.define("testing.view.CreateGroup", {
                         xtype: 'textfield',
                         name: 'name',
                         label: 'Name',
-                        id: 'createGroupTextfield'
+                        itemId: 'createGroupTextfield'
                     },
                     {
                         xtype: 'numberfield',

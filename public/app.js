@@ -12,7 +12,7 @@ Ext.application({
         'Ext.MessageBox'
     ],
 
-    views: ['Main'],
+    views: ['Main', 'testing.view.CreateGroup'],
 
     controllers: ['Socket', 'Login', 'Discussion', 'CreateGroup', 'UserReport'],
 
