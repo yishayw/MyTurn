@@ -9,7 +9,7 @@ Ext.application({
     name: 'testing',
     autoCreateViewport: false,
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox', 'testing.util.EnvUtils'
     ],
 
     views: ['Main', 'testing.view.CreateGroup'],
