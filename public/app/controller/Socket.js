@@ -29,6 +29,9 @@ Ext.define('testing.controller.Socket', {
         this.socket.on('userRejected', function(data) {
             var msg = data.reason == 'alreadyExists' ? 'User already exists' : data.reason == 'groupNotDefined' ? 'Group is not defined' : '';
             Ext.Msg.alert('', msg);
+            if (data.reason == 'groupNotDefined') {
+            	Ext.getStore('groups').load();
+            }
             application.fireEvent('userLoggedOut');
         });
         this.socket.on('disconnect', function() {

@@ -1,3 +1,6 @@
+/**
+ * State machine like. Client messages change state and initiate a timed callback which emits a message to back to client.
+ */
 var messageDispatcher = require('./messageDispatcher')
     , timedAction = require('./models/timedAction')
     , db = require('./db');
@@ -116,7 +119,10 @@ rulesEngine.prototype.reprocess = function() {
         },
         this.discussionLength);
     }
-    var nextAction = this.discussionEnding ? this.getEndingDiscussion() :
+    // check for phantom groups (e.g. time was over but no user responded to repeat/terminate dialog)
+    var timeLeft = this.getTimeLeft(now);
+    var cleanupNecessary = isNaN(timeLeft) || timeLeft < 0;
+    var nextAction = cleanupNecessary || this.discussionEnding ? this.getEndingDiscussion() :
         this.discussionRepeating ? this.getRepeatingDiscussion() : 
             nextSpeakerAction ? nextSpeakerAction : this.getWaitingForSpeaker();
     //  make sure next action isn't after an already existing timed event
@@ -126,7 +132,6 @@ rulesEngine.prototype.reprocess = function() {
     this.nextTimedActionTime = now + nextAction.time;
     clearTimeout(this.nextTimedActionId);
     this.nextTimedActionId = setTimeout(nextAction.action, nextAction.time);
-
 }
 
 rulesEngine.prototype.getNextSpeaker = function() {
@@ -207,12 +212,13 @@ rulesEngine.prototype.doPersistUsers = function() {
     clearTimeout(this.nextTimedActionId);
     clearTimeout(this.discussionOverActionId);
     this.updateActiveSpeaker(new Date().getTime());
-    // clean up server
+    // write discussion details to a peristent DB.
+    // users will choose whether or not to repeat discussion
+    // if not, 'discussionOver' will be emitted
     this.messageDispatcher.emit('persistRoomData', this.room);
-    // let client know
-    /*this.messageDispatcher.sendMessageToRoom(this.room, {
-        messageType: 'discussionOver'
-    });*/
+    // schedule cleanup in 10 minutes in case persist doesn't yield repeat or over messages
+    var context = this;
+    setTimeout(function(){context.reprocess()}, 10*60*1000);
 }
 
 rulesEngine.prototype.updateActiveSpeaker = function(currentTime) {
