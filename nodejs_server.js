@@ -8,11 +8,10 @@ var express = require('express')
   , user = require('./api/models/user')
   , rulesEngine = require('./api/rulesEngine')
   , db = require('./api/db.js')
-  , messageDispatcher = require('./api/messageDispatcher')
+  , messageDispatcherInstance = require('./api/messageDispatcher')
   , apiServer = require('./api/nodejs_server.js');
 var app = module.exports = express.createServer();
 
-var messageDispatcherInstance;
 var rulesEngineMap = {};
 // Configuration
 
@@ -51,7 +50,7 @@ io.configure(function() {
     io.set('resource', '/api/socket.io');
     io.set('transports', ['xhr-polling']);
     io.set('polling duration', 10);
-    messageDispatcherInstance = new messageDispatcher(io);
+    messageDispatcherInstance.setIo(io);
     messageDispatcherInstance.on('persistRoomData', function(room) {
         persistRoomData(room);
     });

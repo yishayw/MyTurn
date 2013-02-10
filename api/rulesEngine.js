@@ -1,8 +1,7 @@
 /**
  * State machine like. Client messages change state and initiate a timed callback which emits a message to back to client.
  */
-var messageDispatcher = require('./messageDispatcher')
-    , timedAction = require('./models/timedAction')
+var timedAction = require('./models/timedAction')
     , db = require('./db');
 
 function rulesEngine(room, messageDispatcher) {
@@ -120,8 +119,7 @@ rulesEngine.prototype.reprocess = function() {
         this.discussionLength);
     }
     // check for phantom groups (e.g. time was over but no user responded to repeat/terminate dialog)
-    var timeLeft = this.getTimeLeft(now);
-    var cleanupNecessary = isNaN(timeLeft) || timeLeft < 0;
+    var cleanupNecessary = this.isInconsistent();
     var nextAction = cleanupNecessary || this.discussionEnding ? this.getEndingDiscussion() :
         this.discussionRepeating ? this.getRepeatingDiscussion() : 
             nextSpeakerAction ? nextSpeakerAction : this.getWaitingForSpeaker();
@@ -132,6 +130,15 @@ rulesEngine.prototype.reprocess = function() {
     this.nextTimedActionTime = now + nextAction.time;
     clearTimeout(this.nextTimedActionId);
     this.nextTimedActionId = setTimeout(nextAction.action, nextAction.time);
+}
+
+rulesEngine.prototype.isInconsistent = function() {
+	if (this.discussionRepeating) {
+		return false;
+	}
+    var now = new Date().getTime();
+    var timeLeft = this.getTimeLeft(now);
+    return isNaN(timeLeft) || timeLeft < 0;
 }
 
 rulesEngine.prototype.getNextSpeaker = function() {
@@ -185,6 +192,7 @@ rulesEngine.prototype.getEndingDiscussion = function() {
 }
 
 rulesEngine.prototype.doRepeatingDiscussion = function() {
+    this.messageDispatcher.emit('repeatingDiscussionInServer', this.room);
     this.messageDispatcher.sendMessageToRoom(this.room, {
         messageType: 'repeatingDiscussion'
     });
