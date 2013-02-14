@@ -133,6 +133,7 @@ Ext.define('testing.controller.Discussion', {
             newSpeaker: this.doNewSpeaker,
             yourTurn: this.doMyTurn,
             waitingForNewSpeaker: this.doWaitingForNewSpeaker,
+            cordovaLoaded: this.doCordovaLoaded,
             scope: this
         });
     },
@@ -150,6 +151,9 @@ Ext.define('testing.controller.Discussion', {
             touchend: 'doRemoveFromQueue',
             scope: this
         });
+    },
+    
+    doCordovaLoaded: function() {
         this.initMessageScreen();
         if (!EnvUtils.isNative()) {
         	return;

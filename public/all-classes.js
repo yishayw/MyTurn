@@ -29610,6 +29610,9 @@ Ext.define('testing.controller.Socket', {
         this.socket.on('userRejected', function(data) {
             var msg = data.reason == 'alreadyExists' ? 'User already exists' : data.reason == 'groupNotDefined' ? 'Group is not defined' : '';
             Ext.Msg.alert('', msg);
+            if (data.reason == 'groupNotDefined') {
+            	Ext.getStore('groups').load();
+            }
             application.fireEvent('userLoggedOut');
         });
         this.socket.on('disconnect', function() {
@@ -41766,11 +41769,23 @@ Ext.define("testing.view.Discussion", {
                 action: 'addToQueueEvent',
                 height: 200,
                 width: 200,
-                style: 'backgroundImage: url(resources/images/icons/myturn-logo.png); ' +
-                		'backgroundRepeat: no-repeat; backgroundPosition: center; background-size: contain'
+                text: 'My Turn',
+                listeners: {
+                	element: 'element',
+                	longpress: 'abosorbEvent',
+                	taphold: 'abosorbEvent',
+                	touchstart: 'abosorbEvent',
+                	touchmove: 'abosorbEvent',
+                	touchend: 'abosorbEvent',
+                	touchcancel: 'abosorbEvent'
+                }
 //                icon: 'resources/images/icons/myturn-logo.png'
             }
          ]
+    },
+    
+    abosorbEvent: function (e) {
+    	e.preventDefault();
     }
 });
 /**
@@ -42078,7 +42093,7 @@ Ext.define('testing.controller.Discussion', {
     },
     
 	crossPlatformPlay: function(soundObject) {
-        if (Ext.os.is('Android') || Ext.os.is('iOS')) {
+        if (EnvUtils.isNative()) {
         	var soundSrc = soundObject.getUrl();
         	var url = testing.util.UrlUtils.getBaseUrl() + soundSrc;
         	var media = new Media(
@@ -42095,19 +42110,19 @@ Ext.define('testing.controller.Discussion', {
 	},
 	
     doBeep: function() {
-    	if (Ext.os.is('Android') || Ext.os.is('iOS')) {
+    	if (EnvUtils.isNative()) {
     		this.getNativeBeepSound().play();
     	} else {
     		this.crossPlatformPlay(this.getBeepSound());
     	}
-    	if (Ext.os.is('Android'))
+    	if (EnvUtils.isNative() && Ext.os.is('Android'))
     	{
        		Ext.device.Notification.vibrate();
     	}
     },
     
     doTick: function () {
-    	if (Ext.os.is('Android') || Ext.os.is('iOS')) {
+    	if (EnvUtils.isNative()) {
     		this.getNativeTickSound().play();
     	} else {
     		this.crossPlatformPlay(this.getTickSound());
@@ -42131,13 +42146,20 @@ Ext.define('testing.controller.Discussion', {
     },
 
     launch: function () {
-        this.getAddToQueueButton().element.on({
+    	var button = this.getAddToQueueButton();
+    	// temp fix to android context menu on images
+    	if (EnvUtils.isNative() || !Ext.os.is('Android')) {
+    		button.setText('');
+    		button.setStyle('backgroundImage: url(resources/images/icons/myturn-logo.png); ' +
+                		'backgroundRepeat: no-repeat; backgroundPosition: center; background-size: contain');
+    	}
+        button.element.on({
             touchstart: 'doAddToQueue',
             touchend: 'doRemoveFromQueue',
             scope: this
         });
         this.initMessageScreen();
-        if (!Ext.os.is('Android') && !Ext.os.is('iOS')) {
+        if (!EnvUtils.isNative()) {
         	return;
         }
         // set media objects for native apps
