@@ -14,7 +14,7 @@ Ext.application({
 
     views: ['Main', 'testing.view.CreateGroup'],
 
-    controllers: ['CordovaLoader','Socket', 'Login', 'Discussion', 'CreateGroup', 'UserReport'],
+    controllers: ['Socket', 'Login', 'Discussion', 'CreateGroup', 'UserReport'],
 
     stores: ['Groups', 'DefaultUsers'],
 

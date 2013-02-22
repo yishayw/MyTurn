@@ -7,9 +7,12 @@ Ext.define('testing.controller.Discussion', {
     	'Ext.device.Notification'
     ],
     config: {
+    	beepUrl: 'resources/sounds/beep.mp3',
+    	tickUrl: 'resources/sounds/tick.mp3',
 	    nativeTickSound: null,
 	    nativeBeepSound: null,
         refs: {
+        	discussionView: 'discussionView',
             addToQueueButton: "button[action=addToQueueEvent]",
             messageLabel: "#messageLabel",
             timeRemainingLabel: "#timeRemainingLabel",
@@ -151,16 +154,32 @@ Ext.define('testing.controller.Discussion', {
             touchend: 'doRemoveFromQueue',
             scope: this
         });
+        this.initMessageScreen();
+        if (!EnvUtils.isNative()) {
+        	var discussionView = this.getDiscussionView();
+        	discussionView.add({
+                xtype: 'audio',
+                hidden: true,
+                id: 'beeper',
+                url: this.getBeepUrl()
+            });
+        	discussionView.add({
+                xtype: 'audio',
+                hidden: true,
+                id: 'ticker',
+                url: this.getTickUrl()
+            });
+        }
+        this.doCordovaLoaded();
     },
     
     doCordovaLoaded: function() {
-        this.initMessageScreen();
         if (!EnvUtils.isNative()) {
         	return;
         }
         // set media objects for native apps
-        var tickUrl = testing.util.UrlUtils.getBaseUrl() + this.getTickSound().getUrl();
-        var beepUrl = testing.util.UrlUtils.getBaseUrl() + this.getBeepSound().getUrl();
+        var tickUrl = testing.util.UrlUtils.getBaseUrl() + this.getTickUrl();
+        var beepUrl = testing.util.UrlUtils.getBaseUrl() + this.getBeepUrl();
         var tickMedia = new Media(
     		tickUrl, 
     		function() {}, 
@@ -180,5 +199,7 @@ Ext.define('testing.controller.Discussion', {
     	// first plays are slow so we do this at launch
     	tickMedia.play();
     	beepMedia.play();
+    	Ext.destroy(this.getTickSound());
+    	Ext.destroy(this.getBeepSound());
     }
 });

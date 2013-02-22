@@ -23,7 +23,11 @@ Ext.define('testing.controller.Socket', {
         var values = this.getLoginForm().getValues();
         var loginName = values.userName;
         var roomName = values.groupName;
-        this.socket = io.connect(null, { resource: 'api/socket.io', 'force new connection': true });
+        var url = testing.util.UrlUtils.getBaseUrl();
+        if (url == '') {
+        	url = null;
+        }
+        this.socket = io.connect(url, { resource: 'api/socket.io', 'force new connection': true });
         this.socket.emit('login', { name: loginName, 'room': roomName });
         var application = this.getApplication();
         this.socket.on('userRejected', function(data) {

@@ -39,6 +39,9 @@ Ext.define('testing.controller.Login', {
             success: function (response, request) {
                 var responseText = response.responseText;
                 responseText = responseText.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>');
+                var replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    			responseText = responseText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
+
                 //console.log("success -- response: "+response.responseText);
                 var msgbox = Ext.create('Ext.Panel', {
                     padding: '5 5 5 5',

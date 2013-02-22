@@ -9,18 +9,6 @@ Ext.define("testing.view.Discussion", {
         padding: '10px',
         items: [
             {
-                xtype: 'audio',
-                hidden: true,
-                id: 'beeper',
-                url: 'resources/sounds/beep.mp3'
-            },
-            {
-                xtype: 'audio',
-                hidden: true,
-                id: 'ticker',
-                url: 'resources/sounds/tick.mp3'
-            },
-            {
                 xtype: 'container',
                 layout: 'vbox',
                 style: "background-color: #878787; font-size: larger",
