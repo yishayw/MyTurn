@@ -14,7 +14,7 @@ Ext.application({
 
     views: ['Main', 'testing.view.CreateGroup'],
 
-    controllers: ['Socket', 'Login', 'Discussion', 'CreateGroup', 'UserReport'],
+    controllers: ['Socket', 'Login', 'Discussion', 'CreateGroup', 'UserReport', 'GroupsRefresher'],
 
     stores: ['Groups', 'DefaultUsers'],
 
